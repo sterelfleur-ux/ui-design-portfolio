@@ -36,10 +36,10 @@
   nav.top .links a:hover, nav.top .links a.active{border-color:var(--ink);}
 
   /* HERO */
-  .hero{padding:90px 48px 70px; border-bottom:1px solid var(--ink);}
+  .hero{padding:90px 48px 70px;}
   .hero .tagline{font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--gray); font-weight:700; margin-bottom:18px;}
   .hero h1{
-    font-family:'Archivo Black', sans-serif;
+    font-family:'Archivo Black', sans-serif; font-weight:400;
     font-size:92px; line-height:0.92; letter-spacing:1px; text-transform:uppercase;
   }
   .hero h1 .thin{-webkit-text-stroke:1px var(--ink); color:transparent;}
@@ -57,6 +57,9 @@
   .section-head{padding:56px 48px 0; display:flex; align-items:baseline; gap:18px;}
   .section-head h2{font-family:'Inter', sans-serif; font-weight:500; font-size:22px; text-transform:uppercase; letter-spacing:2px;}
   .section-head .rule{flex:1; height:1px; background:var(--ink);}
+
+  /* WORK SECTION BACKGROUND */
+  .work-section{background:var(--card);}
 
   /* WORK CATEGORY SUBNAV */
   .cat-nav{
@@ -93,11 +96,12 @@
   /* UI/UX PROJECT TILES */
   .project-tiles{padding:18px 48px 30px; display:flex; flex-direction:column; gap:50px;}
   .project-tile{text-align:center; width:640px; max-width:100%; margin:0 auto;}
-  .project-tile a.thumb-link{display:block; transition:opacity .15s ease;}
-  .project-tile a.thumb-link:hover{opacity:0.85;}
+  .project-tile a.thumb-link{display:block; overflow:hidden;}
+  .project-tile a.thumb-link:hover .thumb{transform:scale(1.03); opacity:0.92;}
   .project-tile .thumb{
     position:relative; width:100%; aspect-ratio:16/10;
     background:transparent; border:none;
+    transition:transform .25s ease, opacity .25s ease;
   }
   .project-tile .thumb-placeholder{
     position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
@@ -166,6 +170,7 @@
   </div>
 </section>
 
+<div class="work-section">
 <div class="section-head" id="work"><h2>Work</h2><div class="rule"></div></div>
 <div class="cat-nav">
   <a href="#uiux">UI/UX Design</a><span class="sep">/</span>
@@ -239,6 +244,8 @@
     </div>
 
   </div>
+</div>
+
 </div>
 
 <div class="section-head" id="about-head"><h2>About</h2><div class="rule"></div></div>
