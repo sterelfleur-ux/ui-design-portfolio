@@ -128,23 +128,35 @@
   .work-card.wide{grid-column:1/-1; display:grid; grid-template-columns:280px 1fr;}
   .work-card.wide .thumb{aspect-ratio:auto; height:100%; border-bottom:none; border-right:1px solid var(--ink);}
 
-  /* UI/UX PROJECT TILES */
-  .project-tiles{padding:18px 48px 30px; display:flex; flex-direction:column; gap:50px;}
-  .project-tile{text-align:center; width:640px; max-width:100%; margin:0 auto;}
-  .project-tile a.thumb-link{display:block; overflow:hidden;}
-  .project-tile a.thumb-link:hover .thumb{transform:scale(1.03); opacity:0.92;}
+  /* UI/UX PROJECT TILES — editorial */
+  .project-tiles{padding:18px 48px 30px; display:flex; flex-direction:column; gap:64px;}
+  .project-tile{
+    display:flex; align-items:flex-start; gap:40px;
+    width:100%; max-width:1000px; margin:0 auto;
+    text-decoration:none; color:inherit;
+  }
   .project-tile .thumb{
-    position:relative; width:100%; aspect-ratio:16/10;
-    background:transparent; border:none;
+    position:relative; width:55%; flex-shrink:0; aspect-ratio:16/10;
+    border-radius:8px; overflow:hidden;
+    background:var(--thumb-a); border:none;
     transition:transform .25s ease, opacity .25s ease;
   }
+  .project-tile:hover .thumb{transform:scale(1.02); opacity:0.94;}
   .project-tile .thumb-placeholder{
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
+    position:absolute; inset:0; display:none; align-items:center; justify-content:center; text-align:center; padding:20px;
     color:var(--ph-color); font-size:12px; font-style:italic;
   }
   .project-tile .thumb img{
-    position:relative; z-index:2; width:100%; height:100%; object-fit:cover;
+    position:relative; z-index:2; width:100%; height:100%; object-fit:cover; object-position:center 75%;
   }
+  .project-tile .info{flex:1; min-width:220px; padding-top:6px;}
+  .project-tile .index{font-size:12px; font-weight:800; color:var(--gray); margin-bottom:10px;}
+  .project-tile h3{
+    font-family:'Archivo Black', sans-serif; font-size:20px; text-transform:uppercase;
+    letter-spacing:0.5px; margin-bottom:10px;
+  }
+  .project-tile .desc{font-size:14px; color:var(--gray); line-height:1.6; max-width:340px; margin-bottom:16px;}
+  .project-tile .view-link{font-size:12px; font-weight:600;}
   .project-tiles.single{}
 
   /* ABOUT */
@@ -181,6 +193,8 @@
     nav.top .links{gap:14px; font-size:12px;}
     .lang-switch{padding-left:12px; margin-left:0;}
     .theme-toggle{margin-left:10px; width:28px; height:28px;}
+    .project-tile{flex-direction:column; gap:18px;}
+    .project-tile .thumb{width:100%;}
     .hero, .section-head, .cat-nav, .cat-title, .work-grid, .about, .about-grid, .contact, .social-row, .fine{padding-left:22px; padding-right:22px;}
   }
 </style>
@@ -226,23 +240,31 @@
 <div class="cat-group" id="uiux">
   <div class="project-tiles">
 
-    <div class="project-tile">
-      <a class="thumb-link" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener">
-        <div class="thumb">
-          <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
-          <img src="images/ns-ov-fiets.png" alt="NS OV Fiets project screenshot" onerror="this.remove()">
-        </div>
-      </a>
-    </div>
+    <a class="project-tile" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener">
+      <div class="thumb">
+        <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
+        <img src="images/ns-ov-fiets.png" alt="NS OV Fiets project screenshot" onerror="this.remove()">
+      </div>
+      <div class="info">
+        <div class="index">01</div>
+        <h3 data-i18n="proj1-title">NS OV-Fiets</h3>
+        <p class="desc" data-i18n="proj1-desc">UX case study on reserving an OV-fiets in the NS app.</p>
+        <span class="view-link" data-i18n="view-case-study">View case study →</span>
+      </div>
+    </a>
 
-    <div class="project-tile">
-      <a class="thumb-link" href="colour-change-picnic-app.html">
-        <div class="thumb">
-          <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
-          <img src="images/colour-change-picnic-app.png" alt="Colour Change Picnic App project screenshot" onerror="this.remove()">
-        </div>
-      </a>
-    </div>
+    <a class="project-tile" href="colour-change-picnic-app.html">
+      <div class="thumb">
+        <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
+        <img src="images/colour-change-picnic-app.png" alt="Colour Change Picnic App project screenshot" onerror="this.remove()">
+      </div>
+      <div class="info">
+        <div class="index">02</div>
+        <h3 data-i18n="proj2-title">Colour Change — Picnic App</h3>
+        <p class="desc" data-i18n="proj2-desc">Redesigning product backgrounds and A/B testing the new look.</p>
+        <span class="view-link" data-i18n="view-case-study">View case study →</span>
+      </div>
+    </a>
 
   </div>
 </div>
@@ -250,23 +272,31 @@
 <div class="cat-group" id="visual">
   <div class="project-tiles">
 
-    <div class="project-tile">
-      <a class="thumb-link" href="homogeneous-bundle-project.html">
-        <div class="thumb">
-          <span class="thumb-placeholder" data-i18n="ph-workflow">Add workflow diagram / before-after</span>
-          <img src="images/homogeneous-bundle-project.png" alt="Homogeneous Bundle Project screenshot" onerror="this.remove()">
-        </div>
-      </a>
-    </div>
+    <a class="project-tile" href="homogeneous-bundle-project.html">
+      <div class="thumb">
+        <span class="thumb-placeholder" data-i18n="ph-workflow">Add workflow diagram / before-after</span>
+        <img src="images/homogeneous-bundle-project.png" alt="Homogeneous Bundle Project screenshot" onerror="this.remove()">
+      </div>
+      <div class="info">
+        <div class="index">03</div>
+        <h3 data-i18n="proj3-title">Homogeneous Bundle Project</h3>
+        <p class="desc" data-i18n="proj3-desc">Coordinating a visual rollout at scale for Picnic's product bundles.</p>
+        <span class="view-link" data-i18n="view-case-study">View case study →</span>
+      </div>
+    </a>
 
-    <div class="project-tile">
-      <a class="thumb-link" href="we-fashion-editing-process.html">
-        <div class="thumb">
-          <span class="thumb-placeholder" data-i18n="ph-before-after">Add before / after product photos</span>
-          <img src="images/we-fashion-editing-process.png" alt="WE Fashion editing process screenshot" onerror="this.remove()">
-        </div>
-      </a>
-    </div>
+    <a class="project-tile" href="we-fashion-editing-process.html">
+      <div class="thumb">
+        <span class="thumb-placeholder" data-i18n="ph-before-after">Add before / after product photos</span>
+        <img src="images/we-fashion-editing-process.png" alt="WE Fashion editing process screenshot" onerror="this.remove()">
+      </div>
+      <div class="info">
+        <div class="index">04</div>
+        <h3 data-i18n="proj4-title">WE Fashion — Editing Process</h3>
+        <p class="desc" data-i18n="proj4-desc">Setting up WE Fashion's in-house retouching workflow from scratch.</p>
+        <span class="view-link" data-i18n="view-case-study">View case study →</span>
+      </div>
+    </a>
 
   </div>
 </div>
@@ -274,14 +304,18 @@
 <div class="cat-group" id="photography">
   <div class="project-tiles single">
 
-    <div class="project-tile">
-      <a class="thumb-link" href="photography-assistant.html">
-        <div class="thumb">
-          <span class="thumb-placeholder" data-i18n="ph-photo-samples">Add photography samples</span>
-          <img src="images/photography-assistant.png" alt="Photography Assistant screenshot" onerror="this.remove()">
-        </div>
-      </a>
-    </div>
+    <a class="project-tile" href="photography-assistant.html">
+      <div class="thumb">
+        <span class="thumb-placeholder" data-i18n="ph-photo-samples">Add photography samples</span>
+        <img src="images/photography-assistant.png" alt="Photography Assistant screenshot" onerror="this.remove()">
+      </div>
+      <div class="info">
+        <div class="index">05</div>
+        <h3 data-i18n="proj5-title">Photography Assistant</h3>
+        <p class="desc" data-i18n="proj5-desc">On-set assistance and post-production during my internship.</p>
+        <span class="view-link" data-i18n="view-case-study">View case study →</span>
+      </div>
+    </a>
 
   </div>
 </div>
@@ -350,6 +384,17 @@
     'ph-workflow':   { en: 'Add workflow diagram / before-after', nl: 'Voeg workflow-diagram / voor-na toe' },
     'ph-before-after': { en: 'Add before / after product photos', nl: 'Voeg voor-/na-productfoto\'s toe' },
     'ph-photo-samples': { en: 'Add photography samples', nl: 'Voeg fotografievoorbeelden toe' },
+    'view-case-study': { en: 'View case study →', nl: 'Bekijk case study →' },
+    'proj1-title': { en: 'NS OV-Fiets', nl: 'NS OV-Fiets' },
+    'proj1-desc':  { en: 'UX case study on reserving an OV-fiets in the NS app.', nl: 'UX case study over het reserveren van een OV-fiets in de NS-app.' },
+    'proj2-title': { en: 'Colour Change — Picnic App', nl: 'Colour Change — Picnic App' },
+    'proj2-desc':  { en: 'Redesigning product backgrounds and A/B testing the new look.', nl: 'Productachtergronden herontworpen en de nieuwe look A/B getest.' },
+    'proj3-title': { en: 'Homogeneous Bundle Project', nl: 'Homogeneous Bundle Project' },
+    'proj3-desc':  { en: "Coordinating a visual rollout at scale for Picnic's product bundles.", nl: "Grootschalige visuele uitrol gecoördineerd voor Picnic's productbundels." },
+    'proj4-title': { en: 'WE Fashion — Editing Process', nl: 'WE Fashion — Editing Process' },
+    'proj4-desc':  { en: "Setting up WE Fashion's in-house retouching workflow from scratch.", nl: "WE Fashion's interne retoucheer-workflow vanaf nul opgezet." },
+    'proj5-title': { en: 'Photography Assistant', nl: 'Fotografie-assistent' },
+    'proj5-desc':  { en: 'On-set assistance and post-production during my internship.', nl: 'On-set assistentie en postproductie tijdens mijn stage.' },
     'about-title':   { en: 'About', nl: 'Over mij' },
     'about-bio':     {
       en: '<b>Hi, I\'m Fleur</b> — a creative, detail-oriented designer with a background in visual production across tech and retail environments. For years, I safeguarded image quality and product presentation at scale, working closely with UX designers, developers, and stakeholders. I recently completed a UX/UI qualification and am now fully focused on designing intuitive, user-centered digital products. Based in Amsterdam, I\'m a strong problem solver with a positive mindset who loves turning ideas into clear, effective designs — and I\'m currently looking for a role or internship where I can grow further as a UX/UI designer.',
