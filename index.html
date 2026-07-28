@@ -19,23 +19,25 @@
   :root{
     --bg:#F6F1E7;
     --card:#FFFFFF;
-    --work-bg:#F6F1E7;
+    --work-bg:#FFFFFF;
+    --about-bg:#FFFFFF;
+    --contact-bg:#FFFFFF;
     --ink:#141414;
     --gray:#7a6f63;
-    --link:#C1622D;
-    --thumb-a:#EFE6D8;
-    --thumb-b:#E6D9C4;
+    --thumb-a:#F6F1E7;
+    --thumb-b:#F6F1E7;
     --ph-color:#d9cdbb;
   }
   html[data-theme="dark"]{
     --bg:#171009;
     --card:#211a12;
     --work-bg:#211a12;
+    --about-bg:#171009;
+    --contact-bg:#171009;
     --ink:#f6f1e7;
     --gray:#a89a86;
-    --link:#e08a52;
-    --thumb-a:#241d14;
-    --thumb-b:#2b2116;
+    --thumb-a:#211a12;
+    --thumb-b:#211a12;
     --ph-color:#4c4436;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -92,7 +94,7 @@
     padding:6px 14px 6px 12px; border:1px solid var(--ink); border-radius:20px; margin-bottom:20px;
     animation:fadeUp .6s ease .05s both;
   }
-  .status-pill .dot{width:7px; height:7px; border-radius:50%; background:var(--link); flex-shrink:0; animation:pulseDot 2s ease-in-out infinite;}
+  .status-pill .dot{width:7px; height:7px; border-radius:50%; background:var(--ink); flex-shrink:0; animation:pulseDot 2s ease-in-out infinite;}
   .hero h1{
     font-family:'Archivo Black', sans-serif; font-weight:400;
     font-size:92px; line-height:0.92; letter-spacing:1px; text-transform:uppercase;
@@ -165,19 +167,20 @@
 
   /* UI/UX PROJECT TILES — editorial, alternating, designer type */
   .project-tiles{display:flex; flex-direction:column;}
-  .project-row{padding:56px 48px; background:var(--work-bg);}
+  .project-row{padding:56px 0; background:var(--work-bg); overflow:hidden;}
   .project-row:nth-child(even) .project-tile{flex-direction:row-reverse;}
   .project-tile{
-    display:flex; align-items:center; gap:48px;
-    width:100%; max-width:1160px; margin:0 auto;
+    display:flex; align-items:center; gap:0;
+    width:100%;
     text-decoration:none; color:inherit;
   }
   .project-tile .thumb{
-    position:relative; width:66%; flex-shrink:0; aspect-ratio:16/10;
-    border-radius:22px; overflow:hidden;
+    position:relative; flex:1 1 60%; min-width:0; aspect-ratio:16/10;
+    border-radius:0 22px 22px 0; overflow:hidden;
     background:var(--work-bg); border:none;
     transition:transform .25s ease, opacity .25s ease;
   }
+  .project-row:nth-child(even) .project-tile .thumb{border-radius:22px 0 0 22px;}
   .project-tile:hover .thumb{transform:scale(1.02); opacity:0.97;}
   .project-tile .thumb-placeholder{
     position:absolute; inset:0; display:none; align-items:center; justify-content:center; text-align:center; padding:20px;
@@ -186,7 +189,7 @@
   .project-tile .thumb img{
     position:relative; z-index:2; width:100%; height:100%; object-fit:cover; object-position:center 75%;
   }
-  .project-tile .info{flex:1; min-width:220px;}
+  .project-tile .info{flex:0 1 420px; min-width:240px; padding:0 48px;}
   .project-tile .eyebrow{
     font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
     color:var(--gray); margin-bottom:14px;
@@ -194,7 +197,7 @@
   .project-tile .tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;}
   .project-tile .tags span{
     font-size:11px; font-weight:600; letter-spacing:0.3px;
-    padding:5px 12px; border:1px solid var(--link); border-radius:20px; color:var(--link);
+    padding:5px 12px; border:1px solid var(--ink); border-radius:20px; color:var(--ink);
   }
   .project-tile h3{
     font-family:'Archivo Black', sans-serif; font-size:24px; text-transform:uppercase;
@@ -207,6 +210,7 @@
   .project-tiles.single{}
 
   /* ABOUT */
+  .about-section{background:var(--about-bg); transition:background-color .25s ease;}
   .about{padding:50px 48px 20px; display:grid; grid-template-columns:260px 1fr; gap:60px; align-items:center;}
   .about-photo .photo-circle{
     width:260px; height:260px; border-radius:50%; overflow:hidden;
@@ -227,6 +231,7 @@
   .about-col .tags{font-size:14px; line-height:1.9;}
 
   /* CONTACT */
+  .contact-section{background:var(--contact-bg); transition:background-color .25s ease;}
   .contact{padding:70px 48px 30px; text-align:left; border-top:1px solid var(--ink);}
   .contact h2{font-family:'Inter', sans-serif; font-weight:300; font-size:40px; line-height:1.1; margin-bottom:22px;}
   .contact .row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
@@ -253,7 +258,8 @@
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .project-row{padding:32px 22px;}
     .project-tile, .project-row:nth-child(even) .project-tile{flex-direction:column; gap:18px;}
-    .project-tile .thumb{width:100%;}
+    .project-tile .thumb, .project-row:nth-child(even) .project-tile .thumb{width:100%; flex:none; border-radius:22px;}
+    .project-tile .info{padding:0; flex:none; min-width:0;}
     .hero, .section-head, .cat-nav, .cat-title, .work-grid, .about, .about-grid, .contact, .fine{padding-left:22px; padding-right:22px;}
   }
 </style>
@@ -411,6 +417,7 @@
 
 </div>
 
+<div class="about-section">
 <div class="section-head" id="about-head"><h2 data-i18n="about-title">About</h2><div class="rule"></div></div>
 <div class="about" id="about">
   <div class="about-photo">
@@ -442,7 +449,9 @@
     <div class="tags" data-i18n="lang-tags">Dutch — native<br>English — fluent<br><br>Photography, Hockey</div>
   </div>
 </div>
+</div>
 
+<div class="contact-section">
 <div class="section-head" id="contact-head"><h2 data-i18n="contact-title">Contact</h2><div class="rule"></div></div>
 <div class="contact" id="contact">
   <h2 data-i18n="contact-heading">Let's work<br>together.</h2>
@@ -452,6 +461,7 @@
   </div>
 </div>
 <div class="fine">© 2026 Fleur Sterel — Amsterdam, NL</div>
+</div>
 
 <script>
   var translations = {
