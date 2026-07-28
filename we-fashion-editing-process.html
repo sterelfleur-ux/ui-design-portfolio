@@ -5,61 +5,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Building the First Editing Process — Fleur Sterel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#F1F7DA;
-  --card:#FFFFFF;
-  --ink:#141414;
-  --gray:#6b6b63;
-}
-*{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; zoom:1.2;}
-a{color:inherit; text-decoration:none;}
-img{display:block; max-width:100%;}
+  :root{{
+    --bg:#F1F1EF;
+    --card:#FFFFFF;
+    --ink:#141414;
+    --gray:#6b6b6b;
+  }}
+  *{{box-sizing:border-box; margin:0; padding:0;}}
+  html{{scroll-behavior:smooth;}}
+  body{{background:var(--bg); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; font-weight:300; zoom:1.2; padding-top:66px; transition:background-color .25s ease, color .25s ease;}}
+  a{{color:inherit; text-decoration:none;}}
+  img{{display:block; max-width:100%;}}
 
-nav.top{
-  position:sticky; top:0; z-index:10; background:var(--bg);
-  display:flex; justify-content:space-between; align-items:center;
-  padding:22px 48px; border-bottom:1px solid var(--ink);
-}
-nav.top .links{display:flex; gap:34px; font-size:16px; font-weight:700; letter-spacing:0.3px;}
-nav.top .links a{padding-bottom:4px; border-bottom:2px solid transparent;}
-nav.top .links a:hover{border-color:var(--ink);}
+  nav.top{{
+    position:fixed; top:0; left:0; right:0; z-index:10; background:var(--bg);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 48px;
+    box-shadow:0 1px 0 rgba(0,0,0,0);
+    transition:box-shadow .25s ease, transform .3s ease;
+  }}
+  nav.top.scrolled{{box-shadow:0 2px 20px rgba(0,0,0,0.07);}}
+  nav.top.nav-hidden{{transform:translateY(-100%); box-shadow:none;}}
+  nav.top .links{{display:flex; align-items:center; gap:28px; font-size:13px; font-weight:500; letter-spacing:0.3px;}}
+  nav.top .links a{{position:relative; padding-bottom:3px;}}
+  nav.top .links a::after{{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--ink);
+    transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
+  }}
+  nav.top .links a:hover::after{{transform:scaleX(1);}}
 
-.page-head{padding:70px 48px 40px; border-bottom:1px solid var(--ink);}
-.page-head .back{font-size:13px; font-weight:700; letter-spacing:0.5px; text-decoration:underline; margin-bottom:22px; display:inline-block;}
-.page-head .tag{font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:700; margin-bottom:14px;}
-.page-head h1{font-family:'Archivo Black', sans-serif; font-size:52px; text-transform:none; letter-spacing:0.5px;}
+  .page-head{{padding:56px 48px 34px;}}
+  .page-head .back{{
+    font-size:13px; font-weight:600; letter-spacing:0.3px; margin-bottom:26px;
+    display:inline-flex; align-items:center; gap:6px; color:var(--gray); transition:color .2s ease;
+  }}
+  .page-head .back:hover{{color:var(--ink);}}
+  .page-head .tag{{font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gray); font-weight:700; margin-bottom:16px;}}
+  .page-head h1{{font-family:'Inter', sans-serif; font-weight:600; font-size:48px; letter-spacing:-0.5px; line-height:1.08;}}
 
-.hero-shot{
-  margin:40px 48px 0; aspect-ratio:21/9;
-  background:repeating-linear-gradient(135deg, #eef2dc, #eef2dc 10px, #e6ead2 10px, #e6ead2 20px);
-  border:1px solid var(--ink); border-radius:16px;
-  display:flex; align-items:center; justify-content:center;
-  color:var(--gray); font-size:13px; font-style:italic;
-}
+  .hero-shot{{
+    position:relative; margin:8px 48px 0; aspect-ratio:21/9;
+    background:var(--card); border-radius:22px; overflow:hidden;
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
+    color:var(--gray); font-size:13px; font-style:italic;
+  }}
+  .hero-shot img{{position:relative; z-index:2; width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}}
+  .hero-shot:hover img{{transform:scale(1.05);}}
 
-.cs-body{max-width:760px; margin:0 auto; padding:60px 48px 30px;}
-.cs-block{margin-bottom:38px;}
-.cs-block h4{font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:700; margin-bottom:12px;}
-.cs-block p{font-size:17px;}
-.metrics{display:flex; gap:16px; flex-wrap:wrap; margin-top:16px;}
-.metric{border:1px solid var(--ink); border-radius:10px; padding:14px 22px; text-align:center;}
-.metric .num{font-family:'Archivo Black', sans-serif; font-size:22px; display:block;}
-.metric .label{font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:0.5px;}
-.note{border:1px dashed #9a9a8f; border-radius:2px; padding:14px 18px; font-size:12.5px; color:var(--gray); font-style:italic;}
+  .cs-body{{max-width:720px; margin:0 auto; padding:64px 48px 30px;}}
+  .cs-block{{margin-bottom:40px;}}
+  .cs-block h4{{font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gray); font-weight:700; margin-bottom:12px;}}
+  .cs-block p{{font-size:17px; line-height:1.65;}}
+  .metrics{{display:flex; gap:14px; flex-wrap:wrap; margin-top:18px;}}
+  .metric{{border:1px solid var(--ink); border-radius:16px; padding:16px 24px; text-align:center;}}
+  .metric .num{{font-family:'Inter', sans-serif; font-weight:700; font-size:20px; display:block;}}
+  .metric .label{{font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:0.5px;}}
+  .note{{border:1px dashed #b8b8b6; border-radius:12px; padding:14px 18px; font-size:12.5px; color:var(--gray); font-style:italic;}}
 
-.fine{padding:40px 48px 40px; font-size:12px; color:var(--gray); border-top:1px solid var(--ink); margin-top:20px;}
+  .fine{{padding:40px 48px 40px; font-size:12px; color:var(--gray);}}
 
-@media (max-width:860px){
-  .page-head h1{font-size:34px;}
-  nav.top{padding:18px 22px;}
-  nav.top .links{gap:18px; font-size:13px;}
-  .page-head, .cs-body, .fine{padding-left:22px; padding-right:22px;}
-  .hero-shot{margin-left:22px; margin-right:22px;}
-}
+  @media (max-width:860px){{
+    body{{padding-top:60px;}}
+    .page-head h1{{font-size:32px;}}
+    nav.top{{padding:14px 22px;}}
+    nav.top .links{{gap:16px; font-size:12px;}}
+    .page-head, .cs-body, .fine{{padding-left:22px; padding-right:22px;}}
+    .hero-shot{{margin-left:22px; margin-right:22px;}}
+  }}
 </style>
 </head>
 <body>
@@ -75,32 +89,51 @@ nav.top .links a:hover{border-color:var(--ink);}
 </nav>
 
 <div class="page-head">
-  <a href="index.html#visual" class="back">← Back to Work</a>
+  <a href="index.html#visual" class="back">&larr; Back to Work</a>
   <div class="tag">Visual Design — WE Fashion · Digital Retouching</div>
   <h1>Building the First Editing Process</h1>
 </div>
 
-<div class="hero-shot">Add before/after product photos</div>
+<div class="hero-shot">
+  <span class="ph">Add project visuals</span>
+  <img src="images/we-fashion-editing-process.png" alt="WE Fashion editing process case study visual" onerror="this.remove()">
+</div>
 
 <div class="cs-body">
   <div class="cs-block">
     <h4>Problem</h4>
     <p>WE Fashion had no in-house editing process yet — product photography for the website and campaigns needed a consistent, reliable workflow to maintain image quality and brand consistency at scale.</p>
-    
   </div>
   <div class="cs-block">
     <h4>Approach</h4>
     <p>As the first in-house retoucher, I built and coordinated the entire editing process from scratch, working closely with photographers, creative teams, and external partners to align deadlines and workflows.</p>
-    
   </div>
   <div class="cs-block">
     <h4>Result</h4>
     <p>Delivered consistent, on-brand product photography for the website and campaigns, with a repeatable editing process that supported the wider creative team going forward.</p>
-    
   </div>
 </div>
 
 <div class="fine">© 2026 Fleur Sterel — Amsterdam, NL</div>
+
+<script>
+  var navEl = document.querySelector('nav.top');
+  if (navEl){
+    var lastScrollY = window.scrollY;
+    var onScroll = function(){
+      var y = window.scrollY;
+      navEl.classList.toggle('scrolled', y > 8);
+      if (y > lastScrollY && y > 80){
+        navEl.classList.add('nav-hidden');
+      } else if (y < lastScrollY){
+        navEl.classList.remove('nav-hidden');
+      }
+      lastScrollY = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>
 
 </body>
 </html>
