@@ -17,24 +17,26 @@
 </script>
 <style>
   :root{
-    --bg:#F1F7DA;
+    --bg:#F6F1E7;
     --card:#FFFFFF;
+    --work-bg:#F6F1E7;
     --ink:#141414;
-    --gray:#6b6b63;
-    --link:#2f5fd8;
-    --thumb-a:#eef2dc;
-    --thumb-b:#e6ead2;
-    --ph-color:#cfcfc6;
+    --gray:#7a6f63;
+    --link:#C1622D;
+    --thumb-a:#EFE6D8;
+    --thumb-b:#E6D9C4;
+    --ph-color:#d9cdbb;
   }
   html[data-theme="dark"]{
-    --bg:#111309;
-    --card:#1c1e15;
-    --ink:#f1f7da;
-    --gray:#9a9a8c;
-    --link:#9db8ff;
-    --thumb-a:#20221a;
-    --thumb-b:#262a1f;
-    --ph-color:#4c4c43;
+    --bg:#171009;
+    --card:#211a12;
+    --work-bg:#211a12;
+    --ink:#f6f1e7;
+    --gray:#a89a86;
+    --link:#e08a52;
+    --thumb-a:#241d14;
+    --thumb-b:#2b2116;
+    --ph-color:#4c4436;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -90,7 +92,7 @@
     padding:6px 14px 6px 12px; border:1px solid var(--ink); border-radius:20px; margin-bottom:20px;
     animation:fadeUp .6s ease .05s both;
   }
-  .status-pill .dot{width:7px; height:7px; border-radius:50%; background:#3fb96a; flex-shrink:0; animation:pulseDot 2s ease-in-out infinite;}
+  .status-pill .dot{width:7px; height:7px; border-radius:50%; background:var(--link); flex-shrink:0; animation:pulseDot 2s ease-in-out infinite;}
   .hero h1{
     font-family:'Archivo Black', sans-serif; font-weight:400;
     font-size:92px; line-height:0.92; letter-spacing:1px; text-transform:uppercase;
@@ -127,7 +129,7 @@
   .section-head .rule{flex:1; height:1px; background:var(--ink);}
 
   /* WORK SECTION BACKGROUND */
-  .work-section{background:var(--card);}
+  .work-section{background:var(--work-bg);}
 
   /* WORK CATEGORY SUBNAV */
   .cat-nav{
@@ -163,7 +165,7 @@
 
   /* UI/UX PROJECT TILES — editorial, alternating, designer type */
   .project-tiles{display:flex; flex-direction:column;}
-  .project-row{padding:56px 48px; background:var(--card);}
+  .project-row{padding:56px 48px; background:var(--work-bg);}
   .project-row:nth-child(even) .project-tile{flex-direction:row-reverse;}
   .project-tile{
     display:flex; align-items:center; gap:48px;
@@ -173,7 +175,7 @@
   .project-tile .thumb{
     position:relative; width:66%; flex-shrink:0; aspect-ratio:16/10;
     border-radius:22px; overflow:hidden;
-    background:var(--card); border:none;
+    background:var(--work-bg); border:none;
     transition:transform .25s ease, opacity .25s ease;
   }
   .project-tile:hover .thumb{transform:scale(1.02); opacity:0.97;}
@@ -192,7 +194,7 @@
   .project-tile .tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;}
   .project-tile .tags span{
     font-size:11px; font-weight:600; letter-spacing:0.3px;
-    padding:5px 12px; border:1px solid var(--gray); border-radius:20px; color:var(--gray);
+    padding:5px 12px; border:1px solid var(--link); border-radius:20px; color:var(--link);
   }
   .project-tile h3{
     font-family:'Archivo Black', sans-serif; font-size:24px; text-transform:uppercase;
