@@ -6,6 +6,15 @@
 <title>Fleur Sterel — UX/UI Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  (function(){
+    try{
+      var t = localStorage.getItem('site-theme');
+      if(!t){ t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+      document.documentElement.setAttribute('data-theme', t);
+    }catch(e){}
+  })();
+</script>
 <style>
   :root{
     --bg:#F1F7DA;
@@ -13,12 +22,26 @@
     --ink:#141414;
     --gray:#6b6b63;
     --link:#2f5fd8;
+    --thumb-a:#eef2dc;
+    --thumb-b:#e6ead2;
+    --ph-color:#cfcfc6;
+  }
+  html[data-theme="dark"]{
+    --bg:#111309;
+    --card:#1c1e15;
+    --ink:#f1f7da;
+    --gray:#9a9a8c;
+    --link:#9db8ff;
+    --thumb-a:#20221a;
+    --thumb-b:#262a1f;
+    --ph-color:#4c4c43;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; zoom:1.2; font-weight:300; padding-top:66px;}
+  body{background:var(--bg); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; zoom:1.2; font-weight:300; padding-top:66px; transition:background-color .25s ease, color .25s ease;}
   a{color:inherit; text-decoration:none;}
   img{display:block; max-width:100%;}
+  body, nav.top, .work-section, .work-card, .thumb{transition:background-color .25s ease, color .25s ease, border-color .25s ease;}
 
   /* NAV */
   nav.top{
@@ -38,6 +61,14 @@
   .lang-switch button{background:none; border:none; padding:2px 2px; font:inherit; font-weight:700; color:var(--gray); cursor:pointer; letter-spacing:0.3px;}
   .lang-switch button.active{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
   .lang-switch .sep{color:var(--gray);}
+  .theme-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:32px; height:32px; margin-left:14px; border:1px solid var(--ink); border-radius:50%;
+    background:none; color:var(--ink); cursor:pointer; padding:0;
+  }
+  .theme-toggle svg{width:16px; height:16px; display:none; stroke:currentColor;}
+  html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
+  html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
   /* HERO */
   .hero{padding:90px 48px 70px;}
@@ -48,7 +79,7 @@
   }
   .hero h1 .thin{-webkit-text-stroke:1px var(--ink); color:transparent;}
   .hero-sub{display:flex; justify-content:space-between; align-items:flex-end; margin-top:30px; gap:30px; flex-wrap:wrap;}
-  .hero-sub p{max-width:520px; font-size:16px; color:#222;}
+  .hero-sub p{max-width:520px; font-size:16px; color:var(--ink);}
   .hero-sub p b{font-weight:700;}
   .cta{
     display:inline-flex; align-items:center; gap:10px;
@@ -83,7 +114,7 @@
   .work-grid{padding:18px 48px 30px; display:grid; grid-template-columns:1fr 1fr; gap:34px;}
   .work-card{background:var(--card); border:1px solid var(--ink); border-radius:14px; overflow:hidden; display:flex; flex-direction:column;}
   .thumb{
-    aspect-ratio:16/11; background:repeating-linear-gradient(135deg, #eef2dc, #eef2dc 10px, #e6ead2 10px, #e6ead2 20px);
+    aspect-ratio:16/11; background:repeating-linear-gradient(135deg, var(--thumb-a), var(--thumb-a) 10px, var(--thumb-b) 10px, var(--thumb-b) 20px);
     border-bottom:1px solid var(--ink);
     display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
     color:var(--gray); font-size:12px; font-style:italic;
@@ -109,7 +140,7 @@
   }
   .project-tile .thumb-placeholder{
     position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
-    color:#cfcfc6; font-size:12px; font-style:italic;
+    color:var(--ph-color); font-size:12px; font-style:italic;
   }
   .project-tile .thumb img{
     position:relative; z-index:2; width:100%; height:100%; object-fit:cover;
@@ -149,6 +180,7 @@
     nav.top{padding:18px 22px;}
     nav.top .links{gap:14px; font-size:12px;}
     .lang-switch{padding-left:12px; margin-left:0;}
+    .theme-toggle{margin-left:10px; width:28px; height:28px;}
     .hero, .section-head, .cat-nav, .cat-title, .work-grid, .about, .about-grid, .contact, .social-row, .fine{padding-left:22px; padding-right:22px;}
   }
 </style>
@@ -167,6 +199,10 @@
       <span class="sep">/</span>
       <button type="button" class="lang-btn" data-lang="nl">NL</button>
     </div>
+    <button type="button" class="theme-toggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>
+    </button>
   </div>
 </nav>
 
@@ -352,9 +388,22 @@
     try { localStorage.setItem('site-lang', lang); } catch (e) {}
   }
 
+  function setTheme(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem('site-theme', theme); } catch (e) {}
+  }
+
   document.querySelectorAll('.lang-btn').forEach(function(btn){
     btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-lang')); });
   });
+
+  var themeToggleBtn = document.querySelector('.theme-toggle');
+  if (themeToggleBtn){
+    themeToggleBtn.addEventListener('click', function(){
+      var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
 
   var savedLang = 'en';
   try { savedLang = localStorage.getItem('site-lang') || 'en'; } catch (e) {}
