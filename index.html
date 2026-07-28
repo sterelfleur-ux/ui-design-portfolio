@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fleur Sterel — UX/UI Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
   (function(){
     try{
@@ -17,28 +17,28 @@
 </script>
 <style>
   :root{
-    --bg:#F6F1E7;
+    --bg:#F1F1EF;
     --card:#FFFFFF;
     --work-bg:#FFFFFF;
-    --about-bg:#FFFFFF;
+    --about-bg:#F1F1EF;
     --contact-bg:#FFFFFF;
     --ink:#141414;
-    --gray:#7a6f63;
-    --thumb-a:#F6F1E7;
-    --thumb-b:#F6F1E7;
-    --ph-color:#d9cdbb;
+    --gray:#6b6b6b;
+    --thumb-a:#F1F1EF;
+    --thumb-b:#F1F1EF;
+    --ph-color:#cfcfcf;
   }
   html[data-theme="dark"]{
-    --bg:#171009;
-    --card:#211a12;
-    --work-bg:#211a12;
-    --about-bg:#171009;
-    --contact-bg:#171009;
-    --ink:#f6f1e7;
-    --gray:#a89a86;
-    --thumb-a:#211a12;
-    --thumb-b:#211a12;
-    --ph-color:#4c4436;
+    --bg:#141414;
+    --card:#1e1e1e;
+    --work-bg:#1e1e1e;
+    --about-bg:#141414;
+    --contact-bg:#141414;
+    --ink:#f1f1ef;
+    --gray:#a0a0a0;
+    --thumb-a:#1e1e1e;
+    --thumb-b:#1e1e1e;
+    --ph-color:#4a4a4a;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -181,14 +181,16 @@
     transition:transform .25s ease, opacity .25s ease;
   }
   .project-row:nth-child(even) .project-tile .thumb{border-radius:22px 0 0 22px;}
-  .project-tile:hover .thumb{transform:scale(1.02); opacity:0.97;}
+  .project-tile:hover .thumb{transform:translateY(-8px);}
   .project-tile .thumb-placeholder{
     position:absolute; inset:0; display:none; align-items:center; justify-content:center; text-align:center; padding:20px;
     color:var(--ph-color); font-size:12px; font-style:italic;
   }
   .project-tile .thumb img{
     position:relative; z-index:2; width:100%; height:100%; object-fit:cover; object-position:center 75%;
+    transition:transform .5s ease;
   }
+  .project-tile:hover .thumb img{transform:scale(1.08);}
   .project-tile .info{flex:0 1 420px; min-width:240px; padding:0 48px;}
   .project-tile .eyebrow{
     font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
@@ -200,12 +202,12 @@
     padding:5px 12px; border:1px solid var(--ink); border-radius:20px; color:var(--ink);
   }
   .project-tile h3{
-    font-family:'Archivo Black', sans-serif; font-size:24px; text-transform:uppercase;
-    letter-spacing:0.5px; line-height:1.05; margin-bottom:16px;
+    font-family:'Inter', sans-serif; font-weight:600; font-size:34px; text-transform:none;
+    letter-spacing:-0.5px; line-height:1.08; margin-bottom:18px;
   }
   .project-tile .desc{
-    font-family:'Lora', serif; font-style:italic; font-weight:400;
-    font-size:17px; color:var(--ink); line-height:1.55; max-width:360px;
+    font-family:'Inter', sans-serif; font-style:normal; font-weight:400;
+    font-size:17px; color:var(--ink); line-height:1.6; max-width:400px; margin-bottom:16px;
   }
   .project-tiles.single{}
 
@@ -318,12 +320,12 @@
         <div class="info">
           <div class="eyebrow" data-i18n="cat-uiux">UI/UX Design</div>
           <h3 data-i18n="proj1-title">NS OV-Fiets</h3>
+          <p class="desc" data-i18n="proj1-desc">UX case study on reserving an OV-fiets in the NS app.</p>
           <div class="tags">
           <span data-i18n="proj1-tag1">Mobile</span>
           <span data-i18n="proj1-tag2">Research</span>
           <span data-i18n="proj1-tag3">Prototyping</span>
           </div>
-          <p class="desc" data-i18n="proj1-desc">UX case study on reserving an OV-fiets in the NS app.</p>
         </div>
       </a>
     </div>
@@ -337,11 +339,11 @@
         <div class="info">
           <div class="eyebrow" data-i18n="cat-uiux">UI/UX Design</div>
           <h3 data-i18n="proj2-title">Colour Change — Picnic App</h3>
+          <p class="desc" data-i18n="proj2-desc">Redesigning product backgrounds and A/B testing the new look.</p>
           <div class="tags">
           <span data-i18n="proj2-tag1">A/B Testing</span>
           <span data-i18n="proj2-tag2">Visual Design</span>
           </div>
-          <p class="desc" data-i18n="proj2-desc">Redesigning product backgrounds and A/B testing the new look.</p>
         </div>
       </a>
     </div>
@@ -361,11 +363,11 @@
         <div class="info">
           <div class="eyebrow" data-i18n="cat-visual">Visual Design</div>
           <h3 data-i18n="proj3-title">Homogeneous Bundle Project</h3>
+          <p class="desc" data-i18n="proj3-desc">Coordinating a visual rollout at scale for Picnic's product bundles.</p>
           <div class="tags">
           <span data-i18n="proj3-tag1">Design Ops</span>
           <span data-i18n="proj3-tag2">Visual Design</span>
           </div>
-          <p class="desc" data-i18n="proj3-desc">Coordinating a visual rollout at scale for Picnic's product bundles.</p>
         </div>
       </a>
     </div>
@@ -379,11 +381,11 @@
         <div class="info">
           <div class="eyebrow" data-i18n="cat-visual">Visual Design</div>
           <h3 data-i18n="proj4-title">WE Fashion — Editing Process</h3>
+          <p class="desc" data-i18n="proj4-desc">Setting up WE Fashion's in-house retouching workflow from scratch.</p>
           <div class="tags">
           <span data-i18n="proj4-tag1">Process Design</span>
           <span data-i18n="proj4-tag2">Photography</span>
           </div>
-          <p class="desc" data-i18n="proj4-desc">Setting up WE Fashion's in-house retouching workflow from scratch.</p>
         </div>
       </a>
     </div>
@@ -403,11 +405,11 @@
         <div class="info">
           <div class="eyebrow" data-i18n="cat-photo">Photography</div>
           <h3 data-i18n="proj5-title">Photography Assistant</h3>
+          <p class="desc" data-i18n="proj5-desc">On-set assistance and post-production during my internship.</p>
           <div class="tags">
           <span data-i18n="proj5-tag1">Photography</span>
           <span data-i18n="proj5-tag2">Post-production</span>
           </div>
-          <p class="desc" data-i18n="proj5-desc">On-set assistance and post-production during my internship.</p>
         </div>
       </a>
     </div>
