@@ -38,7 +38,7 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; zoom:1.2; font-weight:300; padding-top:66px; transition:background-color .25s ease, color .25s ease;}
+  body{background:var(--bg); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; zoom:1.3; font-weight:300; padding-top:80px; transition:background-color .25s ease, color .25s ease;}
   a{color:inherit; text-decoration:none;}
   img{display:block; max-width:100%;}
   body, nav.top, .work-section, .work-card, .thumb{transition:background-color .25s ease, color .25s ease, border-color .25s ease;}
@@ -128,8 +128,10 @@
   .work-card.wide{grid-column:1/-1; display:grid; grid-template-columns:280px 1fr;}
   .work-card.wide .thumb{aspect-ratio:auto; height:100%; border-bottom:none; border-right:1px solid var(--ink);}
 
-  /* UI/UX PROJECT TILES — editorial */
-  .project-tiles{padding:18px 48px 30px; display:flex; flex-direction:column; gap:64px;}
+  /* UI/UX PROJECT TILES — editorial, alternating stripes */
+  .project-tiles{display:flex; flex-direction:column;}
+  .project-row{padding:56px 48px;}
+  .project-row:nth-child(even){background:var(--bg);}
   .project-tile{
     display:flex; align-items:flex-start; gap:40px;
     width:100%; max-width:1000px; margin:0 auto;
@@ -185,6 +187,7 @@
   .fine{padding:0 48px 40px; font-size:12px; color:var(--gray);}
 
   @media (max-width:860px){
+    body{padding-top:64px;}
     .work-grid{grid-template-columns:1fr;}
     .work-card.wide{grid-template-columns:1fr;}
     .about, .about-grid{grid-template-columns:1fr;}
@@ -193,6 +196,7 @@
     nav.top .links{gap:14px; font-size:12px;}
     .lang-switch{padding-left:12px; margin-left:0;}
     .theme-toggle{margin-left:10px; width:28px; height:28px;}
+    .project-row{padding:32px 22px;}
     .project-tile{flex-direction:column; gap:18px;}
     .project-tile .thumb{width:100%;}
     .hero, .section-head, .cat-nav, .cat-title, .work-grid, .about, .about-grid, .contact, .social-row, .fine{padding-left:22px; padding-right:22px;}
@@ -240,31 +244,35 @@
 <div class="cat-group" id="uiux">
   <div class="project-tiles">
 
-    <a class="project-tile" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener">
-      <div class="thumb">
-        <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
-        <img src="images/ns-ov-fiets.png" alt="NS OV Fiets project screenshot" onerror="this.remove()">
-      </div>
-      <div class="info">
-        <div class="index">01</div>
-        <h3 data-i18n="proj1-title">NS OV-Fiets</h3>
-        <p class="desc" data-i18n="proj1-desc">UX case study on reserving an OV-fiets in the NS app.</p>
-        <span class="view-link" data-i18n="view-case-study">View case study →</span>
-      </div>
-    </a>
+    <div class="project-row">
+      <a class="project-tile" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener">
+        <div class="thumb">
+          <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
+          <img src="images/ns-ov-fiets.png" alt="NS OV Fiets project screenshot" onerror="this.remove()">
+        </div>
+        <div class="info">
+          <div class="index">01</div>
+          <h3 data-i18n="proj1-title">NS OV-Fiets</h3>
+          <p class="desc" data-i18n="proj1-desc">UX case study on reserving an OV-fiets in the NS app.</p>
+          <span class="view-link" data-i18n="view-case-study">View case study →</span>
+        </div>
+      </a>
+    </div>
 
-    <a class="project-tile" href="colour-change-picnic-app.html">
-      <div class="thumb">
-        <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
-        <img src="images/colour-change-picnic-app.png" alt="Colour Change Picnic App project screenshot" onerror="this.remove()">
-      </div>
-      <div class="info">
-        <div class="index">02</div>
-        <h3 data-i18n="proj2-title">Colour Change — Picnic App</h3>
-        <p class="desc" data-i18n="proj2-desc">Redesigning product backgrounds and A/B testing the new look.</p>
-        <span class="view-link" data-i18n="view-case-study">View case study →</span>
-      </div>
-    </a>
+    <div class="project-row">
+      <a class="project-tile" href="colour-change-picnic-app.html">
+        <div class="thumb">
+          <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
+          <img src="images/colour-change-picnic-app.png" alt="Colour Change Picnic App project screenshot" onerror="this.remove()">
+        </div>
+        <div class="info">
+          <div class="index">02</div>
+          <h3 data-i18n="proj2-title">Colour Change — Picnic App</h3>
+          <p class="desc" data-i18n="proj2-desc">Redesigning product backgrounds and A/B testing the new look.</p>
+          <span class="view-link" data-i18n="view-case-study">View case study →</span>
+        </div>
+      </a>
+    </div>
 
   </div>
 </div>
@@ -272,31 +280,35 @@
 <div class="cat-group" id="visual">
   <div class="project-tiles">
 
-    <a class="project-tile" href="homogeneous-bundle-project.html">
-      <div class="thumb">
-        <span class="thumb-placeholder" data-i18n="ph-workflow">Add workflow diagram / before-after</span>
-        <img src="images/homogeneous-bundle-project.png" alt="Homogeneous Bundle Project screenshot" onerror="this.remove()">
-      </div>
-      <div class="info">
-        <div class="index">03</div>
-        <h3 data-i18n="proj3-title">Homogeneous Bundle Project</h3>
-        <p class="desc" data-i18n="proj3-desc">Coordinating a visual rollout at scale for Picnic's product bundles.</p>
-        <span class="view-link" data-i18n="view-case-study">View case study →</span>
-      </div>
-    </a>
+    <div class="project-row">
+      <a class="project-tile" href="homogeneous-bundle-project.html">
+        <div class="thumb">
+          <span class="thumb-placeholder" data-i18n="ph-workflow">Add workflow diagram / before-after</span>
+          <img src="images/homogeneous-bundle-project.png" alt="Homogeneous Bundle Project screenshot" onerror="this.remove()">
+        </div>
+        <div class="info">
+          <div class="index">03</div>
+          <h3 data-i18n="proj3-title">Homogeneous Bundle Project</h3>
+          <p class="desc" data-i18n="proj3-desc">Coordinating a visual rollout at scale for Picnic's product bundles.</p>
+          <span class="view-link" data-i18n="view-case-study">View case study →</span>
+        </div>
+      </a>
+    </div>
 
-    <a class="project-tile" href="we-fashion-editing-process.html">
-      <div class="thumb">
-        <span class="thumb-placeholder" data-i18n="ph-before-after">Add before / after product photos</span>
-        <img src="images/we-fashion-editing-process.png" alt="WE Fashion editing process screenshot" onerror="this.remove()">
-      </div>
-      <div class="info">
-        <div class="index">04</div>
-        <h3 data-i18n="proj4-title">WE Fashion — Editing Process</h3>
-        <p class="desc" data-i18n="proj4-desc">Setting up WE Fashion's in-house retouching workflow from scratch.</p>
-        <span class="view-link" data-i18n="view-case-study">View case study →</span>
-      </div>
-    </a>
+    <div class="project-row">
+      <a class="project-tile" href="we-fashion-editing-process.html">
+        <div class="thumb">
+          <span class="thumb-placeholder" data-i18n="ph-before-after">Add before / after product photos</span>
+          <img src="images/we-fashion-editing-process.png" alt="WE Fashion editing process screenshot" onerror="this.remove()">
+        </div>
+        <div class="info">
+          <div class="index">04</div>
+          <h3 data-i18n="proj4-title">WE Fashion — Editing Process</h3>
+          <p class="desc" data-i18n="proj4-desc">Setting up WE Fashion's in-house retouching workflow from scratch.</p>
+          <span class="view-link" data-i18n="view-case-study">View case study →</span>
+        </div>
+      </a>
+    </div>
 
   </div>
 </div>
@@ -304,18 +316,20 @@
 <div class="cat-group" id="photography">
   <div class="project-tiles single">
 
-    <a class="project-tile" href="photography-assistant.html">
-      <div class="thumb">
-        <span class="thumb-placeholder" data-i18n="ph-photo-samples">Add photography samples</span>
-        <img src="images/photography-assistant.png" alt="Photography Assistant screenshot" onerror="this.remove()">
-      </div>
-      <div class="info">
-        <div class="index">05</div>
-        <h3 data-i18n="proj5-title">Photography Assistant</h3>
-        <p class="desc" data-i18n="proj5-desc">On-set assistance and post-production during my internship.</p>
-        <span class="view-link" data-i18n="view-case-study">View case study →</span>
-      </div>
-    </a>
+    <div class="project-row">
+      <a class="project-tile" href="photography-assistant.html">
+        <div class="thumb">
+          <span class="thumb-placeholder" data-i18n="ph-photo-samples">Add photography samples</span>
+          <img src="images/photography-assistant.png" alt="Photography Assistant screenshot" onerror="this.remove()">
+        </div>
+        <div class="info">
+          <div class="index">05</div>
+          <h3 data-i18n="proj5-title">Photography Assistant</h3>
+          <p class="desc" data-i18n="proj5-desc">On-set assistance and post-production during my internship.</p>
+          <span class="view-link" data-i18n="view-case-study">View case study →</span>
+        </div>
+      </a>
+    </div>
 
   </div>
 </div>
