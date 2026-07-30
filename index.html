@@ -147,6 +147,9 @@
     background:var(--work-bg); border:none;
   }
   .project-row:nth-child(even) .project-tile .thumb{border-radius:22px 0 0 22px;}
+  /* force image on the left, flush-cut at the page edge — same bleed look as the photography slideshow */
+  .project-row.force-left .project-tile{flex-direction:row !important;}
+  .project-row.force-left .project-tile .thumb{border-radius:0 22px 22px 0 !important;}
   .project-tile .thumb-placeholder{
     position:absolute; inset:0; display:none; align-items:center; justify-content:center; text-align:center; padding:20px;
     color:var(--ph-color); font-size:12px; font-style:italic;
@@ -156,6 +159,7 @@
   }
   .project-tile .thumb.thumb-split{
     display:flex; gap:4px; background:none; border-radius:0; overflow:visible;
+    aspect-ratio:1376/1438;
   }
   .project-tile .thumb.thumb-split .thumb-half{
     position:relative; flex:1; min-width:0; height:100%;
@@ -309,7 +313,7 @@
       </a>
     </div>
 
-    <div class="project-row">
+    <div class="project-row force-left">
       <a class="project-tile" href="colour-change-picnic-app.html">
         <div class="thumb">
           <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
@@ -351,7 +355,7 @@
       </a>
     </div>
 
-    <div class="project-row">
+    <div class="project-row force-left">
       <a class="project-tile" href="we-fashion-editing-process.html">
         <div class="thumb">
           <span class="thumb-placeholder" data-i18n="ph-before-after">Add before / after product photos</span>
