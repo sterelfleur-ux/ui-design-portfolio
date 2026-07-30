@@ -164,11 +164,22 @@
   .project-tile .thumb img, .project-tile .thumb video{
     position:relative; z-index:2; width:100%; height:100%; object-fit:contain; object-position:center center;
   }
-  /* thumb-split: two phone videos, sized to their own aspect ratio (not stretched) and
-     centered within the thumb area, so the phones sit close together as a pair. */
+  /* The image/video never fills its box edge-to-edge (kept fully visible, never cropped,
+     per the original "show the full image" requirement) — so whichever side is left over
+     as letterboxing needs to land on the OUTER edge, not the edge facing the text. Bias
+     it toward the side that touches .info: odd rows show the thumb on the left (text on
+     the right), even rows are row-reverse with the thumb on the right (text on the left). */
+  .project-row:nth-child(odd) .project-tile .thumb img{object-position:right center;}
+  .project-row:nth-child(even) .project-tile .thumb img{object-position:left center;}
+  /* thumb-split: two phone videos, sized to their own aspect ratio (not stretched).
+     Same idea as above but via justify-content, since this is a flex pair rather than
+     a single object-fit image: anchor the pair to the edge nearest the text instead of
+     centering them in the (often much wider) box. */
   .project-tile .thumb.thumb-split{
     display:flex; justify-content:center; align-items:center; gap:4px; background:none; border-radius:0; overflow:visible;
   }
+  .project-row:nth-child(odd) .project-tile .thumb.thumb-split{justify-content:flex-end;}
+  .project-row:nth-child(even) .project-tile .thumb.thumb-split{justify-content:flex-start;}
   .project-tile .thumb.thumb-split .thumb-half{
     position:relative; flex:0 0 auto; height:100%; aspect-ratio:698/1442;
     border-radius:22px; overflow:hidden; background:var(--work-bg);
