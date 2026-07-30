@@ -142,18 +142,24 @@
   /* WORK CATEGORY GROUPS */
   .cat-group{padding-top:10px;}
 
-  /* UI/UX PROJECT TILES — editorial, alternating, designer type */
+  /* UI/UX PROJECT TILES — a plain, predictable two-column grid: image column (capped
+     width so it can never balloon on wide screens) + text column, joined by one fixed
+     gap. This replaces the old flex-grow layout, which is what caused the image box to
+     silently grow far wider than its visible content on big monitors and made the
+     "space between image and text" impossible to reason about. Every row lines up the
+     same way — image left, text right — no alternating "playful" zigzag. */
   .project-tiles{display:flex; flex-direction:column;}
   .project-row{padding:56px 0; background:var(--work-bg); overflow:hidden;}
-  /* Every row lines up the same way now: image on the left, text on the right — no more
-     alternating/"playful" zigzag, so all the thumbnails sit in one straight column. */
   .project-tile{
-    display:flex; align-items:center; gap:0;
+    display:grid;
+    grid-template-columns: minmax(0, 640px) 1fr;
+    align-items:center;
+    gap:40px;
     width:100%;
     text-decoration:none; color:inherit;
   }
   .project-tile .thumb{
-    position:relative; flex:1 1 60%; min-width:0; aspect-ratio:16/10;
+    position:relative; width:100%; min-width:0; aspect-ratio:16/10;
     border-radius:0 22px 22px 0; overflow:hidden;
     background:var(--work-bg); border:none;
   }
@@ -162,18 +168,18 @@
     color:var(--ph-color); font-size:12px; font-style:italic;
   }
   .project-tile .thumb img, .project-tile .thumb video{
-    position:relative; z-index:2; width:100%; height:100%; object-fit:contain; object-position:right center;
+    position:relative; z-index:2; width:100%; height:100%; object-fit:contain; object-position:center center;
   }
-  /* thumb-split: two phone videos, sized to their own aspect ratio (not stretched) and
-     anchored to the right edge (nearest the text) instead of centered in the box. */
+  /* thumb-split: two phone videos, sized to their own aspect ratio (not stretched),
+     centered in the now sensibly-sized image column. */
   .project-tile .thumb.thumb-split{
-    display:flex; justify-content:flex-end; align-items:center; gap:4px; background:none; border-radius:0; overflow:visible;
+    display:flex; justify-content:center; align-items:center; gap:4px; background:none; border-radius:0; overflow:visible;
   }
   .project-tile .thumb.thumb-split .thumb-half{
     position:relative; flex:0 0 auto; height:100%; aspect-ratio:698/1442;
     border-radius:22px; overflow:hidden; background:var(--work-bg);
   }
-  .project-tile .info{flex:0 1 420px; min-width:240px; padding:0 24px 0 10px;}
+  .project-tile .info{min-width:0; max-width:420px; padding-right:24px;}
   .project-tile .eyebrow{
     font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
     color:var(--gray); margin-bottom:14px;
@@ -258,12 +264,11 @@
     .cat-nav{flex-direction:column; align-items:flex-start; gap:10px; padding-bottom:4px;}
     .cat-nav .sep{display:none;}
     .project-row{padding:32px 22px;}
-    .project-tile{flex-direction:column; gap:18px;}
-    .project-tile .thumb{width:100%; flex:none; border-radius:22px;}
-    .project-tile .info{padding:0; flex:none; min-width:0;}
+    .project-tile{grid-template-columns:1fr; gap:18px;}
+    .project-tile .thumb{width:100%; border-radius:22px;}
+    .project-tile .info{padding:0; max-width:none;}
     .project-tile .thumb.photo-slideshow{border-radius:0; margin-left:0;}
     .hero, .section-head, .cat-nav, .about, .contact, .fine, .project-row{padding-left:22px; padding-right:22px;}
-    .project-tile .thumb.thumb-split{width:100%;}
   }
 
   /* Extra tightening for narrower phones (iPhone 16 and similar ~390-430px CSS width) */
