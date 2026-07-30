@@ -184,6 +184,35 @@
     font-family:'Inter', sans-serif; font-style:normal; font-weight:400;
     font-size:17px; color:var(--ink); line-height:1.6; max-width:400px; margin-bottom:16px;
   }
+
+  /* PHOTOGRAPHY SHOWCASE — auto-crossfading slideshow */
+  .photo-showcase{padding:20px 48px 64px; text-align:center;}
+  .photo-showcase-label{
+    font-size:12px; font-weight:600; letter-spacing:0.5px; color:var(--gray);
+    font-style:italic; margin-bottom:22px;
+  }
+  .photo-slideshow{
+    position:relative; width:360px; max-width:100%; aspect-ratio:3/4; margin:0 auto;
+    border-radius:20px; overflow:hidden; background:var(--thumb-a);
+    box-shadow:0 24px 60px rgba(0,0,0,0.14);
+  }
+  html[data-theme="dark"] .photo-slideshow{box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+  .photo-slideshow img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0; animation:photoFade 32s ease-in-out infinite;
+  }
+  @keyframes photoFade{
+    0%{opacity:0;}
+    2%{opacity:1;}
+    10%{opacity:1;}
+    13%{opacity:0;}
+    100%{opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .photo-slideshow img{animation:none; opacity:0;}
+    .photo-slideshow img:first-child{opacity:1;}
+  }
+
   /* ABOUT */
   .about-section{background:var(--about-bg); transition:background-color .25s ease;}
   .about{padding:50px 48px 80px; display:grid; grid-template-columns:260px 1fr; gap:60px; align-items:center;}
@@ -382,6 +411,20 @@
     </div>
 
   </div>
+
+  <div class="photo-showcase">
+    <div class="photo-showcase-label" data-i18n="photo-showcase-label">A selection of personal work</div>
+    <div class="photo-slideshow">
+      <img src="images/photo-1.jpg" alt="Photography 1" style="animation-delay:0s" onerror="this.style.visibility='hidden'">
+      <img src="images/photo-2.jpg" alt="Photography 2" style="animation-delay:4s" onerror="this.style.visibility='hidden'">
+      <img src="images/photo-3.jpg" alt="Photography 3" style="animation-delay:8s" onerror="this.style.visibility='hidden'">
+      <img src="images/photo-4.jpg" alt="Photography 4" style="animation-delay:12s" onerror="this.style.visibility='hidden'">
+      <img src="images/photo-5.jpg" alt="Photography 5" style="animation-delay:16s" onerror="this.style.visibility='hidden'">
+      <img src="images/photo-6.jpg" alt="Photography 6" style="animation-delay:20s" onerror="this.style.visibility='hidden'">
+      <img src="images/photo-7.jpg" alt="Photography 7" style="animation-delay:24s" onerror="this.style.visibility='hidden'">
+      <img src="images/photo-8.jpg" alt="Photography 8" style="animation-delay:28s" onerror="this.style.visibility='hidden'">
+    </div>
+  </div>
 </div>
 
 </div>
@@ -432,6 +475,7 @@
     'ph-workflow':   { en: 'Add workflow diagram / before-after', nl: 'Voeg workflow-diagram / voor-na toe' },
     'ph-before-after': { en: 'Add before / after product photos', nl: 'Voeg voor-/na-productfoto\'s toe' },
     'ph-photo-samples': { en: 'Add photography samples', nl: 'Voeg fotografievoorbeelden toe' },
+    'photo-showcase-label': { en: 'A selection of personal work', nl: 'Een selectie van persoonlijk werk' },
     'status-badge': { en: 'Open for new projects', nl: 'Beschikbaar voor nieuwe projecten' },
     'proj1-title': { en: 'NS OV-Fiets', nl: 'NS OV-Fiets' },
     'proj1-desc':  { en: 'UX case study on reserving an OV-fiets in the NS app.', nl: 'UX case study over het reserveren van een OV-fiets in de NS-app.' },
