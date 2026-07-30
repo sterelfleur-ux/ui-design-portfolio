@@ -2,16 +2,19 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Fleur Sterel — UX/UI Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="theme-color" id="theme-color-meta" content="#F1F1EF">
 <script>
   (function(){
     try{
       var t = localStorage.getItem('site-theme');
       if(!t){ t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
       document.documentElement.setAttribute('data-theme', t);
+      var m = document.getElementById('theme-color-meta');
+      if (m) m.setAttribute('content', t === 'dark' ? '#141414' : '#F1F1EF');
     }catch(e){}
   })();
 </script>
@@ -40,6 +43,7 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
+  html, body{overflow-x:hidden; max-width:100%;}
   body{background:var(--bg); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; zoom:1.3; font-weight:300; padding-top:52px; transition:background-color .25s ease, color .25s ease;}
   a{color:inherit; text-decoration:none;}
   img{display:block; max-width:100%;}
@@ -50,6 +54,7 @@
     position:fixed; top:0; left:0; right:0; z-index:10; background:var(--bg);
     display:flex; justify-content:flex-end; align-items:center;
     padding:14px 48px;
+    padding-top:calc(14px + env(safe-area-inset-top));
     box-shadow:0 1px 0 rgba(0,0,0,0);
     transition:box-shadow .25s ease, transform .3s ease;
   }
@@ -64,7 +69,7 @@
   }
   nav.top .links a:hover::after, nav.top .links a.active::after{transform:scaleX(1);}
   .lang-switch{display:flex; align-items:center; gap:5px; font-size:12px; font-weight:700; letter-spacing:0.3px; margin-left:2px; padding-left:14px; border-left:1px solid var(--gray);}
-  .lang-switch button{background:none; border:none; padding:2px 2px; font:inherit; font-weight:700; color:var(--gray); cursor:pointer; letter-spacing:0.3px; transition:color .2s ease;}
+  .lang-switch button{background:none; border:none; padding:8px 4px; margin:-8px -4px; font:inherit; font-weight:700; color:var(--gray); cursor:pointer; letter-spacing:0.3px; transition:color .2s ease;}
   .lang-switch button.active{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
   .lang-switch button:hover{color:var(--ink);}
   .lang-switch .sep{color:var(--gray);}
@@ -73,6 +78,10 @@
     width:22px; height:22px; margin-left:8px; border:none; border-radius:50%;
     background:none; color:var(--ink); cursor:pointer; padding:0;
     transition:transform .3s ease;
+    position:relative;
+  }
+  .theme-toggle::before{
+    content:''; position:absolute; inset:-11px; /* enlarges the tap target to ~44px without changing visual size */
   }
   .theme-toggle:hover{transform:rotate(20deg);}
   .theme-toggle svg{width:15px; height:15px; display:none; stroke:currentColor;}
@@ -155,10 +164,10 @@
     position:relative; z-index:2; width:100%; height:100%; object-fit:contain; object-position:center center;
   }
   /* thumb-split: two phone videos, sized to their own aspect ratio (not stretched) and
-     centered as a pair, so the gap between them stays tight regardless of the box's
-     overall (16:10) size/shape. */
+     pushed toward the info/text side, so the phones sit close to the copy while the
+     leftover space collects on the outer (page) edge instead of in the middle. */
   .project-tile .thumb.thumb-split{
-    display:flex; justify-content:center; gap:4px; background:none; border-radius:0; overflow:visible;
+    display:flex; justify-content:flex-end; gap:4px; background:none; border-radius:0; overflow:visible;
   }
   .project-tile .thumb.thumb-split .thumb-half{
     position:relative; flex:0 0 auto; height:100%; aspect-ratio:698/1442;
@@ -231,14 +240,14 @@
   .btn-solid:hover{opacity:0.85;}
   .btn-outline{border:1px solid var(--ink); color:var(--ink);}
   .btn-outline:hover{background:var(--ink); color:var(--bg);}
-  .fine{padding:0 48px 40px; font-size:12px; color:var(--gray);}
+  .fine{padding:0 48px 40px; font-size:12px; color:var(--gray); padding-bottom:calc(40px + env(safe-area-inset-bottom));}
 
   @media (max-width:860px){
-    body{padding-top:48px;}
+    body{padding-top:calc(48px + env(safe-area-inset-top));}
     .about{grid-template-columns:1fr;}
     .hero h1{font-size:54px;}
-    nav.top{padding:12px 22px;}
-    nav.top .links{gap:14px; font-size:12px;}
+    nav.top{padding:12px 22px; padding-top:calc(12px + env(safe-area-inset-top));}
+    nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .project-row{padding:32px 22px;}
@@ -247,6 +256,18 @@
     .project-tile .info{padding:0; flex:none; min-width:0;}
     .project-tile .thumb.photo-slideshow{border-radius:0; margin-left:0;}
     .hero, .section-head, .cat-nav, .about, .contact, .fine{padding-left:22px; padding-right:22px;}
+  }
+
+  /* Extra tightening for narrower phones (iPhone 16 and similar ~390-430px CSS width) */
+  @media (max-width:430px){
+    .hero{padding-top:70px;}
+    .hero h1{font-size:46px;}
+    .hero .tagline{font-size:11px; letter-spacing:2px;}
+    .status-pill{font-size:11px; padding:5px 12px 5px 10px;}
+    .hero-sub p{font-size:14.5px;}
+    nav.top .links{gap:10px; font-size:11px;}
+    .project-tile h3{font-size:26px;}
+    .contact h2{font-size:30px;}
   }
 </style>
 </head>
@@ -506,6 +527,8 @@
 
   function setTheme(theme){
     document.documentElement.setAttribute('data-theme', theme);
+    var m = document.getElementById('theme-color-meta');
+    if (m) m.setAttribute('content', theme === 'dark' ? '#141414' : '#F1F1EF');
     try { localStorage.setItem('site-theme', theme); } catch (e) {}
   }
 
