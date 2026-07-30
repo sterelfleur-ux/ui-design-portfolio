@@ -152,7 +152,7 @@
     text-decoration:none; color:inherit;
   }
   .project-tile .thumb{
-    position:relative; flex:1 1 60%; min-width:0; aspect-ratio:16/10;
+    position:relative; flex:1 1 60%; min-width:0; max-width:640px; aspect-ratio:16/10;
     border-radius:0 22px 22px 0; overflow:hidden;
     background:var(--work-bg); border:none;
   }
@@ -165,21 +165,21 @@
     position:relative; z-index:2; width:100%; height:100%; object-fit:contain; object-position:center center;
   }
   /* The image/video never fills its box edge-to-edge (kept fully visible, never cropped,
-     per the original "show the full image" requirement) — so whichever side is left over
-     as letterboxing needs to land on the OUTER edge, not the edge facing the text. Bias
-     it toward the side that touches .info: odd rows show the thumb on the left (text on
-     the right), even rows are row-reverse with the thumb on the right (text on the left). */
+     per the original "show the full image" requirement), and the box itself is capped
+     with max-width above so it can no longer balloon on wide monitors. Whatever
+     letterboxing remains should still land on the OUTER edge, not the edge facing the
+     text: odd rows show the thumb on the left (text on the right), even rows are
+     row-reverse with the thumb on the right (text on the left). */
   .project-row:nth-child(odd) .project-tile .thumb img{object-position:right center;}
   .project-row:nth-child(even) .project-tile .thumb img{object-position:left center;}
-  /* thumb-split: two phone videos, sized to their own aspect ratio (not stretched).
-     Same idea as above but via justify-content, since this is a flex pair rather than
-     a single object-fit image: anchor the pair to the edge nearest the text instead of
-     centering them in the (often much wider) box. */
+  /* thumb-split: the two phone videos. This one gets an intrinsic size instead of the
+     max-width cap above — it doesn't grow with the row at all, it's sized to exactly
+     fit the two videos side by side, so there is no invisible slack left inside the box
+     for either the text-side or the outer side to inherit. */
   .project-tile .thumb.thumb-split{
+    flex:0 0 auto; width:auto; height:400px; aspect-ratio:auto; max-width:none;
     display:flex; justify-content:center; align-items:center; gap:4px; background:none; border-radius:0; overflow:visible;
   }
-  .project-row:nth-child(odd) .project-tile .thumb.thumb-split{justify-content:flex-end;}
-  .project-row:nth-child(even) .project-tile .thumb.thumb-split{justify-content:flex-start;}
   .project-tile .thumb.thumb-split .thumb-half{
     position:relative; flex:0 0 auto; height:100%; aspect-ratio:698/1442;
     border-radius:22px; overflow:hidden; background:var(--work-bg);
@@ -275,12 +275,12 @@
     .cat-nav .sep{display:none;}
     .project-row{padding:32px 22px;}
     .project-tile, .project-row:nth-child(even) .project-tile{flex-direction:column; gap:18px;}
-    .project-tile .thumb, .project-row:nth-child(even) .project-tile .thumb{width:100%; flex:none; border-radius:22px;}
+    .project-tile .thumb, .project-row:nth-child(even) .project-tile .thumb{width:100%; max-width:none; flex:none; border-radius:22px;}
     .project-tile .info{padding:0; flex:none; min-width:0;}
     .project-row:nth-child(odd) .project-tile .info, .project-row:nth-child(even) .project-tile .info{padding-left:0; padding-right:0;}
     .project-tile .thumb.photo-slideshow{border-radius:0; margin-left:0;}
     .hero, .section-head, .cat-nav, .about, .contact, .fine, .project-row{padding-left:22px; padding-right:22px;}
-    .project-tile .thumb.thumb-split{width:100%;}
+    .project-tile .thumb.thumb-split{width:100%; height:auto; aspect-ratio:1380/1438;}
   }
 
   /* Extra tightening for narrower phones (iPhone 16 and similar ~390-430px CSS width) */
