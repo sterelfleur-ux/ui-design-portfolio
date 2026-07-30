@@ -147,7 +147,7 @@
     background:var(--work-bg); border:none;
   }
   .project-row:nth-child(even) .project-tile .thumb{border-radius:22px 0 0 22px;}
-  /* force image on the left, flush-cut at the page edge — same bleed look as the photography slideshow */
+  /* force image on the left, flush-cut at the page edge — editorial bleed look, used for a few select projects */
   .project-row.force-left .project-tile{flex-direction:row !important;}
   .project-row.force-left .project-tile .thumb{border-radius:0 22px 22px 0 !important;}
   .project-tile .thumb-placeholder{
@@ -159,7 +159,6 @@
   }
   .project-tile .thumb.thumb-split{
     display:flex; gap:4px; background:none; border-radius:0; overflow:visible;
-    aspect-ratio:1376/1438;
   }
   .project-tile .thumb.thumb-split .thumb-half{
     position:relative; flex:1; min-width:0; height:100%;
@@ -184,7 +183,12 @@
     font-size:17px; color:var(--ink); line-height:1.6; max-width:400px; margin-bottom:16px;
   }
 
-  /* PHOTOGRAPHY SHOWCASE — fast hard-cut slideshow, sized exactly like the other project thumbs */
+  /* PHOTOGRAPHY SHOWCASE — fast hard-cut slideshow. Square corners, inset from the page
+     edge (not bleeding), sized like the other project thumbs but visually self-contained. */
+  .project-tile .thumb.photo-slideshow{
+    border-radius:0;
+    margin-left:48px;
+  }
   .project-tile .thumb.photo-slideshow img{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
     opacity:0; animation:photoFade 8s steps(1,end) infinite;
@@ -241,6 +245,7 @@
     .project-tile, .project-row:nth-child(even) .project-tile{flex-direction:column; gap:18px;}
     .project-tile .thumb, .project-row:nth-child(even) .project-tile .thumb{width:100%; flex:none; border-radius:22px;}
     .project-tile .info{padding:0; flex:none; min-width:0;}
+    .project-tile .thumb.photo-slideshow{border-radius:0; margin-left:0;}
     .hero, .section-head, .cat-nav, .about, .contact, .fine{padding-left:22px; padding-right:22px;}
   }
 </style>
@@ -290,12 +295,12 @@
       <a class="project-tile" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener">
         <div class="thumb thumb-split">
           <div class="thumb-half">
-            <video autoplay muted loop playsinline onerror="this.style.display='none'">
+            <video autoplay muted loop playsinline webkit-playsinline preload="auto" onerror="this.style.display='none'">
               <source src="images/ns-ov-fiets.mp4" type="video/mp4">
             </video>
           </div>
           <div class="thumb-half">
-            <video autoplay muted loop playsinline onerror="this.style.display='none'">
+            <video autoplay muted loop playsinline webkit-playsinline preload="auto" onerror="this.style.display='none'">
               <source src="images/ns-ov-fiets-2.mp4" type="video/mp4">
             </video>
           </div>
@@ -536,6 +541,38 @@
   var savedLang = 'nl';
   try { savedLang = localStorage.getItem('site-lang') || 'nl'; } catch (e) {}
   setLang(savedLang);
+
+  // AUTOPLAY RELIABILITY — some mobile browsers (iOS Safari, in-app browsers like
+  // WhatsApp/Instagram) ignore the autoplay attribute even with muted+playsinline set,
+  // especially when the page was opened from another app. This nudges playback as soon
+  // as it's technically allowed, without requiring a tap.
+  (function(){
+    var vids = document.querySelectorAll('video[autoplay]');
+    function tryPlayAll(){
+      vids.forEach(function(v){
+        v.muted = true;
+        v.playsInline = true;
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function(){});
+      });
+    }
+    if (vids.length){
+      tryPlayAll();
+      document.addEventListener('visibilitychange', function(){
+        if (!document.hidden) tryPlayAll();
+      });
+      // Fallback: if the browser blocked autoplay entirely, start on first user touch/tap.
+      var kick = function(){
+        tryPlayAll();
+        window.removeEventListener('touchstart', kick);
+        window.removeEventListener('click', kick);
+        window.removeEventListener('scroll', kick);
+      };
+      window.addEventListener('touchstart', kick, { once:true, passive:true });
+      window.addEventListener('click', kick, { once:true });
+      window.addEventListener('scroll', kick, { once:true, passive:true });
+    }
+  })();
 </script>
 
 </body>
