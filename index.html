@@ -152,12 +152,7 @@
     color:var(--ph-color); font-size:12px; font-style:italic;
   }
   .project-tile .thumb img, .project-tile .thumb video{
-    position:relative; z-index:2; width:100%; height:100%; object-fit:cover; object-position:center top;
-    transition:object-position 3.5s ease;
-  }
-  .project-tile:hover .thumb img, .project-tile:hover .thumb video{object-position:center bottom;}
-  @media (prefers-reduced-motion: reduce){
-    .project-tile .thumb img, .project-tile .thumb video{transition:none;}
+    position:relative; z-index:2; width:100%; height:100%; object-fit:contain; object-position:center center;
   }
   .project-tile .thumb.thumb-split{
     display:flex; gap:14px; background:none; border-radius:0; overflow:visible;
@@ -185,18 +180,15 @@
     font-size:17px; color:var(--ink); line-height:1.6; max-width:400px; margin-bottom:16px;
   }
 
-  /* PHOTOGRAPHY SHOWCASE — auto-crossfading slideshow */
-  .photo-showcase{padding:20px 48px 64px; text-align:center;}
-  .photo-showcase-label{
-    font-size:12px; font-weight:600; letter-spacing:0.5px; color:var(--gray);
-    font-style:italic; margin-bottom:22px;
-  }
+  /* PHOTOGRAPHY SHOWCASE — auto-crossfading slideshow, inline next to Photography Assistant tile */
+  .photo-project-row{display:flex; align-items:center; gap:40px; width:100%;}
+  .photo-project-row .project-tile{width:auto; flex:1 1 55%; min-width:0;}
+  .photo-tile-textonly{flex:0 1 420px;}
+  .photo-tile-textonly .info{padding:0;}
   .photo-slideshow{
-    position:relative; width:360px; max-width:100%; aspect-ratio:3/4; margin:0 auto;
+    position:relative; width:220px; max-width:100%; aspect-ratio:3/4; flex:0 0 220px;
     border-radius:20px; overflow:hidden; background:var(--thumb-a);
-    box-shadow:0 24px 60px rgba(0,0,0,0.14);
   }
-  html[data-theme="dark"] .photo-slideshow{box-shadow:0 24px 60px rgba(0,0,0,0.5);}
   .photo-slideshow img{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
     opacity:0; animation:photoFade 32s ease-in-out infinite;
@@ -254,6 +246,9 @@
     .project-tile, .project-row:nth-child(even) .project-tile{flex-direction:column; gap:18px;}
     .project-tile .thumb, .project-row:nth-child(even) .project-tile .thumb{width:100%; flex:none; border-radius:22px;}
     .project-tile .info{padding:0; flex:none; min-width:0;}
+    .photo-project-row{flex-direction:column; gap:18px;}
+    .photo-project-row .project-tile{width:100%;}
+    .photo-slideshow{width:200px;}
     .hero, .section-head, .cat-nav, .about, .contact, .fine{padding-left:22px; padding-right:22px;}
   }
 </style>
@@ -393,37 +388,31 @@
   <div class="project-tiles">
 
     <div class="project-row">
-      <a class="project-tile" href="photography-assistant.html">
-        <div class="thumb">
-          <span class="thumb-placeholder" data-i18n="ph-photo-samples">Add photography samples</span>
-          <img src="images/photography-assistant.png" alt="Photography Assistant screenshot" onerror="this.remove()">
+      <div class="photo-project-row">
+        <div class="photo-slideshow">
+          <img src="images/photo-1.jpg" alt="Photography 1" style="animation-delay:0s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-2.jpg" alt="Photography 2" style="animation-delay:4s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-3.jpg" alt="Photography 3" style="animation-delay:8s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-4.jpg" alt="Photography 4" style="animation-delay:12s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-5.jpg" alt="Photography 5" style="animation-delay:16s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-6.jpg" alt="Photography 6" style="animation-delay:20s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-7.jpg" alt="Photography 7" style="animation-delay:24s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-8.jpg" alt="Photography 8" style="animation-delay:28s" onerror="this.style.visibility='hidden'">
         </div>
-        <div class="info">
-          <div class="eyebrow" data-i18n="cat-photo">Photography</div>
-          <h3 data-i18n="proj5-title">Photography Assistant</h3>
-          <p class="desc" data-i18n="proj5-desc">On-set assistance and post-production during my internship.</p>
-          <div class="tags">
-          <span data-i18n="proj5-tag1">Photography</span>
-          <span data-i18n="proj5-tag2">Post-production</span>
+        <a class="project-tile photo-tile-textonly" href="photography-assistant.html">
+          <div class="info">
+            <div class="eyebrow" data-i18n="cat-photo">Photography</div>
+            <h3 data-i18n="proj5-title">Fotografie</h3>
+            <p class="desc" data-i18n="proj5-desc">On-set assistance and post-production during my internship.</p>
+            <div class="tags">
+            <span data-i18n="proj5-tag1">Photography</span>
+            <span data-i18n="proj5-tag2">Post-production</span>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
 
-  </div>
-
-  <div class="photo-showcase">
-    <div class="photo-showcase-label" data-i18n="photo-showcase-label">A selection of personal work</div>
-    <div class="photo-slideshow">
-      <img src="images/photo-1.jpg" alt="Photography 1" style="animation-delay:0s" onerror="this.style.visibility='hidden'">
-      <img src="images/photo-2.jpg" alt="Photography 2" style="animation-delay:4s" onerror="this.style.visibility='hidden'">
-      <img src="images/photo-3.jpg" alt="Photography 3" style="animation-delay:8s" onerror="this.style.visibility='hidden'">
-      <img src="images/photo-4.jpg" alt="Photography 4" style="animation-delay:12s" onerror="this.style.visibility='hidden'">
-      <img src="images/photo-5.jpg" alt="Photography 5" style="animation-delay:16s" onerror="this.style.visibility='hidden'">
-      <img src="images/photo-6.jpg" alt="Photography 6" style="animation-delay:20s" onerror="this.style.visibility='hidden'">
-      <img src="images/photo-7.jpg" alt="Photography 7" style="animation-delay:24s" onerror="this.style.visibility='hidden'">
-      <img src="images/photo-8.jpg" alt="Photography 8" style="animation-delay:28s" onerror="this.style.visibility='hidden'">
-    </div>
   </div>
 </div>
 
@@ -475,7 +464,6 @@
     'ph-workflow':   { en: 'Add workflow diagram / before-after', nl: 'Voeg workflow-diagram / voor-na toe' },
     'ph-before-after': { en: 'Add before / after product photos', nl: 'Voeg voor-/na-productfoto\'s toe' },
     'ph-photo-samples': { en: 'Add photography samples', nl: 'Voeg fotografievoorbeelden toe' },
-    'photo-showcase-label': { en: 'A selection of personal work', nl: 'Een selectie van persoonlijk werk' },
     'status-badge': { en: 'Open for new projects', nl: 'Beschikbaar voor nieuwe projecten' },
     'proj1-title': { en: 'NS OV-Fiets', nl: 'NS OV-Fiets' },
     'proj1-desc':  { en: 'UX case study on reserving an OV-fiets in the NS app.', nl: 'UX case study over het reserveren van een OV-fiets in de NS-app.' },
@@ -485,7 +473,7 @@
     'proj3-desc':  { en: "Coordinating a visual rollout at scale for Picnic's product bundles.", nl: "Grootschalige visuele uitrol gecoördineerd voor Picnic's productbundels." },
     'proj4-title': { en: 'WE Fashion — Editing Process', nl: 'WE Fashion — Editing Process' },
     'proj4-desc':  { en: "Setting up WE Fashion's in-house retouching workflow from scratch.", nl: "WE Fashion's interne retoucheer-workflow vanaf nul opgezet." },
-    'proj5-title': { en: 'Photography Assistant', nl: 'Fotografie-assistent' },
+    'proj5-title': { en: 'Photography', nl: 'Fotografie' },
     'proj5-desc':  { en: 'On-set assistance and post-production during my internship.', nl: 'On-set assistentie en postproductie tijdens mijn stage.' },
     'proj1-tag1': { en: 'Mobile', nl: 'Mobile' },
     'proj1-tag2': { en: 'Research', nl: 'Onderzoek' },
