@@ -62,13 +62,13 @@
   html[data-theme="dark"] nav.top.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.35);}
   nav.top.nav-hidden{transform:translateY(-100%); box-shadow:none;}
   nav.top .links{display:flex; align-items:center; gap:24px; font-size:12.5px; font-weight:500; letter-spacing:0.3px;}
-  nav.top .links a{position:relative; padding-bottom:3px;}
+  nav.top .links a{position:relative; padding-bottom:3px; white-space:nowrap;}
   nav.top .links a::after{
     content:''; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--ink);
     transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
   }
   nav.top .links a:hover::after, nav.top .links a.active::after{transform:scaleX(1);}
-  .lang-switch{display:flex; align-items:center; gap:5px; font-size:12px; font-weight:700; letter-spacing:0.3px; margin-left:2px; padding-left:14px; border-left:1px solid var(--gray);}
+  .lang-switch{display:flex; align-items:center; gap:5px; font-size:12px; font-weight:700; letter-spacing:0.3px; margin-left:2px; padding-left:14px; border-left:1px solid var(--gray); white-space:nowrap;}
   .lang-switch button{background:none; border:none; padding:8px 4px; margin:-8px -4px; font:inherit; font-weight:700; color:var(--gray); cursor:pointer; letter-spacing:0.3px; transition:color .2s ease;}
   .lang-switch button.active{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
   .lang-switch button:hover{color:var(--ink);}
@@ -79,6 +79,7 @@
     background:none; color:var(--ink); cursor:pointer; padding:0;
     transition:transform .3s ease;
     position:relative;
+    flex-shrink:0;
   }
   .theme-toggle::before{
     content:''; position:absolute; inset:-11px; /* enlarges the tap target to ~44px without changing visual size */
@@ -250,6 +251,8 @@
     nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
+    .cat-nav{flex-direction:column; align-items:flex-start; gap:10px; padding-bottom:4px;}
+    .cat-nav .sep{display:none;}
     .project-row{padding:32px 22px;}
     .project-tile, .project-row:nth-child(even) .project-tile{flex-direction:column; gap:18px;}
     .project-tile .thumb, .project-row:nth-child(even) .project-tile .thumb{width:100%; flex:none; border-radius:22px;}
@@ -265,7 +268,9 @@
     .hero .tagline{font-size:11px; letter-spacing:2px;}
     .status-pill{font-size:11px; padding:5px 12px 5px 10px;}
     .hero-sub p{font-size:14.5px;}
-    nav.top .links{gap:10px; font-size:11px;}
+    nav.top .links{gap:9px; font-size:11px;}
+    .lang-switch{padding-left:8px; gap:4px;}
+    .cat-nav{font-size:12.5px; gap:8px;}
     .project-tile h3{font-size:26px;}
     .contact h2{font-size:30px;}
   }
