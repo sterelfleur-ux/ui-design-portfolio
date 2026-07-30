@@ -106,16 +106,10 @@
   .cta:hover{opacity:0.85; transform:translateY(-1px);}
   .cta .arrow{display:inline-block; transition:transform .25s ease;}
   .cta:hover .arrow{transform:translateX(4px);}
-  .scroll-cue{
-    position:absolute; left:50%; bottom:22px; transform:translateX(-50%);
-    color:var(--ink); opacity:0.45; animation:bounce 2.2s ease-in-out infinite;
-  }
-  .scroll-cue svg{width:18px; height:18px; display:block; stroke:currentColor;}
   @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
-  @keyframes bounce{0%,100%{transform:translate(-50%,0);} 50%{transform:translate(-50%,6px);}}
   @keyframes pulseDot{0%,100%{opacity:1;} 50%{opacity:0.35;}}
   @media (prefers-reduced-motion: reduce){
-    .hero .tagline, .status-pill, .hero h1, .hero-sub, .scroll-cue, .status-pill .dot{animation:none !important;}
+    .hero .tagline, .status-pill, .hero h1, .hero-sub, .status-pill .dot{animation:none !important;}
   }
 
   /* SECTION LABEL */
@@ -159,11 +153,11 @@
     position:absolute; inset:0; display:none; align-items:center; justify-content:center; text-align:center; padding:20px;
     color:var(--ph-color); font-size:12px; font-style:italic;
   }
-  .project-tile .thumb img{
-    position:relative; z-index:2; width:100%; height:100%; object-fit:cover; object-position:center 75%;
+  .project-tile .thumb img, .project-tile .thumb video{
+    position:relative; z-index:2; width:100%; height:100%; object-fit:contain; object-position:center center;
     transition:transform .5s ease;
   }
-  .project-tile:hover .thumb img{transform:scale(1.08);}
+  .project-tile:hover .thumb img, .project-tile:hover .thumb video{transform:scale(1.08);}
   .project-tile .info{flex:0 1 420px; min-width:240px; padding:0 48px;}
   .project-tile .eyebrow{
     font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
@@ -263,9 +257,6 @@
     <p data-i18n="hero-desc"><b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs. Recently completed a UX/UI qualification and is now fully focused on this direction. Based in Amsterdam, NL.</p>
     <a href="#work" class="cta" data-i18n="cta-work">View my work <span class="arrow">→</span></a>
   </div>
-  <a href="#work" class="scroll-cue" aria-label="Scroll to work">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
-  </a>
 </section>
 
 <div class="work-section">
@@ -283,7 +274,9 @@
       <a class="project-tile" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener">
         <div class="thumb">
           <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
-          <img src="images/ns-ov-fiets.png" alt="NS OV Fiets project screenshot" onerror="this.remove()">
+          <video autoplay muted loop playsinline onerror="this.style.display='none'">
+            <source src="images/ns-ov-fiets.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="info">
           <div class="eyebrow" data-i18n="cat-uiux">UI/UX Design</div>
