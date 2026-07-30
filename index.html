@@ -144,10 +144,8 @@
 
   /* UI/UX PROJECT TILES — a plain, predictable two-column grid: image column (capped
      width so it can never balloon on wide screens) + text column, joined by one fixed
-     gap. This replaces the old flex-grow layout, which is what caused the image box to
-     silently grow far wider than its visible content on big monitors and made the
-     "space between image and text" impossible to reason about. Every row lines up the
-     same way — image left, text right — no alternating "playful" zigzag. */
+     gap. Every row lines up the same way — image left, text right — no alternating
+     "playful" zigzag. */
   .project-tiles{display:flex; flex-direction:column;}
   .project-row{padding:56px 0; background:var(--work-bg); overflow:hidden;}
   .project-tile{
@@ -199,9 +197,14 @@
   }
 
   /* PHOTOGRAPHY SHOWCASE — fast hard-cut slideshow. Square corners, inset from the page
-     edge (not bleeding), sized like the other project thumbs but visually self-contained. */
+     edge (not bleeding), sized like the other project thumbs but visually self-contained.
+     Grid items stretch to fill their column by default, so adding a left margin here
+     would push the box's total width (100% + margin) past the column's right edge and
+     into the text column — that's exactly what caused the overlap. Shrinking the width
+     by the same amount as the margin keeps it fully inside the column. */
   .project-tile .thumb.photo-slideshow{
     border-radius:0;
+    width:calc(100% - 48px);
     margin-left:48px;
   }
   .project-tile .thumb.photo-slideshow img{
@@ -267,7 +270,7 @@
     .project-tile{grid-template-columns:1fr; gap:18px;}
     .project-tile .thumb{width:100%; border-radius:22px;}
     .project-tile .info{padding:0; max-width:none;}
-    .project-tile .thumb.photo-slideshow{border-radius:0; margin-left:0;}
+    .project-tile .thumb.photo-slideshow{border-radius:0; width:100%; margin-left:0;}
     .hero, .section-head, .cat-nav, .about, .contact, .fine, .project-row{padding-left:22px; padding-right:22px;}
   }
 
