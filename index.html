@@ -339,12 +339,12 @@
       <div class="project-tile">
         <a class="thumb thumb-split" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener" aria-label="Open live NS OV-Fiets prototype">
           <div class="thumb-half">
-            <video class="autoplay-video" autoplay muted loop playsinline webkit-playsinline preload="auto" onerror="this.style.display='none'">
+            <video class="autoplay-video" muted autoplay loop playsinline webkit-playsinline preload="auto" x-webkit-airplay="allow">
               <source src="images/ns-ov-fiets.mp4" type="video/mp4">
             </video>
           </div>
           <div class="thumb-half">
-            <video class="autoplay-video" autoplay muted loop playsinline webkit-playsinline preload="auto" onerror="this.style.display='none'">
+            <video class="autoplay-video" muted autoplay loop playsinline webkit-playsinline preload="auto" x-webkit-airplay="allow">
               <source src="images/ns-ov-fiets-2.mp4" type="video/mp4">
             </video>
           </div>
@@ -458,9 +458,6 @@
   <div class="about-intro">
     <p data-i18n="about-bio"><b>Hi, I'm Fleur</b> — a creative, detail-oriented designer with a background in visual production across tech and retail environments. For years, I safeguarded image quality and product presentation at scale, working closely with UX/UI designers, developers, and stakeholders. I recently specialized in UX/UI and am now fully focused on designing intuitive, user-centered digital products. Based in Amsterdam, I'm a strong problem solver with a positive mindset who loves turning ideas into clear, effective designs — and I'm currently looking for a role or internship where I can grow further as a UX/UI designer.</p>
   </div>
-</div>
-<div class="about-photo-bottom">
-  <img src="images/about-process.png" alt="Fleur aan het werk aan wireframes" onerror="this.style.display='none'">
 </div>
 </div>
 
@@ -582,30 +579,36 @@
   setLang(savedLang);
 
   // AUTOPLAY RELIABILITY — muted+playsinline autoplay is normally allowed on mobile
-  // Safari without any user gesture, but some in-app browsers (WhatsApp, Instagram,
-  // Facebook) run their own stripped-down WebView that can block it regardless. There
-  // is no page-level fix that can force autoplay if the wrapping app has disabled it
-  // natively, so this script stacks every trick that CAN work from the page side:
-  // explicit muted/defaultMuted/playsInline properties (not just attributes), retrying
-  // on loadedmetadata/canplay/pageshow (covers back-forward-cache restores), retrying
-  // on visibility change, an IntersectionObserver so each video (re)tries as soon as it
-  // scrolls into view, and a first-touch/click/scroll fallback anywhere on the page.
+  // Safari/Chrome without any user gesture, but it only fires once the browser
+  // considers the video "ready enough" and the element is actually attached/visible.
+  // This stacks every trick that works from the page side: setting muted/playsInline
+  // as real element PROPERTIES (not just HTML attributes, since some mobile browsers
+  // only honor the JS property), forcing .load() so the browser re-evaluates the
+  // element after those properties are set, retrying on every readiness event
+  // (loadedmetadata/loadeddata/canplay/canplaythrough), retrying on a fast repeating
+  // timer for the first few seconds after load (mobile connections can be slow to
+  // buffer), retrying via IntersectionObserver as soon as each video scrolls into
+  // view, retrying on visibility/pageshow (app switch, bfcache), and a first-gesture
+  // fallback anywhere on the page as the last resort for browsers that still refuse.
   (function(){
-    var vids = document.querySelectorAll('video.autoplay-video');
+    var vids = Array.prototype.slice.call(document.querySelectorAll('video.autoplay-video'));
     if (!vids.length) return;
 
     function primeVideo(v){
       v.muted = true;
       v.defaultMuted = true;
       v.playsInline = true;
+      v.autoplay = true;
+      v.loop = true;
       v.setAttribute('muted', '');
       v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
     }
 
     function tryPlay(v){
       primeVideo(v);
       var p = v.play();
-      if (p && typeof p.catch === 'function') p.catch(function(){});
+      if (p && typeof p.catch === 'function') p.catch(function(){ /* will retry */ });
     }
 
     function tryPlayAll(){
@@ -614,38 +617,36 @@
 
     vids.forEach(function(v){
       primeVideo(v);
-      ['loadedmetadata', 'canplay', 'canplaythrough'].forEach(function(evt){
-        v.addEventListener(evt, function(){ tryPlay(v); }, { once: true });
+      v.load();
+      ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough', 'playing'].forEach(function(evt){
+        v.addEventListener(evt, function(){ tryPlay(v); });
       });
     });
 
     tryPlayAll();
-
-    // Retry once layout/paint has settled.
+    document.addEventListener('DOMContentLoaded', tryPlayAll);
     window.addEventListener('load', tryPlayAll);
-    setTimeout(tryPlayAll, 300);
-    setTimeout(tryPlayAll, 1200);
 
-    // Retry when the tab/page becomes visible again (app switch, bfcache restore).
+    // Keep nudging for the first ~6 seconds after load — mobile connections can take
+    // a moment to buffer enough of the file before the browser allows playback.
+    [150, 400, 800, 1500, 2500, 4000, 6000].forEach(function(ms){
+      setTimeout(tryPlayAll, ms);
+    });
+
     document.addEventListener('visibilitychange', function(){
       if (!document.hidden) tryPlayAll();
     });
     window.addEventListener('pageshow', tryPlayAll);
 
-    // Retry per-video as soon as it scrolls into view — some WebViews only allow
-    // playback once the element is actually on-screen.
     if ('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
           if (entry.isIntersecting) tryPlay(entry.target);
         });
-      }, { threshold: 0.25 });
+      }, { threshold: 0.15 });
       vids.forEach(function(v){ io.observe(v); });
     }
 
-    // Last resort: some in-app browsers only allow play() when it's called
-    // synchronously inside a genuine user-gesture handler. Any tap, click or scroll
-    // anywhere on the page counts, so the very first one retries every video.
     var kick = function(){
       tryPlayAll();
       window.removeEventListener('touchstart', kick);
@@ -656,8 +657,6 @@
     window.addEventListener('click', kick, { once:true });
     window.addEventListener('scroll', kick, { once:true, passive:true });
 
-    // Belt-and-braces: a direct tap on a video that still hasn't started (e.g. because
-    // the wrapping app blocked autoplay entirely) should always start it immediately.
     vids.forEach(function(v){
       v.addEventListener('click', function(){ tryPlay(v); });
     });
