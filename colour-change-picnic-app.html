@@ -67,11 +67,17 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  /* Text left, images right. align-items:start so the text column lines up
-     with the TOP image rather than being centered against the full stack. */
+  /* Back-link + eyebrow sit in their own full-width row above the grid,
+     so the title (first thing in the text column) lines up exactly with
+     the top image (first thing in the image column). */
+  .case-top{max-width:1320px; margin:0 auto; padding:110px 48px 0;}
+  .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
+  .back-link:hover{color:var(--ink);}
+  .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
+
   .case-hero{
     max-width:1320px; margin:0 auto;
-    padding:110px 48px 90px;
+    padding:0 48px 90px;
     display:grid;
     grid-template-columns: minmax(0,480px) minmax(0,680px);
     justify-content:space-between;
@@ -79,9 +85,6 @@
     align-items:start;
   }
   .case-hero-text{min-width:0;}
-  .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
-  .back-link:hover{color:var(--ink);}
-  .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
   .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:52px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:22px;}
   .case-hero-text p{font-size:17px; line-height:1.7; color:var(--ink); max-width:480px; margin-bottom:16px;}
   .case-hero-text p:last-of-type{margin-bottom:0;}
@@ -112,7 +115,8 @@
     nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
-    .case-hero{grid-template-columns:1fr; padding:80px 22px 50px; gap:32px;}
+    .case-top{padding:80px 22px 0;}
+    .case-hero{grid-template-columns:1fr; padding:24px 22px 50px; gap:32px;}
     .case-title{font-size:34px;}
     .case-hero-image{max-width:100%; gap:14px;}
   }
@@ -138,10 +142,13 @@
   </div>
 </nav>
 
+<div class="case-top">
+  <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
+  <div class="case-eyebrow" data-i18n="case-eyebrow">UI/UX Design — Picnic Technologies</div>
+</div>
+
 <div class="case-hero">
   <div class="case-hero-text">
-    <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
-    <div class="case-eyebrow" data-i18n="case-eyebrow">UI/UX Design — Picnic Technologies</div>
     <h1 class="case-title" data-i18n="case-title">Productpresentatie</h1>
     <p data-i18n="case-body-1">Als <b>Visual Designer</b> visualiseerde ik, in samenwerking met stakeholders, de productachtergronden bij Picnic van wit naar kleur.</p>
     <p data-i18n="case-body-2">Ik verbeterde de <b>kwaliteit van de productfoto's</b> en vergrootte de <b>tiles</b> om de producten meer <b>ruimte en aandacht</b> te geven.</p>
