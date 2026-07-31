@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>WE Fashion — Editing Process — Fleur Sterel</title>
+<title>Editing — Fleur Sterel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <meta name="theme-color" id="theme-color-meta" content="#F1F1EF">
@@ -67,20 +67,27 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  .case-top{padding:64px 48px 32px;}
-  .case-top-inner{max-width:900px;}
+  .case-top{padding:64px 48px 0; text-align:center;}
+  .case-top-inner{max-width:700px; margin:0 auto;}
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:28px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
   .back-link:hover{color:var(--ink);}
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
   .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1;}
 
-  /* Hero image kept modest in size — a smaller, framed visual rather than a
-     full-bleed banner, so it reads as an illustrative shot rather than dominating
-     the page. */
-  .case-image-wrap{padding:0 48px 0;}
-  .case-image{width:100%; max-width:720px; margin:0 auto; display:block; border-radius:24px; object-fit:cover; aspect-ratio:16/10; background:var(--about-bg);}
+  /* Image now sits centered on a white card inside a gray section, so it reads as
+     a designed element rather than a raw screenshot placed flush on the page. */
+  .case-image-wrap{
+    margin-top:48px; padding:56px 48px; background:var(--about-bg);
+    display:flex; justify-content:center;
+  }
+  .case-image{
+    width:100%; max-width:720px; margin:0; display:block;
+    background:#FFFFFF; border-radius:20px; padding:20px;
+    box-shadow:0 16px 48px rgba(0,0,0,0.07);
+    object-fit:contain; aspect-ratio:16/10;
+  }
 
-  .case-text-section{background:var(--about-bg); padding:64px 48px; margin-top:56px;}
+  .case-text-section{background:var(--about-bg); padding:0 48px 64px;}
   .case-text-inner{max-width:720px; margin:0 auto;}
   .case-text-inner p{font-size:19px; line-height:1.7; color:var(--ink);}
 
@@ -90,11 +97,11 @@
     nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
-    .case-top{padding:40px 22px 24px;}
+    .case-top{padding:40px 22px 0;}
     .case-title{font-size:32px;}
-    .case-image-wrap{padding:0 22px;}
-    .case-image{max-width:100%;}
-    .case-text-section{padding:40px 22px; margin-top:32px;}
+    .case-image-wrap{padding:32px 22px; margin-top:32px;}
+    .case-image{padding:12px;}
+    .case-text-section{padding:0 22px 40px;}
     .case-text-inner p{font-size:16.5px;}
   }
 </style>
@@ -122,8 +129,8 @@
 <div class="case-top">
   <div class="case-top-inner">
     <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
-    <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — WE Fashion</div>
-    <h1 class="case-title" data-i18n="case-title">WE Fashion — Editing Process</h1>
+    <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — WE Fashion & Picnic Technologies</div>
+    <h1 class="case-title" data-i18n="case-title">Editing</h1>
   </div>
 </div>
 
@@ -133,7 +140,7 @@
 
 <div class="case-text-section">
   <div class="case-text-inner">
-    <p data-i18n="case-body">WE Fashion's interne retoucheer-workflow vanaf nul opgezet.</p>
+    <p data-i18n="case-body">Jarenlange ervaring met het opzetten en coördineren van editingprocessen — van het bouwen van WE Fashion's volledige inhouse retoucheerproces tot het bewaken van beeldkwaliteit voor duizenden productfoto's bij Picnic in NL, DE en FR. Leidde editingteams en optimaliseerde workflows tussen Assets, Salesforce en Figma.</p>
   </div>
 </div>
 
@@ -144,9 +151,9 @@
     'nav-work':    { en: 'Work', nl: 'Werk' },
     'nav-contact': { en: 'Contact', nl: 'Contact' },
     'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
-    'case-eyebrow':{ en: 'Visual Design — WE Fashion', nl: 'Visueel Ontwerp — WE Fashion' },
-    'case-title':  { en: 'WE Fashion — Editing Process', nl: 'WE Fashion — Editing Process' },
-    'case-body':   { en: "Setting up WE Fashion's in-house retouching workflow from scratch.", nl: "WE Fashion's interne retoucheer-workflow vanaf nul opgezet." }
+    'case-eyebrow':{ en: 'Visual Design — WE Fashion & Picnic Technologies', nl: 'Visueel Ontwerp — WE Fashion & Picnic Technologies' },
+    'case-title':  { en: 'Editing', nl: 'Editing' },
+    'case-body':   { en: "Years of experience setting up and coordinating editing processes — from building WE Fashion's entire in-house retouching process to safeguarding image quality for thousands of product photos at Picnic across NL, DE and FR. Led editing teams and optimized workflows between Assets, Salesforce and Figma.", nl: "Jarenlange ervaring met het opzetten en coördineren van editingprocessen — van het bouwen van WE Fashion's volledige inhouse retoucheerproces tot het bewaken van beeldkwaliteit voor duizenden productfoto's bij Picnic in NL, DE en FR. Leidde editingteams en optimaliseerde workflows tussen Assets, Salesforce en Figma." }
   };
 
   function setLang(lang){
