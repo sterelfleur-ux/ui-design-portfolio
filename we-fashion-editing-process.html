@@ -67,29 +67,33 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  /* Text left, image right — contained within a centered max-width wrapper so the
-     image never balloons on wide screens. object-fit:contain (not cover) so wide
-     composite screenshots scale down cleanly instead of being cropped/zoomed. */
+  /* Text left, image right — wide, spacious layout. object-fit:contain keeps
+     composite screenshots scaling down cleanly instead of being cropped/zoomed. */
   .case-hero{
-    max-width:1160px; margin:0 auto;
+    max-width:1320px; margin:0 auto;
     padding:110px 48px 90px;
     display:grid;
-    grid-template-columns: minmax(0,440px) minmax(0,440px);
+    grid-template-columns: minmax(0,480px) minmax(0,680px);
     justify-content:space-between;
-    gap:56px;
+    gap:64px;
     align-items:center;
   }
   .case-hero-text{min-width:0;}
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
   .back-link:hover{color:var(--ink);}
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
-  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:44px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:20px;}
-  .case-hero-text p{font-size:17px; line-height:1.7; color:var(--ink); max-width:440px;}
+  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:52px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:22px;}
+  .case-hero-text p{font-size:18px; line-height:1.7; color:var(--ink); max-width:480px;}
 
   .case-hero-image{width:100%; display:flex; justify-content:center;}
   .case-image{
-    width:100%; max-width:440px; display:block; border-radius:24px;
+    width:100%; max-width:680px; display:block; border-radius:24px;
     object-fit:contain; box-shadow:0 30px 60px rgba(0,0,0,0.08);
+  }
+
+  @media (max-width:1100px){
+    .case-hero{grid-template-columns: minmax(0,420px) minmax(0,420px); gap:40px;}
+    .case-image{max-width:420px;}
   }
 
   @media (max-width:860px){
@@ -99,7 +103,7 @@
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .case-hero{grid-template-columns:1fr; padding:80px 22px 50px; gap:32px;}
-    .case-title{font-size:32px;}
+    .case-title{font-size:34px;}
     .case-image{max-width:100%;}
   }
 </style>
