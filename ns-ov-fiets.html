@@ -69,7 +69,9 @@
 
   /* Text left, images right — wide, spacious layout. object-fit:contain keeps
      composite screenshots scaling down cleanly instead of being cropped/zoomed.
-     No card background or shadow behind the images — they sit directly on the page. */
+     No card background or shadow behind the images — they sit directly on the page.
+     align-items:start so the text column lines up with the TOP image, instead of
+     being vertically centered against the full height of both stacked images. */
   .case-hero{
     max-width:1320px; margin:0 auto;
     padding:110px 48px 90px;
@@ -77,7 +79,7 @@
     grid-template-columns: minmax(0,480px) minmax(0,680px);
     justify-content:space-between;
     gap:64px;
-    align-items:center;
+    align-items:start;
   }
   .case-hero-text{min-width:0;}
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
