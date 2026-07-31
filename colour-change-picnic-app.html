@@ -92,6 +92,11 @@
     width:100%; display:block; border-radius:24px;
     object-fit:contain; background:none;
   }
+  .case-mini-grid{display:flex; gap:16px;}
+  .case-mini-grid img{
+    flex:1; width:100%; aspect-ratio:1/1; object-fit:cover;
+    border-radius:16px; background:none;
+  }
 
   @media (max-width:1100px){
     .case-hero{grid-template-columns: minmax(0,420px) minmax(0,420px); gap:40px;}
@@ -136,10 +141,16 @@
     <h1 class="case-title" data-i18n="case-title">Productpresentatie</h1>
     <p data-i18n="case-body-1">Als <b>Visual Designer</b> visualiseerde ik, in samenwerking met stakeholders, de productachtergronden bij Picnic van <b>wit naar kleur</b>.</p>
     <p data-i18n="case-body-2">Ik verbeterde de <b>kwaliteit van de productfoto's</b> en vergrootte de <b>tiles</b> om de producten meer <b>ruimte en aandacht</b> te geven.</p>
+    <p data-i18n="case-body-3">Om de productpresentatie zo natuurlijk mogelijk te houden en de kwaliteit van de producten goed over te brengen naar de klant, wilde ik de <b>natuurlijke schaduw</b> van de producten meenemen in de tile. Het probleem waar we tegen aanliepen: de achtergrondkleur in de tile werd <b>geautomatiseerd</b> gegenereerd, waardoor producten niet op een witte achtergrond gefotografeerd konden worden — bijvoorbeeld bij een doorzichtige verpakking. Uiteindelijk koos ik ervoor om de producten <b>op kleur te fotograferen</b> en de schaduw mee te laten clippen. Zo kwam het product nog beter tot zijn recht en zorgde dit voor een <b>betere klantervaring</b>.</p>
   </div>
   <div class="case-hero-image">
     <img class="case-image" src="images/colour-change-picnic-app-case.png" alt="Colour Change Picnic App" onerror="this.style.display='none'">
     <img class="case-image" src="images/colour-change-picnic-app-case-2.png" alt="Colour Change Picnic App — extra" onerror="this.style.display='none'">
+    <div class="case-mini-grid">
+      <img src="images/colour-change-picnic-app-product-1.png" alt="Productvoorbeeld 1" onerror="this.style.display='none'">
+      <img src="images/colour-change-picnic-app-product-2.png" alt="Productvoorbeeld 2" onerror="this.style.display='none'">
+      <img src="images/colour-change-picnic-app-product-3.png" alt="Productvoorbeeld 3" onerror="this.style.display='none'">
+    </div>
   </div>
 </div>
 
@@ -153,7 +164,8 @@
     'case-eyebrow':{ en: 'UI/UX Design — Picnic Technologies', nl: 'UI/UX Design — Picnic Technologies' },
     'case-title':  { en: 'Product Presentation', nl: 'Productpresentatie' },
     'case-body-1': { en: 'As a <b>Visual Designer</b>, I worked with stakeholders to visualize Picnic\'s product backgrounds shifting from <b>white to color</b>.', nl: 'Als <b>Visual Designer</b> visualiseerde ik, in samenwerking met stakeholders, de productachtergronden bij Picnic van <b>wit naar kleur</b>.' },
-    'case-body-2': { en: 'I improved the <b>quality of the product photos</b> and enlarged the <b>tiles</b> to give products more <b>space and attention</b>.', nl: 'Ik verbeterde de <b>kwaliteit van de productfoto\'s</b> en vergrootte de <b>tiles</b> om de producten meer <b>ruimte en aandacht</b> te geven.' }
+    'case-body-2': { en: 'I improved the <b>quality of the product photos</b> and enlarged the <b>tiles</b> to give products more <b>space and attention</b>.', nl: 'Ik verbeterde de <b>kwaliteit van de productfoto\'s</b> en vergrootte de <b>tiles</b> om de producten meer <b>ruimte en aandacht</b> te geven.' },
+    'case-body-3': { en: 'To keep the product presentation as natural as possible and to properly convey product quality to the customer, I wanted to incorporate the products\' <b>natural shadow</b> into the tile. The problem we ran into was that the background color in the tile was <b>automated</b>, which meant products couldn\'t be photographed against a white background — for example, transparent packaging. In the end, I chose to <b>photograph products against color</b> and let the shadow clip along with it. This made the product stand out even more and led to a <b>better customer experience</b>.', nl: 'Om de productpresentatie zo natuurlijk mogelijk te houden en de kwaliteit van de producten goed over te brengen naar de klant, wilde ik de <b>natuurlijke schaduw</b> van de producten meenemen in de tile. Het probleem waar we tegen aanliepen: de achtergrondkleur in de tile werd <b>geautomatiseerd</b> gegenereerd, waardoor producten niet op een witte achtergrond gefotografeerd konden worden — bijvoorbeeld bij een doorzichtige verpakking. Uiteindelijk koos ik ervoor om de producten <b>op kleur te fotograferen</b> en de schaduw mee te laten clippen. Zo kwam het product nog beter tot zijn recht en zorgde dit voor een <b>betere klantervaring</b>.' }
   };
   function setLang(lang){
     document.documentElement.setAttribute('lang', lang);
