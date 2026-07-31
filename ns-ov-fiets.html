@@ -67,12 +67,15 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  /* Text left, image(s) right — white background throughout, no gray section.
-     Images get rounded corners and a soft shadow for a designed, elevated feel. */
+  /* Text left, images right — contained within a centered max-width wrapper so the
+     images never balloon on wide screens. object-fit:contain so the composite
+     screenshots scale down cleanly instead of being cropped/zoomed. */
   .case-hero{
+    max-width:1160px; margin:0 auto;
     padding:110px 48px 90px;
     display:grid;
-    grid-template-columns: minmax(0,480px) 1fr;
+    grid-template-columns: minmax(0,440px) minmax(0,440px);
+    justify-content:space-between;
     gap:56px;
     align-items:center;
   }
@@ -81,7 +84,7 @@
   .back-link:hover{color:var(--ink);}
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
   .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:44px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:20px;}
-  .case-hero-text p{font-size:17px; line-height:1.7; color:var(--ink); max-width:460px;}
+  .case-hero-text p{font-size:17px; line-height:1.7; color:var(--ink); max-width:440px;}
   .case-hero-text .cta{
     display:inline-flex; align-items:center; gap:8px; margin-top:26px;
     background:var(--ink); color:var(--bg); padding:14px 26px; border-radius:40px;
@@ -90,10 +93,10 @@
   }
   .case-hero-text .cta:hover{opacity:0.85; transform:translateY(-1px);}
 
-  .case-hero-image{width:100%; display:flex; flex-direction:column; gap:20px;}
+  .case-hero-image{width:100%; max-width:440px; margin:0 auto; display:flex; flex-direction:column; gap:20px;}
   .case-image{
-    width:100%; display:block; border-radius:24px; object-fit:cover; aspect-ratio:16/10;
-    box-shadow:0 30px 60px rgba(0,0,0,0.08);
+    width:100%; display:block; border-radius:24px;
+    object-fit:contain; box-shadow:0 30px 60px rgba(0,0,0,0.08);
   }
 
   @media (max-width:860px){
@@ -104,7 +107,7 @@
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .case-hero{grid-template-columns:1fr; padding:80px 22px 50px; gap:32px;}
     .case-title{font-size:32px;}
-    .case-hero-image{gap:14px;}
+    .case-hero-image{max-width:100%; gap:14px;}
   }
 </style>
 </head>
@@ -133,7 +136,7 @@
     <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
     <div class="case-eyebrow" data-i18n="case-eyebrow">UI/UX Design — NS</div>
     <h1 class="case-title" data-i18n="case-title">OV-Fiets</h1>
-    <p data-i18n="case-body">Fictieve case study: gebruikersonderzoek, wireframes en prototypes in Figma, en gebruikerstests om tot een intuïtieve manier te komen om een OV-fiets te reserveren in de NS-app.</p>
+    <p data-i18n="case-body">Fictieve case study, gericht op het vinden van een intuïtieve manier om een OV-fiets te reserveren in de NS-app.</p>
     <a class="cta" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener" data-i18n="case-cta">Bekijk case study <span class="arrow">→</span></a>
   </div>
   <div class="case-hero-image">
@@ -151,7 +154,7 @@
     'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
     'case-eyebrow':{ en: 'UI/UX Design — NS', nl: 'UI/UX Design — NS' },
     'case-title':  { en: 'OV-Bike', nl: 'OV-Fiets' },
-    'case-body':   { en: 'Hypothetical case study: user research, wireframes and prototypes in Figma, and user testing to arrive at an intuitive way to reserve an OV-bike in the NS app.', nl: 'Fictieve case study: gebruikersonderzoek, wireframes en prototypes in Figma, en gebruikerstests om tot een intuïtieve manier te komen om een OV-fiets te reserveren in de NS-app.' },
+    'case-body':   { en: 'Hypothetical case study, focused on finding an intuitive way to reserve an OV-bike in the NS app.', nl: 'Fictieve case study, gericht op het vinden van een intuïtieve manier om een OV-fiets te reserveren in de NS-app.' },
     'case-cta':    { en: 'View case study →', nl: 'Bekijk case study →' }
   };
 
