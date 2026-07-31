@@ -74,8 +74,15 @@
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
   .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1;}
 
-  .case-image-wrap{padding:0 48px 0;}
-  .case-image{width:100%; max-width:1400px; margin:0 auto; display:block; border-radius:24px; object-fit:cover; aspect-ratio:16/10; background:var(--about-bg);}
+  /* Photography gets a gallery grid instead of one hero image — reuses the same
+     8 photo files already used in the homepage slideshow (photo-1.jpg … photo-8.jpg),
+     so nothing extra needs to be uploaded to make this page work. */
+  .case-gallery{
+    padding:0 48px; display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;
+  }
+  .case-gallery img{
+    width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:18px; background:var(--about-bg);
+  }
 
   .case-text-section{background:var(--about-bg); padding:64px 48px; margin-top:56px;}
   .case-text-inner{max-width:720px; margin:0 auto;}
@@ -89,7 +96,7 @@
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .case-top{padding:40px 22px 24px;}
     .case-title{font-size:32px;}
-    .case-image-wrap{padding:0 22px;}
+    .case-gallery{padding:0 22px; grid-template-columns:repeat(2, 1fr); gap:10px;}
     .case-text-section{padding:40px 22px; margin-top:32px;}
     .case-text-inner p{font-size:16.5px;}
   }
@@ -123,8 +130,15 @@
   </div>
 </div>
 
-<div class="case-image-wrap">
-  <img class="case-image" src="images/photo-1.jpg" alt="Photography" onerror="this.style.display='none'">
+<div class="case-gallery">
+  <img src="images/photo-1.jpg" alt="Photography 1" onerror="this.style.display='none'">
+  <img src="images/photo-2.jpg" alt="Photography 2" onerror="this.style.display='none'">
+  <img src="images/photo-3.jpg" alt="Photography 3" onerror="this.style.display='none'">
+  <img src="images/photo-4.jpg" alt="Photography 4" onerror="this.style.display='none'">
+  <img src="images/photo-5.jpg" alt="Photography 5" onerror="this.style.display='none'">
+  <img src="images/photo-6.jpg" alt="Photography 6" onerror="this.style.display='none'">
+  <img src="images/photo-7.jpg" alt="Photography 7" onerror="this.style.display='none'">
+  <img src="images/photo-8.jpg" alt="Photography 8" onerror="this.style.display='none'">
 </div>
 
 <div class="case-text-section">
