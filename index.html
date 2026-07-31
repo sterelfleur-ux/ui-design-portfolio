@@ -495,7 +495,7 @@
     'proj4-title': { en: 'Editing', nl: 'Editing' },
     'proj4-desc':  { en: 'Years of experience with post-production, image editing and coordinating and setting up image editing processes.', nl: 'Jarenlange ervaring met postproductie, beeldbewerking en het coördineren en opzetten van beeldbewerkingsprocessen.' },
     'proj5-title': { en: 'Photography', nl: 'Fotografie' },
-    'proj5-desc':  { en: 'Product and fashion photography.', nl: 'Product en mode fotografie.' },
+    'proj5-desc':  { en: 'Editorial and contemporary photography.', nl: 'Editorial en eigentijdse fotografie.' },
     'proj1-tag1': { en: 'Mobile', nl: 'Mobile' },
     'proj1-tag2': { en: 'Research', nl: 'Onderzoek' },
     'proj1-tag3': { en: 'Prototyping', nl: 'Prototyping' },
@@ -582,6 +582,8 @@
   // buffer), retrying via IntersectionObserver as soon as each video scrolls into
   // view, retrying on visibility/pageshow (app switch, bfcache), and a first-gesture
   // fallback anywhere on the page as the last resort for browsers that still refuse.
+  // NOTE: none of this can override iOS Low Power Mode, which disables autoplay
+  // system-wide regardless of page code.
   (function(){
     var vids = Array.prototype.slice.call(document.querySelectorAll('video.autoplay-video'));
     if (!vids.length) return;
@@ -619,8 +621,6 @@
     document.addEventListener('DOMContentLoaded', tryPlayAll);
     window.addEventListener('load', tryPlayAll);
 
-    // Keep nudging for the first ~6 seconds after load — mobile connections can take
-    // a moment to buffer enough of the file before the browser allows playback.
     [150, 400, 800, 1500, 2500, 4000, 6000].forEach(function(ms){
       setTimeout(tryPlayAll, ms);
     });

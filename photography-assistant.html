@@ -71,22 +71,20 @@
   .case-top-inner{max-width:900px;}
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:28px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
   .back-link:hover{color:var(--ink);}
-  .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
-  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1;}
+  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:20px;}
+  .case-top-inner p{font-size:19px; line-height:1.7; color:var(--ink); max-width:640px;}
 
   /* Photography gets a gallery grid instead of one hero image — reuses the same
      9 photo files already used in the homepage slideshow (photo-1.jpg … photo-9.jpg),
-     so nothing extra needs to be uploaded to make this page work. */
+     so nothing extra needs to be uploaded to make this page work. Text sits above
+     the gallery here (unlike the other case pages) since there's no single hero
+     image to introduce first. */
   .case-gallery{
-    padding:0 48px; display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;
+    padding:0 48px 64px; display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;
   }
   .case-gallery img{
     width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:18px; background:var(--about-bg);
   }
-
-  .case-text-section{background:var(--about-bg); padding:64px 48px; margin-top:56px;}
-  .case-text-inner{max-width:720px; margin:0 auto;}
-  .case-text-inner p{font-size:19px; line-height:1.7; color:var(--ink);}
 
   @media (max-width:860px){
     body{padding-top:48px;}
@@ -96,9 +94,8 @@
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .case-top{padding:40px 22px 24px;}
     .case-title{font-size:32px;}
-    .case-gallery{padding:0 22px; grid-template-columns:repeat(2, 1fr); gap:10px;}
-    .case-text-section{padding:40px 22px; margin-top:32px;}
-    .case-text-inner p{font-size:16.5px;}
+    .case-top-inner p{font-size:16.5px;}
+    .case-gallery{padding:0 22px 40px; grid-template-columns:repeat(2, 1fr); gap:10px;}
   }
 </style>
 </head>
@@ -126,6 +123,7 @@
   <div class="case-top-inner">
     <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
     <h1 class="case-title" data-i18n="case-title">Fotografie</h1>
+    <p data-i18n="case-body">Editorial en eigentijdse fotografie.</p>
   </div>
 </div>
 
@@ -141,12 +139,6 @@
   <img src="images/photo-9.jpg" alt="Photography 9" onerror="this.style.display='none'">
 </div>
 
-<div class="case-text-section">
-  <div class="case-text-inner">
-    <p data-i18n="case-body">On-set assistentie en postproductie tijdens mijn stage.</p>
-  </div>
-</div>
-
 <script>
   var translations = {
     'nav-home':    { en: 'Home', nl: 'Home' },
@@ -154,9 +146,8 @@
     'nav-work':    { en: 'Work', nl: 'Werk' },
     'nav-contact': { en: 'Contact', nl: 'Contact' },
     'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
-    'case-eyebrow':{ en: 'Photography', nl: 'Fotografie' },
     'case-title':  { en: 'Photography', nl: 'Fotografie' },
-    'case-body':   { en: 'On-set assistance and post-production during my internship.', nl: 'On-set assistentie en postproductie tijdens mijn stage.' }
+    'case-body':   { en: 'Editorial and contemporary photography.', nl: 'Editorial en eigentijdse fotografie.' }
   };
 
   function setLang(lang){
