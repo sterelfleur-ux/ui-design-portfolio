@@ -225,7 +225,7 @@
 
   /* ABOUT */
   .about-section{background:var(--about-bg); transition:background-color .25s ease;}
-  .about{padding:50px 48px 80px; display:grid; grid-template-columns:260px 1fr; gap:60px; align-items:center;}
+  .about{padding:50px 48px 60px; display:grid; grid-template-columns:260px 1fr; gap:60px; align-items:center;}
   .about-photo .photo-circle{
     width:260px; height:260px; border-radius:50%; overflow:hidden;
     background:var(--thumb-a);
@@ -235,6 +235,13 @@
   }
   .about-intro p{font-size:19px; max-width:620px; margin-bottom:0;}
   .about-intro p b{font-weight:700;}
+  /* Extra photo placed below the About text — full width of the section, same
+     48px side margin as everything else. */
+  .about-photo-bottom{padding:0 48px 80px;}
+  .about-photo-bottom img{
+    width:100%; max-width:900px; margin:0 auto; display:block;
+    border-radius:24px; object-fit:cover; aspect-ratio:16/10;
+  }
 
   /* CONTACT */
   .contact-section{background:var(--contact-bg); transition:background-color .25s ease;}
@@ -258,7 +265,7 @@
        spilling past the edge). Mobile gets its own explicit sizes below, so the extra
        zoom multiplier is switched off here. */
     body{zoom:1; padding-top:calc(48px + env(safe-area-inset-top));}
-    .about{grid-template-columns:1fr;}
+    .about{grid-template-columns:1fr; padding-bottom:40px;}
     .hero h1{font-size:54px;}
     nav.top{padding:12px 22px; padding-top:calc(12px + env(safe-area-inset-top));}
     nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
@@ -271,6 +278,7 @@
     .project-tile .thumb{width:100%; border-radius:22px;}
     .project-tile .info{padding:0; max-width:none;}
     .hero, .section-head, .cat-nav, .about, .contact, .fine{padding-left:22px; padding-right:22px;}
+    .about-photo-bottom{padding:0 22px 48px;}
   }
 
   /* Extra tightening for narrower phones (iPhone 16 and similar ~390-430px CSS width) */
@@ -309,7 +317,7 @@
 
 <section class="hero" id="top">
   <div class="status-pill"><span class="dot"></span><span data-i18n="status-badge">Open for new projects</span></div>
-  <h1>Fleur<br>Sterel<br><span class="thin">UX/UI<br>Design</span></h1>
+  <h1>Fleur<br>Sterel<br><span class="thin">UX-UI<br>Design</span></h1>
   <div class="hero-sub">
     <p data-i18n="hero-desc"><b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs. Recently specialized in UX/UI and is now fully focused on this direction. Based in Amsterdam, NL.</p>
     <a href="#work" class="cta" data-i18n="cta-work">View my work <span class="arrow">→</span></a>
@@ -450,6 +458,9 @@
   <div class="about-intro">
     <p data-i18n="about-bio"><b>Hi, I'm Fleur</b> — a creative, detail-oriented designer with a background in visual production across tech and retail environments. For years, I safeguarded image quality and product presentation at scale, working closely with UX/UI designers, developers, and stakeholders. I recently specialized in UX/UI and am now fully focused on designing intuitive, user-centered digital products. Based in Amsterdam, I'm a strong problem solver with a positive mindset who loves turning ideas into clear, effective designs — and I'm currently looking for a role or internship where I can grow further as a UX/UI designer.</p>
   </div>
+</div>
+<div class="about-photo-bottom">
+  <img src="images/about-process.png" alt="Fleur aan het werk aan wireframes" onerror="this.style.display='none'">
 </div>
 </div>
 
