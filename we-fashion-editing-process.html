@@ -67,29 +67,19 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  .case-top{padding:64px 48px 0; text-align:center;}
+  /* Text block (back-link, eyebrow, title, body copy) now lives together above
+     the image on a soft gray background, so it reads as one clear intro section. */
+  .case-top{padding:64px 48px; text-align:center; background:var(--about-bg);}
   .case-top-inner{max-width:700px; margin:0 auto;}
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:28px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
   .back-link:hover{color:var(--ink);}
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
-  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1;}
+  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:24px;}
+  .case-top-inner p{font-size:19px; line-height:1.7; color:var(--ink);}
 
-  /* Image now sits centered on a white card inside a gray section, so it reads as
-     a designed element rather than a raw screenshot placed flush on the page. */
-  .case-image-wrap{
-    margin-top:48px; padding:56px 48px; background:var(--about-bg);
-    display:flex; justify-content:center;
-  }
-  .case-image{
-    width:100%; max-width:720px; margin:0; display:block;
-    background:#FFFFFF; border-radius:20px; padding:20px;
-    box-shadow:0 16px 48px rgba(0,0,0,0.07);
-    object-fit:contain; aspect-ratio:16/10;
-  }
-
-  .case-text-section{background:var(--about-bg); padding:0 48px 64px;}
-  .case-text-inner{max-width:720px; margin:0 auto;}
-  .case-text-inner p{font-size:19px; line-height:1.7; color:var(--ink);}
+  /* Image sits plain on the page background — no card, border or shadow. */
+  .case-image-wrap{padding:56px 48px; background:var(--card); display:flex; justify-content:center;}
+  .case-image{width:100%; max-width:760px; margin:0; display:block; border-radius:16px; object-fit:cover; aspect-ratio:16/10;}
 
   @media (max-width:860px){
     body{padding-top:48px;}
@@ -97,12 +87,10 @@
     nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
-    .case-top{padding:40px 22px 0;}
+    .case-top{padding:40px 22px;}
     .case-title{font-size:32px;}
-    .case-image-wrap{padding:32px 22px; margin-top:32px;}
-    .case-image{padding:12px;}
-    .case-text-section{padding:0 22px 40px;}
-    .case-text-inner p{font-size:16.5px;}
+    .case-top-inner p{font-size:16.5px;}
+    .case-image-wrap{padding:32px 22px;}
   }
 </style>
 </head>
@@ -131,17 +119,12 @@
     <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
     <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — WE Fashion & Picnic Technologies</div>
     <h1 class="case-title" data-i18n="case-title">Editing</h1>
+    <p data-i18n="case-body">Jarenlange ervaring met het opzetten en coördineren van editingprocessen — van het bouwen van WE Fashion's volledige inhouse retoucheerproces tot het bewaken van beeldkwaliteit voor duizenden productfoto's bij Picnic in NL, DE en FR. Leidde editingteams en optimaliseerde workflows tussen Assets, Salesforce en Figma.</p>
   </div>
 </div>
 
 <div class="case-image-wrap">
   <img class="case-image" src="images/we-fashion-editing-process-case.png" alt="WE Fashion Editing Process" onerror="this.style.display='none'">
-</div>
-
-<div class="case-text-section">
-  <div class="case-text-inner">
-    <p data-i18n="case-body">Jarenlange ervaring met het opzetten en coördineren van editingprocessen — van het bouwen van WE Fashion's volledige inhouse retoucheerproces tot het bewaken van beeldkwaliteit voor duizenden productfoto's bij Picnic in NL, DE en FR. Leidde editingteams en optimaliseerde workflows tussen Assets, Salesforce en Figma.</p>
-  </div>
 </div>
 
 <script>
