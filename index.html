@@ -91,7 +91,6 @@
 
   /* HERO */
   .hero{padding:90px 48px 96px; position:relative; overflow:hidden;}
-  .hero .tagline{font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--gray); font-weight:700; margin-bottom:16px; margin-left:0; animation:fadeUp .6s ease both;}
   .status-pill{
     display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600;
     padding:6px 14px 6px 12px; border:1px solid var(--ink); border-radius:20px; margin-bottom:20px;
@@ -119,7 +118,7 @@
   @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
   @keyframes pulseDot{0%,100%{opacity:1;} 50%{opacity:0.35;}}
   @media (prefers-reduced-motion: reduce){
-    .hero .tagline, .status-pill, .hero h1, .hero-sub, .status-pill .dot{animation:none !important;}
+    .status-pill, .hero h1, .hero-sub, .status-pill .dot{animation:none !important;}
   }
 
   /* SECTION LABEL */
@@ -261,7 +260,6 @@
     body{zoom:1; padding-top:calc(48px + env(safe-area-inset-top));}
     .about{grid-template-columns:1fr;}
     .hero h1{font-size:54px;}
-    .hero .tagline{margin-left:0;}
     nav.top{padding:12px 22px; padding-top:calc(12px + env(safe-area-inset-top));}
     nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
     .lang-switch{padding-left:10px; margin-left:0;}
@@ -279,7 +277,6 @@
   @media (max-width:430px){
     .hero{padding-top:70px;}
     .hero h1{font-size:46px;}
-    .hero .tagline{font-size:11px; letter-spacing:2px;}
     .status-pill{font-size:11px; padding:5px 12px 5px 10px;}
     .hero-sub p{font-size:14.5px;}
     nav.top .links{gap:9px; font-size:11px;}
@@ -312,7 +309,7 @@
 
 <section class="hero" id="top">
   <div class="status-pill"><span class="dot"></span><span data-i18n="status-badge">Open for new projects</span></div>
-  <h1>Fleur<br>Sterel<br><span class="thin">UX/UI Design</span></h1>
+  <h1>Fleur<br>Sterel<br><span class="thin">UX/UI<br>Design</span></h1>
   <div class="hero-sub">
     <p data-i18n="hero-desc"><b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs. Recently specialized in UX/UI and is now fully focused on this direction. Based in Amsterdam, NL.</p>
     <a href="#work" class="cta" data-i18n="cta-work">View my work <span class="arrow">→</span></a>
@@ -390,9 +387,6 @@
           <div class="eyebrow" data-i18n="cat-visual">Visual Design</div>
           <h3 data-i18n="proj3-title">Homogeneous Bundle Project</h3>
           <p class="desc" data-i18n="proj3-desc">Coordinating a visual rollout at scale for Picnic's product bundles.</p>
-          <div class="tags">
-          <span data-i18n="proj3-tag2">Visual Design</span>
-          </div>
         </div>
       </a>
     </div>
@@ -436,10 +430,6 @@
         <div class="info">
           <h3 data-i18n="proj5-title">Fotografie</h3>
           <p class="desc" data-i18n="proj5-desc">On-set assistance and post-production during my internship.</p>
-          <div class="tags">
-          <span data-i18n="proj5-tag1">Photography</span>
-          <span data-i18n="proj5-tag2">Post-production</span>
-          </div>
         </div>
       </a>
     </div>
@@ -481,7 +471,6 @@
     'nav-about':     { en: 'About', nl: 'Over mij' },
     'nav-work':      { en: 'Work', nl: 'Werk' },
     'nav-contact':   { en: 'Contact', nl: 'Contact' },
-    'hero-tagline':  { en: 'UX / UI Designer', nl: 'UX / UI Designer' },
     'hero-desc':     {
       en: '<b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs. Recently specialized in UX/UI and is now fully focused on this direction. Based in Amsterdam, NL.',
       nl: '<b>Creatief en detailgericht.</b> Een sterke probleemoplosser met een positieve instelling die ideeën graag omzet in heldere, effectieve designs. Heeft zich recent gespecialiseerd op het gebied van UX/UI en richt zich nu volledig op deze richting. Gevestigd in Amsterdam, NL.'
@@ -499,7 +488,7 @@
     'proj1-title': { en: 'OV-Bike', nl: 'OV-Fiets' },
     'proj1-desc':  { en: 'A hypothetical case study on reserving an OV-Bike in the NS app.', nl: 'Een fictieve case study voor het kunnen reserveren van een OV-fiets in de NS-app.' },
     'proj1-cta':   { en: 'View case study →', nl: 'Bekijk case study →' },
-    'proj2-title': { en: 'Fresh New Product Background', nl: 'Nieuwe frisse Product achtergrond' },
+    'proj2-title': { en: 'Fresh New Product Background', nl: 'Nieuwe, frisse productachtergrond' },
     'proj2-desc':  { en: 'Changed product backgrounds from white to colour.', nl: 'Product achtergronden veranderd van wit naar kleur.' },
     'proj3-title': { en: 'Homogeneous Bundle Project', nl: 'Homogeneous Bundle Project' },
     'proj3-desc':  { en: "Coordinating a visual rollout at scale for Picnic's product bundles.", nl: "Grootschalige visuele uitrol gecoördineerd voor Picnic's productbundels." },
@@ -515,7 +504,7 @@
     'proj3-tag1': { en: 'Design Ops', nl: 'Design Ops' },
     'proj3-tag2': { en: 'Visual Design', nl: 'Visueel Ontwerp' },
     'proj4-tag1': { en: 'Editing', nl: 'Editing' },
-    'proj4-tag2': { en: 'Post-production Perfection', nl: 'Postproductie Perfectie' },
+    'proj4-tag2': { en: 'Post-production', nl: 'Postproductie' },
     'proj5-tag1': { en: 'Photography', nl: 'Fotografie' },
     'proj5-tag2': { en: 'Post-production', nl: 'Postproductie' },
     'about-title':   { en: 'About', nl: 'Over mij' },
