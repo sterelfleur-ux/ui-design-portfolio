@@ -66,16 +66,34 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  .case-top{padding:64px 48px; text-align:center; background:var(--about-bg);}
-  .case-top-inner{max-width:700px; margin:0 auto;}
-  .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:28px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
+  /* Text left, image right — white background throughout, no gray section.
+     Image gets rounded corners and a soft shadow for a designed, elevated feel. */
+  .case-hero{
+    padding:110px 48px 90px;
+    display:grid;
+    grid-template-columns: minmax(0,480px) 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .case-hero-text{min-width:0;}
+  .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
   .back-link:hover{color:var(--ink);}
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
-  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:24px;}
-  .case-top-inner p{font-size:19px; line-height:1.7; color:var(--ink);}
+  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:44px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:20px;}
+  .case-hero-text p{font-size:17px; line-height:1.7; color:var(--ink); max-width:460px;}
+  .case-hero-text .cta{
+    display:inline-flex; align-items:center; gap:8px; margin-top:26px;
+    background:var(--ink); color:var(--bg); padding:14px 26px; border-radius:40px;
+    font-size:13px; font-weight:700; letter-spacing:0.5px; white-space:nowrap;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .case-hero-text .cta:hover{opacity:0.85; transform:translateY(-1px);}
 
-  .case-image-wrap{padding:56px 48px; background:var(--card); display:flex; justify-content:center;}
-  .case-image{width:100%; max-width:760px; margin:0; display:block; border-radius:16px; object-fit:cover; aspect-ratio:16/10;}
+  .case-hero-image{width:100%;}
+  .case-image{
+    width:100%; display:block; border-radius:24px; object-fit:cover; aspect-ratio:4/5;
+    box-shadow:0 30px 60px rgba(0,0,0,0.08);
+  }
 
   @media (max-width:860px){
     body{padding-top:48px;}
@@ -83,10 +101,9 @@
     nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
-    .case-top{padding:40px 22px;}
+    .case-hero{grid-template-columns:1fr; padding:80px 22px 50px; gap:32px;}
     .case-title{font-size:32px;}
-    .case-top-inner p{font-size:16.5px;}
-    .case-image-wrap{padding:32px 22px;}
+    .case-image{aspect-ratio:16/10;}
   }
 </style>
 </head>
@@ -108,17 +125,17 @@
     </button>
   </div>
 </nav>
-<div class="case-top">
-  <div class="case-top-inner">
+
+<div class="case-hero">
+  <div class="case-hero-text">
     <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
     <div class="case-eyebrow" data-i18n="case-eyebrow">UI/UX Design — Picnic Technologies</div>
     <h1 class="case-title" data-i18n="case-title">Nieuwe, frisse productachtergrond</h1>
     <p data-i18n="case-body">Leidde bij Picnic het herontwerp van witte naar gekleurde productachtergronden: vertaalde de business requirements naar een concrete UX/UI-oplossing, werkte nauw samen met developers aan de implementatie, en zette A/B-tests en Google Analytics in om de impact op de gebruikerservaring te meten.</p>
   </div>
-</div>
-
-<div class="case-image-wrap">
-  <img class="case-image" src="images/colour-change-picnic-app-case.png" alt="Colour Change Picnic App" onerror="this.style.display='none'">
+  <div class="case-hero-image">
+    <img class="case-image" src="images/colour-change-picnic-app-case.png" alt="Colour Change Picnic App" onerror="this.style.display='none'">
+  </div>
 </div>
 
 <script>
