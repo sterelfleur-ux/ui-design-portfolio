@@ -66,8 +66,6 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  /* Text block (back-link, eyebrow, title, body copy) now lives together above
-     the image on a soft gray background, so it reads as one clear intro section. */
   .case-top{padding:64px 48px; text-align:center; background:var(--about-bg);}
   .case-top-inner{max-width:700px; margin:0 auto;}
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:28px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
@@ -76,7 +74,6 @@
   .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:24px;}
   .case-top-inner p{font-size:19px; line-height:1.7; color:var(--ink);}
 
-  /* Image sits plain on the page background — no card, border or shadow. */
   .case-image-wrap{padding:56px 48px; background:var(--card); display:flex; justify-content:center;}
   .case-image{width:100%; max-width:760px; margin:0; display:block; border-radius:16px; object-fit:cover; aspect-ratio:16/10;}
 
@@ -116,7 +113,7 @@
     <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
     <div class="case-eyebrow" data-i18n="case-eyebrow">UI/UX Design — Picnic Technologies</div>
     <h1 class="case-title" data-i18n="case-title">Nieuwe, frisse productachtergrond</h1>
-    <p data-i18n="case-body">Leidde bij Picnic het herontwerp van witte naar gekleurde productachtergronden, voor een prettigere en herkenbaardere productervaring. Werkte hiervoor nauw samen met UX/UI, developers en stakeholders, en zette A/B-tests op om de impact te meten.</p>
+    <p data-i18n="case-body">Leidde bij Picnic het herontwerp van witte naar gekleurde productachtergronden: vertaalde de business requirements naar een concrete UX/UI-oplossing, werkte nauw samen met developers aan de implementatie, en zette A/B-tests en Google Analytics in om de impact op de gebruikerservaring te meten.</p>
   </div>
 </div>
 
@@ -133,7 +130,7 @@
     'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
     'case-eyebrow':{ en: 'UI/UX Design — Picnic Technologies', nl: 'UI/UX Design — Picnic Technologies' },
     'case-title':  { en: 'Fresh New Product Background', nl: 'Nieuwe, frisse productachtergrond' },
-    'case-body':   { en: 'Led the redesign from white to colored product backgrounds at Picnic, creating a more engaging and recognizable product experience. Worked closely with UX/UI, developers and stakeholders, and ran A/B tests to measure impact.', nl: 'Leidde bij Picnic het herontwerp van witte naar gekleurde productachtergronden, voor een prettigere en herkenbaardere productervaring. Werkte hiervoor nauw samen met UX/UI, developers en stakeholders, en zette A/B-tests op om de impact te meten.' }
+    'case-body':   { en: 'Led the redesign from white to colored product backgrounds at Picnic: translated business requirements into a concrete UX/UI solution, worked closely with developers on implementation, and used A/B testing and Google Analytics to measure the impact on the user experience.', nl: 'Leidde bij Picnic het herontwerp van witte naar gekleurde productachtergronden: vertaalde de business requirements naar een concrete UX/UI-oplossing, werkte nauw samen met developers aan de implementatie, en zette A/B-tests en Google Analytics in om de impact op de gebruikerservaring te meten.' }
   };
   function setLang(lang){
     document.documentElement.setAttribute('lang', lang);

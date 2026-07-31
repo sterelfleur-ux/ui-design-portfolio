@@ -82,7 +82,7 @@
     flex-shrink:0;
   }
   .theme-toggle::before{
-    content:''; position:absolute; inset:-11px; /* enlarges the tap target to ~44px without changing visual size */
+    content:''; position:absolute; inset:-11px;
   }
   .theme-toggle:hover{transform:rotate(20deg);}
   .theme-toggle svg{width:15px; height:15px; display:none; stroke:currentColor;}
@@ -141,12 +141,6 @@
   /* WORK CATEGORY GROUPS */
   .cat-group{padding-top:10px;}
 
-  /* UI/UX PROJECT TILES — a plain, predictable two-column grid: image column (capped
-     width so it can never balloon on wide screens) + text column, joined by one fixed
-     gap. Every row lines up the same way — image left, text right — no alternating
-     "playful" zigzag. Every row shares the same 48px side margin as the rest of the
-     page (hero, section-head, cat-nav, about, contact) so all thumbnails — including
-     the photography slider — line up on the same left edge. */
   .project-tiles{display:flex; flex-direction:column;}
   .project-row{padding:56px 48px; background:var(--work-bg); overflow:hidden;}
   .project-tile{
@@ -169,8 +163,6 @@
   .project-tile .thumb img, .project-tile .thumb video{
     position:relative; z-index:2; width:100%; height:100%; object-fit:contain; object-position:center center;
   }
-  /* thumb-split: two phone videos, with clear breathing room between them so they
-     read as two separate screens rather than one merged block. */
   .project-tile .thumb.thumb-split{
     display:flex; justify-content:center; align-items:center; gap:32px;
     background:none;
@@ -197,13 +189,8 @@
     font-family:'Inter', sans-serif; font-style:normal; font-weight:400;
     font-size:17px; color:var(--ink); line-height:1.6; max-width:400px; margin-bottom:16px;
   }
-  /* Case-study CTA button used on project tiles that link out to a separate written
-     case study (reuses the same pill/arrow style as the hero's "View my work" button). */
   .project-tile .info .cta{margin-top:4px;}
 
-  /* PHOTOGRAPHY SHOWCASE — fast hard-cut slideshow. Uses the same box (aspect-ratio,
-     width, rounded corners) as every other project thumb, so it lines up exactly with
-     the WE Fashion image and every other thumbnail above it — no separate size. */
   .project-tile .thumb.photo-slideshow{
     border-radius:22px;
   }
@@ -252,10 +239,6 @@
   .fine{padding:0 48px 40px; font-size:12px; color:var(--gray); padding-bottom:calc(40px + env(safe-area-inset-bottom));}
 
   @media (max-width:860px){
-    /* The 1.3 desktop "zoom" hack scales layout as well as text, which on a narrow
-       phone viewport compounds into severe horizontal overflow (oversized letters/shapes
-       spilling past the edge). Mobile gets its own explicit sizes below, so the extra
-       zoom multiplier is switched off here. */
     body{zoom:1; padding-top:calc(48px + env(safe-area-inset-top));}
     .about{grid-template-columns:1fr;}
     .hero h1{font-size:54px;}
@@ -273,7 +256,6 @@
     .hero, .section-head, .cat-nav, .about, .contact, .fine{padding-left:22px; padding-right:22px;}
   }
 
-  /* Extra tightening for narrower phones (iPhone 16 and similar ~390-430px CSS width) */
   @media (max-width:430px){
     .hero{padding-top:70px;}
     .hero h1{font-size:46px;}
@@ -344,7 +326,7 @@
         <div class="info">
           <div class="eyebrow" data-i18n="cat-uiux">UI/UX Design</div>
           <h3 data-i18n="proj1-title">OV-Fiets</h3>
-          <p class="desc" data-i18n="proj1-desc">Een fictieve case study voor het kunnen reserveren van een OV-fiets in de NS-app.</p>
+          <p class="desc" data-i18n="proj1-desc">Fictieve case study: gebruikersonderzoek, wireframes en prototypes in Figma, en gebruikerstests om tot een intuïtieve manier te komen om een OV-fiets te reserveren in de NS-app.</p>
           <div class="tags">
           <span data-i18n="proj1-tag2">Research</span>
           <span data-i18n="proj1-tag3">Prototyping</span>
@@ -486,7 +468,7 @@
     'ph-photo-samples': { en: 'Add photography samples', nl: 'Voeg fotografievoorbeelden toe' },
     'status-badge': { en: 'Open for new projects', nl: 'Beschikbaar voor nieuwe projecten' },
     'proj1-title': { en: 'OV-Bike', nl: 'OV-Fiets' },
-    'proj1-desc':  { en: 'A hypothetical case study on reserving an OV-Bike in the NS app.', nl: 'Een fictieve case study voor het kunnen reserveren van een OV-fiets in de NS-app.' },
+    'proj1-desc':  { en: 'Hypothetical case study: user research, wireframes and prototypes in Figma, and user testing to arrive at an intuitive way to reserve an OV-bike in the NS app.', nl: 'Fictieve case study: gebruikersonderzoek, wireframes en prototypes in Figma, en gebruikerstests om tot een intuïtieve manier te komen om een OV-fiets te reserveren in de NS-app.' },
     'proj1-cta':   { en: 'View case study →', nl: 'Bekijk case study →' },
     'proj2-title': { en: 'Fresh New Product Background', nl: 'Nieuwe, frisse productachtergrond' },
     'proj2-desc':  { en: 'Changed product backgrounds from white to colour.', nl: 'Product achtergronden veranderd van wit naar kleur.' },
@@ -570,20 +552,6 @@
   try { savedLang = localStorage.getItem('site-lang') || 'nl'; } catch (e) {}
   setLang(savedLang);
 
-  // AUTOPLAY RELIABILITY — muted+playsinline autoplay is normally allowed on mobile
-  // Safari/Chrome without any user gesture, but it only fires once the browser
-  // considers the video "ready enough" and the element is actually attached/visible.
-  // This stacks every trick that works from the page side: setting muted/playsInline
-  // as real element PROPERTIES (not just HTML attributes, since some mobile browsers
-  // only honor the JS property), forcing .load() so the browser re-evaluates the
-  // element after those properties are set, retrying on every readiness event
-  // (loadedmetadata/loadeddata/canplay/canplaythrough), retrying on a fast repeating
-  // timer for the first few seconds after load (mobile connections can be slow to
-  // buffer), retrying via IntersectionObserver as soon as each video scrolls into
-  // view, retrying on visibility/pageshow (app switch, bfcache), and a first-gesture
-  // fallback anywhere on the page as the last resort for browsers that still refuse.
-  // NOTE: none of this can override iOS Low Power Mode, which disables autoplay
-  // system-wide regardless of page code.
   (function(){
     var vids = Array.prototype.slice.call(document.querySelectorAll('video.autoplay-video'));
     if (!vids.length) return;
