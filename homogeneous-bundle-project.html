@@ -30,7 +30,7 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   html, body{overflow-x:hidden; max-width:100%;}
-  body{background:var(--card); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; font-weight:300; padding-top:52px; transition:background-color .25s ease, color .25s ease;}
+  body{background:var(--card); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; font-weight:300; padding-top:52px; zoom:1.1; transition:background-color .25s ease, color .25s ease;}
   a{color:inherit; text-decoration:none;}
   img{display:block; max-width:100%;}
 
@@ -98,7 +98,7 @@
   }
 
   @media (max-width:860px){
-    body{padding-top:48px;}
+    body{padding-top:48px; zoom:1;}
     nav.top{padding:12px 22px; padding-top:calc(12px + env(safe-area-inset-top));}
     nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
     .lang-switch{padding-left:10px; margin-left:0;}
