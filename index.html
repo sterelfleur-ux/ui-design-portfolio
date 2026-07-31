@@ -199,6 +199,9 @@
     font-family:'Inter', sans-serif; font-style:normal; font-weight:400;
     font-size:17px; color:var(--ink); line-height:1.6; max-width:400px; margin-bottom:16px;
   }
+  /* Case-study CTA button used on project tiles that link out to a separate written
+     case study (reuses the same pill/arrow style as the hero's "View my work" button). */
+  .project-tile .info .cta{margin-top:4px;}
 
   /* PHOTOGRAPHY SHOWCASE — fast hard-cut slideshow, inset from the page edge (not
      bleeding), with fully rounded corners since it doesn't touch any edge on either side. */
@@ -331,8 +334,8 @@
   <div class="project-tiles">
 
     <div class="project-row">
-      <a class="project-tile" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener">
-        <div class="thumb thumb-split">
+      <div class="project-tile">
+        <a class="thumb thumb-split" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener" aria-label="Open live NS OV-Fiets prototype">
           <div class="thumb-half">
             <video class="autoplay-video" autoplay muted loop playsinline webkit-playsinline preload="auto" onerror="this.style.display='none'">
               <source src="images/ns-ov-fiets.mp4" type="video/mp4">
@@ -343,18 +346,19 @@
               <source src="images/ns-ov-fiets-2.mp4" type="video/mp4">
             </video>
           </div>
-        </div>
+        </a>
         <div class="info">
           <div class="eyebrow" data-i18n="cat-uiux">UI/UX Design</div>
-          <h3 data-i18n="proj1-title">NS OV-Fiets</h3>
-          <p class="desc" data-i18n="proj1-desc">UX case study on reserving an OV-fiets in the NS app.</p>
+          <h3 data-i18n="proj1-title">OV-Fiets</h3>
+          <p class="desc" data-i18n="proj1-desc">Een fictieve case study voor het kunnen reserveren van een OV-fiets in de NS-app.</p>
           <div class="tags">
           <span data-i18n="proj1-tag1">Mobile</span>
           <span data-i18n="proj1-tag2">Research</span>
           <span data-i18n="proj1-tag3">Prototyping</span>
           </div>
+          <a class="cta" href="ns-ov-fiets.html" data-i18n="proj1-cta">Bekijk case study <span class="arrow">→</span></a>
         </div>
-      </a>
+      </div>
     </div>
 
     <div class="project-row">
@@ -499,8 +503,9 @@
     'ph-before-after': { en: 'Add before / after product photos', nl: 'Voeg voor-/na-productfoto\'s toe' },
     'ph-photo-samples': { en: 'Add photography samples', nl: 'Voeg fotografievoorbeelden toe' },
     'status-badge': { en: 'Open for new projects', nl: 'Beschikbaar voor nieuwe projecten' },
-    'proj1-title': { en: 'NS OV-Fiets', nl: 'NS OV-Fiets' },
-    'proj1-desc':  { en: 'UX case study on reserving an OV-fiets in the NS app.', nl: 'UX case study over het reserveren van een OV-fiets in de NS-app.' },
+    'proj1-title': { en: 'OV-Bike', nl: 'OV-Fiets' },
+    'proj1-desc':  { en: 'A hypothetical case study on reserving an OV-Bike in the NS app.', nl: 'Een fictieve case study voor het kunnen reserveren van een OV-fiets in de NS-app.' },
+    'proj1-cta':   { en: 'View case study →', nl: 'Bekijk case study →' },
     'proj2-title': { en: 'Colour Change — Picnic App', nl: 'Colour Change — Picnic App' },
     'proj2-desc':  { en: 'Redesigning product backgrounds and A/B testing the new look.', nl: 'Productachtergronden herontworpen en de nieuwe look A/B getest.' },
     'proj3-title': { en: 'Homogeneous Bundle Project', nl: 'Homogeneous Bundle Project' },
