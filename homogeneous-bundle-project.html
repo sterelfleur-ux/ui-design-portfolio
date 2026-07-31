@@ -1,143 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Homogeneous Bundle Project — Fleur Sterel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="theme-color" id="theme-color-meta" content="#F1F1EF">
+<script>
+  (function(){
+    try{
+      var t = localStorage.getItem('site-theme');
+      if(!t){ t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+      document.documentElement.setAttribute('data-theme', t);
+      var m = document.getElementById('theme-color-meta');
+      if (m) m.setAttribute('content', t === 'dark' ? '#141414' : '#F1F1EF');
+    }catch(e){}
+  })();
+</script>
 <style>
   :root{
-    --bg:#F1F1EF;
-    --card:#FFFFFF;
-    --ink:#141414;
-    --gray:#6b6b6b;
+    --bg:#F1F1EF; --card:#FFFFFF; --about-bg:#F1F1EF;
+    --ink:#141414; --gray:#6b6b6b;
+  }
+  html[data-theme="dark"]{
+    --bg:#141414; --card:#1e1e1e; --about-bg:#141414;
+    --ink:#f1f1ef; --gray:#a0a0a0;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; font-weight:300; zoom:1.2; padding-top:66px; transition:background-color .25s ease, color .25s ease;}
+  html, body{overflow-x:hidden; max-width:100%;}
+  body{background:var(--card); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; font-weight:300; padding-top:52px; transition:background-color .25s ease, color .25s ease;}
   a{color:inherit; text-decoration:none;}
   img{display:block; max-width:100%;}
 
   nav.top{
-    position:fixed; top:0; left:0; right:0; z-index:10; background:var(--bg);
-    display:flex; justify-content:space-between; align-items:center;
-    padding:18px 48px;
+    position:fixed; top:0; left:0; right:0; z-index:10; background:var(--card);
+    display:flex; justify-content:flex-end; align-items:center;
+    padding:14px 48px; padding-top:calc(14px + env(safe-area-inset-top));
     box-shadow:0 1px 0 rgba(0,0,0,0);
-    transition:box-shadow .25s ease, transform .3s ease;
+    transition:box-shadow .25s ease, transform .3s ease, background-color .25s ease;
   }
   nav.top.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.07);}
-  nav.top.nav-hidden{transform:translateY(-100%); box-shadow:none;}
-  nav.top .links{display:flex; align-items:center; gap:28px; font-size:13px; font-weight:500; letter-spacing:0.3px;}
-  nav.top .links a{position:relative; padding-bottom:3px;}
+  html[data-theme="dark"] nav.top.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.35);}
+  nav.top .links{display:flex; align-items:center; gap:24px; font-size:12.5px; font-weight:500; letter-spacing:0.3px;}
+  nav.top .links a{position:relative; padding-bottom:3px; white-space:nowrap;}
   nav.top .links a::after{
     content:''; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--ink);
     transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
   }
   nav.top .links a:hover::after{transform:scaleX(1);}
-
-  .page-head{padding:56px 48px 34px;}
-  .page-head .back{
-    font-size:13px; font-weight:600; letter-spacing:0.3px; margin-bottom:26px;
-    display:inline-flex; align-items:center; gap:6px; color:var(--gray); transition:color .2s ease;
+  .lang-switch{display:flex; align-items:center; gap:5px; font-size:12px; font-weight:700; letter-spacing:0.3px; margin-left:2px; padding-left:14px; border-left:1px solid var(--gray); white-space:nowrap;}
+  .lang-switch button{background:none; border:none; padding:8px 4px; margin:-8px -4px; font:inherit; font-weight:700; color:var(--gray); cursor:pointer; letter-spacing:0.3px; transition:color .2s ease;}
+  .lang-switch button.active{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
+  .lang-switch button:hover{color:var(--ink);}
+  .lang-switch .sep{color:var(--gray);}
+  .theme-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:22px; height:22px; margin-left:8px; border:none; border-radius:50%;
+    background:none; color:var(--ink); cursor:pointer; padding:0;
+    transition:transform .3s ease; position:relative; flex-shrink:0;
   }
-  .page-head .back:hover{color:var(--ink);}
-  .page-head .tag{font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gray); font-weight:700; margin-bottom:16px;}
-  .page-head h1{font-family:'Inter', sans-serif; font-weight:600; font-size:48px; letter-spacing:-0.5px; line-height:1.08;}
+  .theme-toggle::before{ content:''; position:absolute; inset:-11px; }
+  .theme-toggle:hover{transform:rotate(20deg);}
+  .theme-toggle svg{width:15px; height:15px; display:none; stroke:currentColor;}
+  html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
+  html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  .hero-shot{
-    position:relative; margin:8px 48px 0; aspect-ratio:21/9;
-    background:var(--card); border-radius:22px; overflow:hidden;
-    display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
-    color:var(--gray); font-size:13px; font-style:italic;
-  }
-  .hero-shot img{position:relative; z-index:2; width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
-  .hero-shot:hover img{transform:scale(1.05);}
+  .case-top{padding:64px 48px 32px;}
+  .case-top-inner{max-width:900px;}
+  .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:28px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
+  .back-link:hover{color:var(--ink);}
+  .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
+  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1;}
 
-  .cs-body{max-width:720px; margin:0 auto; padding:64px 48px 30px;}
-  .cs-block{margin-bottom:40px;}
-  .cs-block h4{font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gray); font-weight:700; margin-bottom:12px;}
-  .cs-block p{font-size:17px; line-height:1.65;}
-  .metrics{display:flex; gap:14px; flex-wrap:wrap; margin-top:18px;}
-  .metric{border:1px solid var(--ink); border-radius:16px; padding:16px 24px; text-align:center;}
-  .metric .num{font-family:'Inter', sans-serif; font-weight:700; font-size:20px; display:block;}
-  .metric .label{font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:0.5px;}
-  .note{border:1px dashed #b8b8b6; border-radius:12px; padding:14px 18px; font-size:12.5px; color:var(--gray); font-style:italic;}
+  .case-image-wrap{padding:0 48px 0;}
+  .case-image{width:100%; max-width:1400px; margin:0 auto; display:block; border-radius:24px; object-fit:cover; aspect-ratio:16/10; background:var(--about-bg);}
 
-  .fine{padding:40px 48px 40px; font-size:12px; color:var(--gray);}
+  .case-text-section{background:var(--about-bg); padding:64px 48px; margin-top:56px;}
+  .case-text-inner{max-width:720px; margin:0 auto;}
+  .case-text-inner p{font-size:19px; line-height:1.7; color:var(--ink);}
 
   @media (max-width:860px){
-    body{padding-top:60px;}
-    .page-head h1{font-size:32px;}
-    nav.top{padding:14px 22px;}
-    nav.top .links{gap:16px; font-size:12px;}
-    .page-head, .cs-body, .fine{padding-left:22px; padding-right:22px;}
-    .hero-shot{margin-left:22px; margin-right:22px;}
+    body{padding-top:48px;}
+    nav.top{padding:12px 22px; padding-top:calc(12px + env(safe-area-inset-top));}
+    nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
+    .lang-switch{padding-left:10px; margin-left:0;}
+    .theme-toggle{margin-left:6px; width:20px; height:20px;}
+    .case-top{padding:40px 22px 24px;}
+    .case-title{font-size:32px;}
+    .case-image-wrap{padding:0 22px;}
+    .case-text-section{padding:40px 22px; margin-top:32px;}
+    .case-text-inner p{font-size:16.5px;}
   }
 </style>
 </head>
 <body>
 
 <nav class="top">
-  <div></div>
   <div class="links">
-    <a href="index.html">Home</a>
-    <a href="index.html#about">About</a>
-    <a href="index.html#work">Work</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="index.html#top" data-i18n="nav-home">Home</a>
+    <a href="index.html#about" data-i18n="nav-about">About</a>
+    <a href="index.html#work" data-i18n="nav-work">Work</a>
+    <a href="index.html#contact" data-i18n="nav-contact">Contact</a>
+    <div class="lang-switch">
+      <button type="button" class="lang-btn active" data-lang="nl">NL</button>
+      <span class="sep">/</span>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <button type="button" class="theme-toggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>
+    </button>
   </div>
 </nav>
 
-<div class="page-head">
-  <a href="index.html#visual" class="back">&larr; Back to Work</a>
-  <div class="tag">Visual Design — Picnic Technologies · Product Owner Assets</div>
-  <h1>Homogeneous Bundle Project</h1>
-</div>
-
-<div class="hero-shot">
-  <span class="ph">Add project visuals</span>
-  <img src="images/homogeneous-bundle-project.png" alt="Homogeneous Bundle Project case study visual" onerror="this.remove()">
-</div>
-
-<div class="cs-body">
-  <div class="cs-block">
-    <h4>Problem</h4>
-    <p>New product bundles in the app lacked a consistent, recognizable visual presentation, which slowed down the process and put pressure on brand consistency across the assortment.</p>
-  </div>
-  <div class="cs-block">
-    <h4>Approach</h4>
-    <p>As Product Owner of Assets (DAM), I coordinated the workflow between Assets, Salesforce, and Figma, streamlining collaboration between analysts, developers, and the editing team.</p>
-    <div class="note">Add examples of the Assets → Salesforce → Figma workflow, or before/after bundle visuals.</div>
-  </div>
-  <div class="cs-block">
-    <h4>Result</h4>
-    <p>Realized the visual rollout of the Homogeneous Bundle project.</p>
-    <div class="metrics">
-      <div class="metric"><span class="num">7,500+</span><span class="label">images live</span></div>
-      <div class="metric"><span class="num">1 month</span><span class="label">after launch</span></div>
-    </div>
+<div class="case-top">
+  <div class="case-top-inner">
+    <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
+    <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — Picnic Technologies</div>
+    <h1 class="case-title" data-i18n="case-title">Homogeneous Bundle Project</h1>
   </div>
 </div>
 
-<div class="fine">© 2026 Fleur Sterel — Amsterdam, NL</div>
+<div class="case-image-wrap">
+  <img class="case-image" src="images/homogeneous-bundle-project.png" alt="Homogeneous Bundle Project" onerror="this.style.display='none'">
+</div>
+
+<div class="case-text-section">
+  <div class="case-text-inner">
+    <p data-i18n="case-body">Grootschalige visuele uitrol gecoördineerd voor Picnic's productbundels.</p>
+  </div>
+</div>
 
 <script>
+  var translations = {
+    'nav-home':    { en: 'Home', nl: 'Home' },
+    'nav-about':   { en: 'About', nl: 'Over mij' },
+    'nav-work':    { en: 'Work', nl: 'Werk' },
+    'nav-contact': { en: 'Contact', nl: 'Contact' },
+    'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
+    'case-eyebrow':{ en: 'Visual Design — Picnic Technologies', nl: 'Visueel Ontwerp — Picnic Technologies' },
+    'case-title':  { en: 'Homogeneous Bundle Project', nl: 'Homogeneous Bundle Project' },
+    'case-body':   { en: "Coordinating a visual rollout at scale for Picnic's product bundles.", nl: "Grootschalige visuele uitrol gecoördineerd voor Picnic's productbundels." }
+  };
+
+  function setLang(lang){
+    document.documentElement.setAttribute('lang', lang);
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      var entry = translations[key];
+      if (entry && entry[lang] !== undefined) el.innerHTML = entry[lang];
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem('site-lang', lang); } catch (e) {}
+  }
+
+  function setTheme(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    var m = document.getElementById('theme-color-meta');
+    if (m) m.setAttribute('content', theme === 'dark' ? '#141414' : '#F1F1EF');
+    try { localStorage.setItem('site-theme', theme); } catch (e) {}
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-lang')); });
+  });
+
+  var themeToggleBtn = document.querySelector('.theme-toggle');
+  if (themeToggleBtn){
+    themeToggleBtn.addEventListener('click', function(){
+      var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
+
   var navEl = document.querySelector('nav.top');
   if (navEl){
-    var lastScrollY = window.scrollY;
-    var onScroll = function(){
-      var y = window.scrollY;
-      navEl.classList.toggle('scrolled', y > 8);
-      if (y > lastScrollY && y > 80){
-        navEl.classList.add('nav-hidden');
-      } else if (y < lastScrollY){
-        navEl.classList.remove('nav-hidden');
-      }
-      lastScrollY = y;
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('scroll', function(){
+      navEl.classList.toggle('scrolled', window.scrollY > 8);
+    }, { passive: true });
   }
+
+  var savedLang = 'nl';
+  try { savedLang = localStorage.getItem('site-lang') || 'nl'; } catch (e) {}
+  setLang(savedLang);
 </script>
 
 </body>
