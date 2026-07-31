@@ -72,14 +72,17 @@
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:28px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
   .back-link:hover{color:var(--ink);}
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
-  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:20px;}
-  .case-top-inner p{font-size:19px; line-height:1.7; color:var(--ink); max-width:640px;}
+  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1;}
 
-  /* Hero image: modest size, left-aligned (not centered), square corners, plain
-     white background behind it. Sits below the text since the text now
-     introduces the project first. */
-  .case-image-wrap{padding:0 48px 64px;}
-  .case-image{width:100%; max-width:720px; margin:0; display:block; border-radius:0; object-fit:cover; aspect-ratio:16/10; background:#FFFFFF;}
+  /* Hero image kept modest in size — a smaller, framed visual rather than a
+     full-bleed banner, so it reads as an illustrative shot rather than dominating
+     the page. */
+  .case-image-wrap{padding:0 48px 0;}
+  .case-image{width:100%; max-width:720px; margin:0 auto; display:block; border-radius:24px; object-fit:cover; aspect-ratio:16/10; background:var(--about-bg);}
+
+  .case-text-section{background:var(--about-bg); padding:64px 48px; margin-top:56px;}
+  .case-text-inner{max-width:720px; margin:0 auto;}
+  .case-text-inner p{font-size:19px; line-height:1.7; color:var(--ink);}
 
   @media (max-width:860px){
     body{padding-top:48px;}
@@ -89,9 +92,10 @@
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .case-top{padding:40px 22px 24px;}
     .case-title{font-size:32px;}
-    .case-top-inner p{font-size:16.5px;}
-    .case-image-wrap{padding:0 22px 40px;}
+    .case-image-wrap{padding:0 22px;}
     .case-image{max-width:100%;}
+    .case-text-section{padding:40px 22px; margin-top:32px;}
+    .case-text-inner p{font-size:16.5px;}
   }
 </style>
 </head>
@@ -118,14 +122,19 @@
 <div class="case-top">
   <div class="case-top-inner">
     <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
-    <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — WE Fashion & Picnic Technologies</div>
-    <h1 class="case-title" data-i18n="case-title">Editing</h1>
-    <p data-i18n="case-body">Jarenlange ervaring met het opzetten en coördineren van editingprocessen — van het bouwen van WE Fashion's volledige inhouse retoucheerproces tot het bewaken van beeldkwaliteit voor duizenden productfoto's bij Picnic in NL, DE en FR. Leidde editingteams en optimaliseerde workflows tussen Assets, Salesforce en Figma.</p>
+    <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — WE Fashion</div>
+    <h1 class="case-title" data-i18n="case-title">WE Fashion — Editing Process</h1>
   </div>
 </div>
 
 <div class="case-image-wrap">
   <img class="case-image" src="images/we-fashion-editing-process-case.png" alt="WE Fashion Editing Process" onerror="this.style.display='none'">
+</div>
+
+<div class="case-text-section">
+  <div class="case-text-inner">
+    <p data-i18n="case-body">WE Fashion's interne retoucheer-workflow vanaf nul opgezet.</p>
+  </div>
 </div>
 
 <script>
@@ -135,9 +144,9 @@
     'nav-work':    { en: 'Work', nl: 'Werk' },
     'nav-contact': { en: 'Contact', nl: 'Contact' },
     'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
-    'case-eyebrow':{ en: 'Visual Design — WE Fashion & Picnic Technologies', nl: 'Visueel Ontwerp — WE Fashion & Picnic Technologies' },
-    'case-title':  { en: 'Editing', nl: 'Editing' },
-    'case-body':   { en: "Years of experience setting up and coordinating editing processes — from building WE Fashion's entire in-house retouching process to ensuring image quality across thousands of product photos at Picnic in NL, DE and FR. Led editing teams and optimized workflows between Assets, Salesforce and Figma.", nl: "Jarenlange ervaring met het opzetten en coördineren van editingprocessen — van het bouwen van WE Fashion's volledige inhouse retoucheerproces tot het bewaken van beeldkwaliteit voor duizenden productfoto's bij Picnic in NL, DE en FR. Leidde editingteams en optimaliseerde workflows tussen Assets, Salesforce en Figma." }
+    'case-eyebrow':{ en: 'Visual Design — WE Fashion', nl: 'Visueel Ontwerp — WE Fashion' },
+    'case-title':  { en: 'WE Fashion — Editing Process', nl: 'WE Fashion — Editing Process' },
+    'case-body':   { en: "Setting up WE Fashion's in-house retouching workflow from scratch.", nl: "WE Fashion's interne retoucheer-workflow vanaf nul opgezet." }
   };
 
   function setLang(lang){

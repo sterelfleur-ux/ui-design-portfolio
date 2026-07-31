@@ -72,14 +72,17 @@
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:28px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
   .back-link:hover{color:var(--ink);}
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
-  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:20px;}
-  .case-top-inner p{font-size:19px; line-height:1.7; color:var(--ink); max-width:640px;}
+  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1;}
 
-  /* Hero image: modest size, left-aligned (not centered), square corners, plain
-     white background behind it. Sits below the text since the text now
-     introduces the project first. */
-  .case-image-wrap{padding:0 48px 64px;}
-  .case-image{width:100%; max-width:720px; margin:0; display:block; border-radius:0; object-fit:cover; aspect-ratio:16/10; background:#FFFFFF;}
+  /* Hero image kept modest in size — a smaller, framed visual rather than a
+     full-bleed banner, so it reads as an illustrative shot rather than dominating
+     the page. */
+  .case-image-wrap{padding:0 48px 0;}
+  .case-image{width:100%; max-width:720px; margin:0 auto; display:block; border-radius:24px; object-fit:cover; aspect-ratio:16/10; background:var(--about-bg);}
+
+  .case-text-section{background:var(--about-bg); padding:64px 48px; margin-top:56px;}
+  .case-text-inner{max-width:720px; margin:0 auto;}
+  .case-text-inner p{font-size:19px; line-height:1.7; color:var(--ink);}
 
   @media (max-width:860px){
     body{padding-top:48px;}
@@ -89,9 +92,10 @@
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .case-top{padding:40px 22px 24px;}
     .case-title{font-size:32px;}
-    .case-top-inner p{font-size:16.5px;}
-    .case-image-wrap{padding:0 22px 40px;}
+    .case-image-wrap{padding:0 22px;}
     .case-image{max-width:100%;}
+    .case-text-section{padding:40px 22px; margin-top:32px;}
+    .case-text-inner p{font-size:16.5px;}
   }
 </style>
 </head>
@@ -120,12 +124,17 @@
     <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
     <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — Picnic Technologies</div>
     <h1 class="case-title" data-i18n="case-title">Homogeneous Bundle Project</h1>
-    <p data-i18n="case-body">Realiseerde bij Picnic de visuele uitrol van het Homogene Bundel project, waarmee klanten voortaan losse producten als samengestelde bundels konden kopen. Binnen één maand na lancering stonden er meer dan 7.500 beelden live.</p>
   </div>
 </div>
 
 <div class="case-image-wrap">
   <img class="case-image" src="images/homogeneous-bundle-project-case.png" alt="Homogeneous Bundle Project" onerror="this.style.display='none'">
+</div>
+
+<div class="case-text-section">
+  <div class="case-text-inner">
+    <p data-i18n="case-body">Grootschalige visuele uitrol gecoördineerd voor Picnic's productbundels.</p>
+  </div>
 </div>
 
 <script>
@@ -137,7 +146,7 @@
     'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
     'case-eyebrow':{ en: 'Visual Design — Picnic Technologies', nl: 'Visueel Ontwerp — Picnic Technologies' },
     'case-title':  { en: 'Homogeneous Bundle Project', nl: 'Homogeneous Bundle Project' },
-    'case-body':   { en: "Delivered the visual rollout of Picnic's Homogeneous Bundle project, making it possible for customers to purchase products as combined bundles. Over 7,500 images went live within one month of launch.", nl: "Realiseerde bij Picnic de visuele uitrol van het Homogene Bundel project, waarmee klanten voortaan losse producten als samengestelde bundels konden kopen. Binnen één maand na lancering stonden er meer dan 7.500 beelden live." }
+    'case-body':   { en: "Coordinating a visual rollout at scale for Picnic's product bundles.", nl: "Grootschalige visuele uitrol gecoördineerd voor Picnic's productbundels." }
   };
 
   function setLang(lang){

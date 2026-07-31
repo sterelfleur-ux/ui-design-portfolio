@@ -78,12 +78,12 @@
      9 photo files already used in the homepage slideshow (photo-1.jpg … photo-9.jpg),
      so nothing extra needs to be uploaded to make this page work. Text sits above
      the gallery here (unlike the other case pages) since there's no single hero
-     image to introduce first. Plain white background behind every thumbnail. */
+     image to introduce first. */
   .case-gallery{
     padding:0 48px 64px; display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;
   }
   .case-gallery img{
-    width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:18px; background:#FFFFFF;
+    width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:18px; background:var(--about-bg);
   }
 
   @media (max-width:860px){
