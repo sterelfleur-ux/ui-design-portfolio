@@ -91,7 +91,7 @@
 
   /* HERO */
   .hero{padding:90px 48px 96px; position:relative; overflow:hidden;}
-  .hero .tagline{font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--gray); font-weight:700; margin-bottom:16px; margin-left:-3px; animation:fadeUp .6s ease both;}
+  .hero .tagline{font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--gray); font-weight:700; margin-bottom:16px; margin-left:0; animation:fadeUp .6s ease both;}
   .status-pill{
     display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600;
     padding:6px 14px 6px 12px; border:1px solid var(--ink); border-radius:20px; margin-bottom:20px;
@@ -145,11 +145,9 @@
   /* UI/UX PROJECT TILES — a plain, predictable two-column grid: image column (capped
      width so it can never balloon on wide screens) + text column, joined by one fixed
      gap. Every row lines up the same way — image left, text right — no alternating
-     "playful" zigzag. Since none of the thumbnails bleed to the page edge anymore (they
-     all sit inside their own grid column with breathing room), every corner is rounded
-     the same way instead of the old flush-left/rounded-right split, and every row shares
-     the same 48px side margin as the rest of the page (hero, section-head, cat-nav,
-     about, contact) so the photography slider lines up with the project thumbs above it. */
+     "playful" zigzag. Every row shares the same 48px side margin as the rest of the
+     page (hero, section-head, cat-nav, about, contact) so all thumbnails — including
+     the photography slider — line up on the same left edge. */
   .project-tiles{display:flex; flex-direction:column;}
   .project-row{padding:56px 48px; background:var(--work-bg); overflow:hidden;}
   .project-tile{
@@ -205,10 +203,10 @@
      case study (reuses the same pill/arrow style as the hero's "View my work" button). */
   .project-tile .info .cta{margin-top:4px;}
 
-  /* PHOTOGRAPHY SHOWCASE — fast hard-cut slideshow. Now that .project-row itself carries
-     the standard 48px side margin, this needs no extra inset of its own — it lines up
-     with the project thumbs above it automatically. */
+  /* PHOTOGRAPHY SHOWCASE — fast hard-cut slideshow. Fixed 1200x800 (3:2) box so it
+     never grows past the same column width every other project thumb uses. */
   .project-tile .thumb.photo-slideshow{
+    aspect-ratio:1200/800;
     border-radius:22px;
   }
   .project-tile .thumb.photo-slideshow img{
@@ -241,7 +239,7 @@
 
   /* CONTACT */
   .contact-section{background:var(--contact-bg); transition:background-color .25s ease;}
-  .contact{padding:70px 48px 30px; text-align:left; border-top:1px solid var(--ink);}
+  .contact{padding:70px 48px 30px; text-align:left;}
   .contact h2{font-family:'Inter', sans-serif; font-weight:300; font-size:40px; line-height:1.1; margin-bottom:22px;}
   .contact .row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
   .btn-pill{
@@ -273,6 +271,7 @@
     .project-row{padding:32px 22px;}
     .project-tile{grid-template-columns:1fr; gap:18px;}
     .project-tile .thumb{width:100%; border-radius:22px;}
+    .project-tile .thumb.photo-slideshow{aspect-ratio:1200/800;}
     .project-tile .info{padding:0; max-width:none;}
     .hero, .section-head, .cat-nav, .about, .contact, .fine{padding-left:22px; padding-right:22px;}
   }
@@ -352,11 +351,10 @@
           <h3 data-i18n="proj1-title">OV-Fiets</h3>
           <p class="desc" data-i18n="proj1-desc">Een fictieve case study voor het kunnen reserveren van een OV-fiets in de NS-app.</p>
           <div class="tags">
-          <span data-i18n="proj1-tag1">Mobile</span>
           <span data-i18n="proj1-tag2">Research</span>
           <span data-i18n="proj1-tag3">Prototyping</span>
           </div>
-          <a class="cta" href="ns-ov-fiets.html" data-i18n="proj1-cta">Bekijk case study <span class="arrow">→</span></a>
+          <a class="cta" href="https://sterelfleur-ux.github.io/portfolio/" target="_blank" rel="noopener" data-i18n="proj1-cta">Bekijk case study <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -372,7 +370,6 @@
           <h3 data-i18n="proj2-title">Colour Change — Picnic App</h3>
           <p class="desc" data-i18n="proj2-desc">Redesigning product backgrounds and A/B testing the new look.</p>
           <div class="tags">
-          <span data-i18n="proj2-tag1">A/B Testing</span>
           <span data-i18n="proj2-tag2">Visual Design</span>
           </div>
         </div>
@@ -396,7 +393,6 @@
           <h3 data-i18n="proj3-title">Homogeneous Bundle Project</h3>
           <p class="desc" data-i18n="proj3-desc">Coordinating a visual rollout at scale for Picnic's product bundles.</p>
           <div class="tags">
-          <span data-i18n="proj3-tag1">Design Ops</span>
           <span data-i18n="proj3-tag2">Visual Design</span>
           </div>
         </div>
@@ -440,7 +436,6 @@
           <img src="images/photo-8.jpg" alt="Photography 8" style="animation-delay:7s" onerror="this.style.visibility='hidden'">
         </div>
         <div class="info">
-          <div class="eyebrow" data-i18n="cat-photo">Photography</div>
           <h3 data-i18n="proj5-title">Fotografie</h3>
           <p class="desc" data-i18n="proj5-desc">On-set assistance and post-production during my internship.</p>
           <div class="tags">
@@ -490,8 +485,8 @@
     'nav-contact':   { en: 'Contact', nl: 'Contact' },
     'hero-tagline':  { en: 'UX / UI Designer', nl: 'UX / UI Designer' },
     'hero-desc':     {
-      en: '<b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs. Recently specialized in UX and is now fully focused on this direction. Based in Amsterdam, NL.',
-      nl: '<b>Creatief en oplettend.</b> Een sterke probleemoplosser met een positieve instelling die ideeën graag omzet in heldere, effectieve designs. Heeft zich recent gespecialiseerd op het gebied van UX en richt zich nu volledig op deze richting. Gevestigd in Amsterdam, NL.'
+      en: '<b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs. Recently specialized in UX/UI and is now fully focused on this direction. Based in Amsterdam, NL.',
+      nl: '<b>Creatief en detailgericht.</b> Een sterke probleemoplosser met een positieve instelling die ideeën graag omzet in heldere, effectieve designs. Heeft zich recent gespecialiseerd op het gebied van UX/UI en richt zich nu volledig op deze richting. Gevestigd in Amsterdam, NL.'
     },
     'cta-work':      { en: 'View my work →', nl: 'Bekijk mijn werk →' },
     'work-title':    { en: 'Work', nl: 'Werk' },
@@ -506,14 +501,14 @@
     'proj1-title': { en: 'OV-Bike', nl: 'OV-Fiets' },
     'proj1-desc':  { en: 'A hypothetical case study on reserving an OV-Bike in the NS app.', nl: 'Een fictieve case study voor het kunnen reserveren van een OV-fiets in de NS-app.' },
     'proj1-cta':   { en: 'View case study →', nl: 'Bekijk case study →' },
-    'proj2-title': { en: 'Colour Change — Picnic App', nl: 'Colour Change — Picnic App' },
-    'proj2-desc':  { en: 'Redesigning product backgrounds and A/B testing the new look.', nl: 'Productachtergronden herontworpen en de nieuwe look A/B getest.' },
+    'proj2-title': { en: 'Fresh New Product Background', nl: 'Nieuwe frisse Product achtergrond' },
+    'proj2-desc':  { en: 'Changed product backgrounds from white to colour.', nl: 'Product achtergronden veranderd van wit naar kleur.' },
     'proj3-title': { en: 'Homogeneous Bundle Project', nl: 'Homogeneous Bundle Project' },
     'proj3-desc':  { en: "Coordinating a visual rollout at scale for Picnic's product bundles.", nl: "Grootschalige visuele uitrol gecoördineerd voor Picnic's productbundels." },
     'proj4-title': { en: 'WE Fashion — Editing Process', nl: 'WE Fashion — Editing Process' },
     'proj4-desc':  { en: "Setting up WE Fashion's in-house retouching workflow from scratch.", nl: "WE Fashion's interne retoucheer-workflow vanaf nul opgezet." },
     'proj5-title': { en: 'Photography', nl: 'Fotografie' },
-    'proj5-desc':  { en: 'On-set assistance and post-production during my internship.', nl: 'On-set assistentie en postproductie tijdens mijn stage.' },
+    'proj5-desc':  { en: 'Product and fashion photography.', nl: 'Product en mode fotografie.' },
     'proj1-tag1': { en: 'Mobile', nl: 'Mobile' },
     'proj1-tag2': { en: 'Research', nl: 'Onderzoek' },
     'proj1-tag3': { en: 'Prototyping', nl: 'Prototyping' },
@@ -521,14 +516,14 @@
     'proj2-tag2': { en: 'Visual Design', nl: 'Visueel Ontwerp' },
     'proj3-tag1': { en: 'Design Ops', nl: 'Design Ops' },
     'proj3-tag2': { en: 'Visual Design', nl: 'Visueel Ontwerp' },
-    'proj4-tag1': { en: 'Process Design', nl: 'Procesontwerp' },
-    'proj4-tag2': { en: 'Photography', nl: 'Fotografie' },
+    'proj4-tag1': { en: 'Editing', nl: 'Editing' },
+    'proj4-tag2': { en: 'Post-production Perfection', nl: 'Postproductie Perfectie' },
     'proj5-tag1': { en: 'Photography', nl: 'Fotografie' },
     'proj5-tag2': { en: 'Post-production', nl: 'Postproductie' },
     'about-title':   { en: 'About', nl: 'Over mij' },
     'about-bio':     {
-      en: '<b>Hi, I\'m Fleur</b> — a creative, detail-oriented designer with a background in visual production across tech and retail environments. For years, I safeguarded image quality and product presentation at scale, working closely with UX designers, developers, and stakeholders. I recently specialized in UX and am now fully focused on designing intuitive, user-centered digital products. Based in Amsterdam, I\'m a strong problem solver with a positive mindset who loves turning ideas into clear, effective designs — and I\'m currently looking for a role or internship where I can grow further as a UX/UI designer.',
-      nl: '<b>Hoi, ik ben Fleur</b> — een creatieve, oplettende designer met een achtergrond in visuele productie binnen tech- en retailomgevingen. Jarenlang bewaakte ik op grote schaal de beeldkwaliteit en productpresentatie, in nauwe samenwerking met UX-designers, developers en stakeholders. Ik heb me recent gespecialiseerd op het gebied van UX en richt me nu volledig op het ontwerpen van intuïtieve, gebruiksgerichte digitale producten. Gevestigd in Amsterdam, ben ik een sterke probleemoplosser met een positieve instelling die ideeën graag omzet in heldere, effectieve designs — en ik ben op zoek naar een functie of stage waarin ik me verder kan ontwikkelen als UX/UI-designer.'
+      en: '<b>Hi, I\'m Fleur</b> — a creative, detail-oriented designer with a background in visual production across tech and retail environments. For years, I safeguarded image quality and product presentation at scale, working closely with UX/UI designers, developers, and stakeholders. I recently specialized in UX/UI and am now fully focused on designing intuitive, user-centered digital products. Based in Amsterdam, I\'m a strong problem solver with a positive mindset who loves turning ideas into clear, effective designs — and I\'m currently looking for a role or internship where I can grow further as a UX/UI designer.',
+      nl: '<b>Hoi, ik ben Fleur</b> — een creatieve, detailgerichte designer met een achtergrond in visuele productie binnen tech- en retailomgevingen. Jarenlang bewaakte ik op grote schaal de beeldkwaliteit en productpresentatie, in nauwe samenwerking met UX/UI-designers, developers en stakeholders. Ik heb me recent gespecialiseerd op het gebied van UX/UI en richt me nu volledig op het ontwerpen van intuïtieve, gebruiksgerichte digitale producten. Gevestigd in Amsterdam, ben ik een sterke probleemoplosser met een positieve instelling die ideeën graag omzet in heldere, effectieve designs — en ik ben op zoek naar een functie of stage waarin ik me verder kan ontwikkelen als UX/UI-designer.'
     },
     'contact-title':   { en: 'Contact', nl: 'Contact' },
     'contact-heading': { en: 'Let\'s work<br>together.', nl: 'Laten we<br>samenwerken.' },
