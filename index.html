@@ -147,9 +147,11 @@
      gap. Every row lines up the same way — image left, text right — no alternating
      "playful" zigzag. Since none of the thumbnails bleed to the page edge anymore (they
      all sit inside their own grid column with breathing room), every corner is rounded
-     the same way instead of the old flush-left/rounded-right split. */
+     the same way instead of the old flush-left/rounded-right split, and every row shares
+     the same 48px side margin as the rest of the page (hero, section-head, cat-nav,
+     about, contact) so the photography slider lines up with the project thumbs above it. */
   .project-tiles{display:flex; flex-direction:column;}
-  .project-row{padding:56px 0; background:var(--work-bg); overflow:hidden;}
+  .project-row{padding:56px 48px; background:var(--work-bg); overflow:hidden;}
   .project-tile{
     display:grid;
     grid-template-columns: minmax(0, 640px) 1fr;
@@ -203,12 +205,11 @@
      case study (reuses the same pill/arrow style as the hero's "View my work" button). */
   .project-tile .info .cta{margin-top:4px;}
 
-  /* PHOTOGRAPHY SHOWCASE — fast hard-cut slideshow, inset from the page edge (not
-     bleeding), with fully rounded corners since it doesn't touch any edge on either side. */
+  /* PHOTOGRAPHY SHOWCASE — fast hard-cut slideshow. Now that .project-row itself carries
+     the standard 48px side margin, this needs no extra inset of its own — it lines up
+     with the project thumbs above it automatically. */
   .project-tile .thumb.photo-slideshow{
     border-radius:22px;
-    width:calc(100% - 48px);
-    margin-left:48px;
   }
   .project-tile .thumb.photo-slideshow img{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
@@ -273,8 +274,7 @@
     .project-tile{grid-template-columns:1fr; gap:18px;}
     .project-tile .thumb{width:100%; border-radius:22px;}
     .project-tile .info{padding:0; max-width:none;}
-    .project-tile .thumb.photo-slideshow{border-radius:22px; width:100%; margin-left:0;}
-    .hero, .section-head, .cat-nav, .about, .contact, .fine, .project-row{padding-left:22px; padding-right:22px;}
+    .hero, .section-head, .cat-nav, .about, .contact, .fine{padding-left:22px; padding-right:22px;}
   }
 
   /* Extra tightening for narrower phones (iPhone 16 and similar ~390-430px CSS width) */
