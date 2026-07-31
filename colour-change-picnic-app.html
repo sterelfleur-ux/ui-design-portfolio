@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Colour Change — Picnic App — Fleur Sterel</title>
+<title>Productpresentatie — Picnic App — Fleur Sterel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <meta name="theme-color" id="theme-color-meta" content="#F1F1EF">
@@ -30,7 +30,7 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   html, body{overflow-x:hidden; max-width:100%;}
-  body{background:var(--card); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; font-weight:300; padding-top:52px; transition:background-color .25s ease, color .25s ease;}
+  body{background:var(--card); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; font-weight:300; padding-top:52px; zoom:1.1; transition:background-color .25s ease, color .25s ease;}
   a{color:inherit; text-decoration:none;}
   img{display:block; max-width:100%;}
   nav.top{
@@ -66,9 +66,9 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  /* Text left, image right — wide, spacious layout. object-fit:contain keeps
+  /* Text left, images right — wide, spacious layout. object-fit:contain keeps
      composite screenshots scaling down cleanly instead of being cropped/zoomed.
-     No card background or shadow behind the image — it sits directly on the page. */
+     No card background or shadow behind the images — they sit directly on the page. */
   .case-hero{
     max-width:1320px; margin:0 auto;
     padding:110px 48px 90px;
@@ -83,28 +83,30 @@
   .back-link:hover{color:var(--ink);}
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
   .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:52px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:22px;}
-  .case-hero-text p{font-size:18px; line-height:1.7; color:var(--ink); max-width:480px;}
+  .case-hero-text p{font-size:18px; line-height:1.7; color:var(--ink); max-width:480px; margin-bottom:16px;}
+  .case-hero-text p:last-of-type{margin-bottom:0;}
+  .case-hero-text p b{font-weight:700;}
 
-  .case-hero-image{width:100%; display:flex; justify-content:center; background:none;}
+  .case-hero-image{width:100%; max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:24px; background:none;}
   .case-image{
-    width:100%; max-width:680px; display:block; border-radius:24px;
+    width:100%; display:block; border-radius:24px;
     object-fit:contain; background:none;
   }
 
   @media (max-width:1100px){
     .case-hero{grid-template-columns: minmax(0,420px) minmax(0,420px); gap:40px;}
-    .case-image{max-width:420px;}
+    .case-hero-image{max-width:420px;}
   }
 
   @media (max-width:860px){
-    body{padding-top:48px;}
+    body{padding-top:48px; zoom:1;}
     nav.top{padding:12px 22px; padding-top:calc(12px + env(safe-area-inset-top));}
     nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .case-hero{grid-template-columns:1fr; padding:80px 22px 50px; gap:32px;}
     .case-title{font-size:34px;}
-    .case-image{max-width:100%;}
+    .case-hero-image{max-width:100%; gap:14px;}
   }
 </style>
 </head>
@@ -131,11 +133,13 @@
   <div class="case-hero-text">
     <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
     <div class="case-eyebrow" data-i18n="case-eyebrow">UI/UX Design — Picnic Technologies</div>
-    <h1 class="case-title" data-i18n="case-title">Nieuwe, frisse productachtergrond</h1>
-    <p data-i18n="case-body">Leidde bij Picnic het herontwerp van witte naar gekleurde productachtergronden: vertaalde de business requirements naar een concrete UX/UI-oplossing, werkte nauw samen met developers aan de implementatie, en zette A/B-tests en Google Analytics in om de impact op de gebruikerservaring te meten.</p>
+    <h1 class="case-title" data-i18n="case-title">Productpresentatie</h1>
+    <p data-i18n="case-body-1">Als <b>Visual Designer</b> visualiseerde ik, in samenwerking met stakeholders, de productachtergronden bij Picnic van <b>wit naar kleur</b>.</p>
+    <p data-i18n="case-body-2">Ik verbeterde de <b>kwaliteit van de productfoto's</b> en vergrootte de <b>tiles</b> om de producten meer <b>ruimte en aandacht</b> te geven.</p>
   </div>
   <div class="case-hero-image">
     <img class="case-image" src="images/colour-change-picnic-app-case.png" alt="Colour Change Picnic App" onerror="this.style.display='none'">
+    <img class="case-image" src="images/colour-change-picnic-app-case-2.png" alt="Colour Change Picnic App — extra" onerror="this.style.display='none'">
   </div>
 </div>
 
@@ -147,8 +151,9 @@
     'nav-contact': { en: 'Contact', nl: 'Contact' },
     'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
     'case-eyebrow':{ en: 'UI/UX Design — Picnic Technologies', nl: 'UI/UX Design — Picnic Technologies' },
-    'case-title':  { en: 'Fresh New Product Background', nl: 'Nieuwe, frisse productachtergrond' },
-    'case-body':   { en: 'Led the redesign from white to colored product backgrounds at Picnic: translated business requirements into a concrete UX/UI solution, worked closely with developers on implementation, and used A/B testing and Google Analytics to measure the impact on the user experience.', nl: 'Leidde bij Picnic het herontwerp van witte naar gekleurde productachtergronden: vertaalde de business requirements naar een concrete UX/UI-oplossing, werkte nauw samen met developers aan de implementatie, en zette A/B-tests en Google Analytics in om de impact op de gebruikerservaring te meten.' }
+    'case-title':  { en: 'Product Presentation', nl: 'Productpresentatie' },
+    'case-body-1': { en: 'As a <b>Visual Designer</b>, I worked with stakeholders to visualize Picnic\'s product backgrounds shifting from <b>white to color</b>.', nl: 'Als <b>Visual Designer</b> visualiseerde ik, in samenwerking met stakeholders, de productachtergronden bij Picnic van <b>wit naar kleur</b>.' },
+    'case-body-2': { en: 'I improved the <b>quality of the product photos</b> and enlarged the <b>tiles</b> to give products more <b>space and attention</b>.', nl: 'Ik verbeterde de <b>kwaliteit van de productfoto\'s</b> en vergrootte de <b>tiles</b> om de producten meer <b>ruimte en aandacht</b> te geven.' }
   };
   function setLang(lang){
     document.documentElement.setAttribute('lang', lang);
