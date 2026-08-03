@@ -72,7 +72,9 @@
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:28px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
   .back-link:hover{color:var(--ink);}
   .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:20px;}
-  .case-top-inner p{font-size:19px; line-height:1.7; color:var(--ink); max-width:640px;}
+  .case-top-inner p{font-size:19px; line-height:1.7; color:var(--ink); max-width:640px; margin-bottom:16px;}
+  .case-top-inner p:last-of-type{margin-bottom:0;}
+  .case-top-inner p b{font-weight:700;}
 
   /* Photography gets a gallery grid instead of one hero image — reuses the same
      9 photo files already used in the homepage slideshow (photo-1.jpg … photo-9.jpg),
@@ -123,7 +125,9 @@
   <div class="case-top-inner">
     <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
     <h1 class="case-title" data-i18n="case-title">Fotografie</h1>
-    <p data-i18n="case-body">Editorial en eigentijdse fotografie.</p>
+    <p data-i18n="case-body-1">Mijn interesse in fotografie begon bij de <b>Fotovakschool Amsterdam</b>, waar ik van 2012 tot 2015 <b>Technical Photography & Visual Design</b> studeerde — een technische basis die de fundering legde voor mijn latere werk in beeldbewerking en art direction.</p>
+    <p data-i18n="case-body-2">Mijn vaardigheden liggen onder andere in <b>belichting</b>, <b>shootplanning en logistiek</b> op de set, en <b>beeldselectie en nabewerking</b> voor zowel digitaal als print. Daarnaast werk ik graag samen met <b>klanten, art directors, stylisten en modellen</b> om een heldere visie tot leven te brengen.</p>
+    <p data-i18n="case-body-3">Mijn gevoel voor design is voortgekomen uit de fotografie: het scherp <b>focussen op details</b>, het <b>kaderen</b> van een beeld en mijn liefde voor <b>kunst</b> vormen nog steeds de basis van hoe ik naar visueel werk kijk.</p>
   </div>
 </div>
 
@@ -147,7 +151,18 @@
     'nav-contact': { en: 'Contact', nl: 'Contact' },
     'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
     'case-title':  { en: 'Photography', nl: 'Fotografie' },
-    'case-body':   { en: 'Editorial and contemporary photography.', nl: 'Editorial en eigentijdse fotografie.' }
+    'case-body-1': {
+      en: "My interest in photography started at the <b>Fotovakschool Amsterdam</b>, where I studied <b>Technical Photography & Visual Design</b> from 2012 to 2015 — a technical foundation that laid the groundwork for my later work in image editing and art direction.",
+      nl: "Mijn interesse in fotografie begon bij de <b>Fotovakschool Amsterdam</b>, waar ik van 2012 tot 2015 <b>Technical Photography & Visual Design</b> studeerde — een technische basis die de fundering legde voor mijn latere werk in beeldbewerking en art direction."
+    },
+    'case-body-2': {
+      en: "My skills include <b>lighting</b>, <b>shoot planning and logistics</b> on set, and <b>image selection and post-processing</b> for both digital and print. I also enjoy collaborating with <b>clients, art directors, stylists and models</b> to bring a clear vision to life.",
+      nl: "Mijn vaardigheden liggen onder andere in <b>belichting</b>, <b>shootplanning en logistiek</b> op de set, en <b>beeldselectie en nabewerking</b> voor zowel digitaal als print. Daarnaast werk ik graag samen met <b>klanten, art directors, stylisten en modellen</b> om een heldere visie tot leven te brengen."
+    },
+    'case-body-3': {
+      en: "My sense of design grew out of photography: sharply <b>focusing on details</b>, <b>framing</b> an image and my love for <b>art</b> still form the basis of how I look at visual work.",
+      nl: "Mijn gevoel voor design is voortgekomen uit de fotografie: het scherp <b>focussen op details</b>, het <b>kaderen</b> van een beeld en mijn liefde voor <b>kunst</b> vormen nog steeds de basis van hoe ik naar visueel werk kijk."
+    }
   };
 
   function setLang(lang){
