@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Fleur Sterel — UX/UI Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="theme-color" id="theme-color-meta" content="#F1F1EF">
+<script>
+  (function(){
+    try{
+      var t = localStorage.getItem('site-theme');
+      if(!t){ t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+      document.documentElement.setAttribute('data-theme', t);
+      var m = document.getElementById('theme-color-meta');
+      if (m) m.setAttribute('content', t === 'dark' ? '#141414' : '#F1F1EF');
+    }catch(e){}
+  })();
+</script>
+<style>
+  :root{
+    --bg:#F1F1EF;
+    --card:#FFFFFF;
+    --work-bg:#FFFFFF;
+    --about-bg:#F1F1EF;
+    --contact-bg:#FFFFFF;
+    --ink:#141414;
+    --gray:#6b6b6b;
+    --thumb-a:#F1F1EF;
+    --ph-color:#cfcfcf;
+  }
+  html[data-theme="dark"]{
+    --bg:#141414;
+    --card:#1e1e1e;
+    --work-bg:#1e1e1e;
+    --about-bg:#141414;
+    --contact-bg:#141414;
+    --ink:#f1f1ef;
+    --gray:#a0a0a0;
+    --thumb-a:#1e1e1e;
+    --ph-color:#4a4a4a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  html, body{overflow-x:hidden; max-width:100%;}
+  body{background:var(--bg); color:var(--ink); font-family:'Inter', system-ui, sans-serif; line-height:1.6; zoom:1.3; font-weight:300; padding-top:52px; transition:background-color .25s ease, color .25s ease;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  body, nav.top, .work-section, .thumb{transition:background-color .25s ease, color .25s ease, border-color .25s ease;}
+
+  /* NAV */
+  nav.top{
+    position:fixed; top:0; left:0; right:0; z-index:10; background:var(--bg);
+    display:flex; justify-content:flex-end; align-items:center;
+    padding:14px 48px;
+    padding-top:calc(14px + env(safe-area-inset-top));
+    box-shadow:0 1px 0 rgba(0,0,0,0);
+    transition:box-shadow .25s ease, transform .3s ease;
+  }
+  nav.top.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.07);}
+  html[data-theme="dark"] nav.top.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.35);}
+  nav.top.nav-hidden{transform:translateY(-100%); box-shadow:none;}
+  nav.top .links{display:flex; align-items:center; gap:24px; font-size:12.5px; font-weight:500; letter-spacing:0.3px;}
+  nav.top .links a{position:relative; padding-bottom:3px; white-space:nowrap;}
+  nav.top .links a::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--ink);
+    transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
+  }
+  nav.top .links a:hover::after, nav.top .links a.active::after{transform:scaleX(1);}
+  .lang-switch{display:flex; align-items:center; gap:5px; font-size:12px; font-weight:700; letter-spacing:0.3px; margin-left:2px; padding-left:14px; border-left:1px solid var(--gray); white-space:nowrap;}
+  .lang-switch button{background:none; border:none; padding:8px 4px; margin:-8px -4px; font:inherit; font-weight:700; color:var(--gray); cursor:pointer; letter-spacing:0.3px; transition:color .2s ease;}
+  .lang-switch button.active{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
+  .lang-switch button:hover{color:var(--ink);}
+  .lang-switch .sep{color:var(--gray);}
+  .theme-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:22px; height:22px; margin-left:8px; border:none; border-radius:50%;
+    background:none; color:var(--ink); cursor:pointer; padding:0;
+    transition:transform .3s ease;
+    position:relative;
+    flex-shrink:0;
+  }
+  .theme-toggle::before{
+    content:''; position:absolute; inset:-11px;
+  }
+  .theme-toggle:hover{transform:rotate(20deg);}
+  .theme-toggle svg{width:15px; height:15px; display:none; stroke:currentColor;}
+  html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
+  html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
+
+  /* HERO */
+  .hero{padding:90px 48px 96px; position:relative; overflow:hidden;}
+  .status-pill{
+    display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600;
+    padding:6px 14px 6px 12px; border:1px solid var(--ink); border-radius:20px; margin-bottom:20px;
+    animation:fadeUp .6s ease .05s both;
+  }
+  .status-pill .dot{width:7px; height:7px; border-radius:50%; background:var(--ink); flex-shrink:0; animation:pulseDot 2s ease-in-out infinite;}
+  .hero h1{
+    font-family:'Archivo Black', sans-serif; font-weight:400;
+    font-size:92px; line-height:0.92; letter-spacing:1px; text-transform:uppercase;
+    animation:fadeUp .7s ease .1s both;
+  }
+  .hero h1 .thin{-webkit-text-stroke:1px var(--ink); color:transparent;}
+  .hero h1 .name-line{display:inline-block; transform:scaleY(1.18); transform-origin:left top;}
+  .hero-sub{display:flex; justify-content:space-between; align-items:flex-end; margin-top:30px; gap:30px; flex-wrap:wrap; animation:fadeUp .7s ease .18s both;}
+  .hero-sub p{max-width:520px; font-size:16px; color:var(--ink);}
+  .hero-sub p b{font-weight:700;}
+  .cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--ink); color:var(--bg); padding:14px 26px; border-radius:40px;
+    font-size:13px; font-weight:700; letter-spacing:0.5px; white-space:nowrap;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .cta:hover{opacity:0.85; transform:translateY(-1px);}
+  .cta .arrow{display:inline-block; transition:transform .25s ease;}
+  .cta:hover .arrow{transform:translateX(4px);}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  @keyframes pulseDot{0%,100%{opacity:1;} 50%{opacity:0.35;}}
+  @media (prefers-reduced-motion: reduce){
+    .status-pill, .hero h1, .hero-sub, .status-pill .dot{animation:none !important;}
+  }
+
+  /* SECTION LABEL */
+  .section-head{padding:56px 48px 0; display:flex; align-items:baseline; gap:18px;}
+  .section-head h2{font-family:'Inter', sans-serif; font-weight:500; font-size:22px; text-transform:uppercase; letter-spacing:2px;}
+  .section-head .rule{flex:1; height:1px; background:var(--ink);}
+
+  /* WORK SECTION BACKGROUND */
+  .work-section{background:var(--work-bg);}
+
+  /* WORK CATEGORY SUBNAV */
+  .cat-nav{
+    padding:22px 48px 10px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    font-family:'Inter', sans-serif; font-weight:500; font-size:14px; text-transform:uppercase; letter-spacing:0.5px;
+  }
+  .cat-nav a{padding-bottom:3px; border-bottom:2px solid transparent;}
+  .cat-nav a:hover{border-color:var(--ink);}
+  .cat-nav .sep{color:var(--gray); font-weight:400;}
+
+  /* WORK CATEGORY GROUPS */
+  .cat-group{padding-top:10px;}
+
+  .project-tiles{display:flex; flex-direction:column;}
+  .project-row{padding:56px 48px; background:var(--work-bg); overflow:hidden;}
+  .project-tile{
+    display:grid;
+    grid-template-columns: minmax(0, 640px) 1fr;
+    align-items:center;
+    gap:40px;
+    width:100%;
+    text-decoration:none; color:inherit;
+  }
+  .project-tile .thumb{
+    position:relative; width:100%; min-width:0; aspect-ratio:16/10;
+    border-radius:22px; overflow:hidden;
+    background:var(--work-bg); border:none;
+  }
+  .project-tile .thumb-placeholder{
+    position:absolute; inset:0; display:none; align-items:center; justify-content:center; text-align:center; padding:20px;
+    color:var(--ph-color); font-size:12px; font-style:italic;
+  }
+  .project-tile .thumb img, .project-tile .thumb video{
+    position:relative; z-index:2; width:100%; height:100%; object-fit:contain; object-position:center center;
+  }
+  .project-tile .thumb.thumb-split{
+    display:flex; justify-content:center; align-items:center; gap:32px;
+    background:none;
+  }
+  .project-tile .thumb.thumb-split .thumb-half{
+    position:relative; flex:0 0 auto; height:100%; aspect-ratio:698/1442;
+    border-radius:22px; overflow:hidden; background:var(--work-bg);
+  }
+  .project-tile .info{min-width:0; max-width:420px; padding-right:24px;}
+  .project-tile .eyebrow{
+    font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--gray); margin-bottom:14px;
+  }
+  .project-tile .tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;}
+  .project-tile .tags span{
+    font-size:11px; font-weight:600; letter-spacing:0.3px;
+    padding:5px 12px; border:1px solid var(--ink); border-radius:20px; color:var(--ink);
+  }
+  .project-tile h3{
+    font-family:'Inter', sans-serif; font-weight:600; font-size:34px; text-transform:none;
+    letter-spacing:-0.5px; line-height:1.08; margin-bottom:18px;
+  }
+  .project-tile .desc{
+    font-family:'Inter', sans-serif; font-style:normal; font-weight:400;
+    font-size:17px; color:var(--ink); line-height:1.6; max-width:400px; margin-bottom:16px;
+  }
+  .project-tile .info .cta{margin-top:4px;}
+
+  .project-tile .thumb.photo-slideshow{
+    border-radius:22px;
+  }
+  .project-tile .thumb.photo-slideshow img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0; animation:photoFade 8s steps(1,end) infinite;
+  }
+  @keyframes photoFade{
+    0%{opacity:1;}
+    12.49%{opacity:1;}
+    12.5%{opacity:0;}
+    100%{opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .thumb.photo-slideshow img{animation:none; opacity:0;}
+    .thumb.photo-slideshow img:first-child{opacity:1;}
+  }
+
+  /* ABOUT */
+  .about-section{background:var(--about-bg); transition:background-color .25s ease;}
+  .about{padding:50px 48px 80px; display:grid; grid-template-columns:260px 1fr; gap:60px; align-items:center;}
+  .about-photo .photo-circle{
+    width:260px; height:260px; border-radius:50%; overflow:hidden;
+    background:var(--thumb-a);
+  }
+  .about-photo .photo-circle img{
+    width:100%; height:100%; object-fit:cover;
+  }
+  .about-intro p{font-size:19px; max-width:620px; margin-bottom:0;}
+  .about-intro p b{font-weight:700;}
+
+  /* CONTACT */
+  .contact-section{background:var(--contact-bg); transition:background-color .25s ease;}
+  .contact{padding:70px 48px 30px; text-align:left;}
+  .contact h2{font-family:'Inter', sans-serif; font-weight:300; font-size:40px; line-height:1.1; margin-bottom:22px;}
+  .contact .row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
+  .btn-pill{
+    display:inline-flex; align-items:center; padding:14px 26px; border-radius:40px;
+    font-size:14px; font-weight:600; transition:opacity .2s ease, transform .2s ease, background-color .2s ease, color .2s ease;
+  }
+  .btn-pill:hover{transform:translateY(-1px);}
+  .btn-solid{background:var(--ink); color:var(--bg);}
+  .btn-solid:hover{opacity:0.85;}
+  .btn-outline{border:1px solid var(--ink); color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--bg);}
+  .fine{padding:0 48px 40px; font-size:12px; color:var(--gray); padding-bottom:calc(40px + env(safe-area-inset-bottom));}
+
+  @media (max-width:860px){
+    body{zoom:1; padding-top:calc(48px + env(safe-area-inset-top));}
+    .about{grid-template-columns:1fr;}
+    .hero h1{font-size:54px;}
+    nav.top{padding:12px 22px; padding-top:calc(12px + env(safe-area-inset-top));}
+    nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
+    .lang-switch{padding-left:10px; margin-left:0;}
+    .theme-toggle{margin-left:6px; width:20px; height:20px;}
+    .cat-nav{flex-direction:column; align-items:flex-start; gap:10px; padding-bottom:4px;}
+    .cat-nav .sep{display:none;}
+    .project-row{padding:32px 22px;}
+    .project-tile{grid-template-columns:1fr; gap:18px;}
+    .project-tile .thumb{width:100%; border-radius:22px;}
+    .project-tile .thumb.thumb-split{gap:16px;}
+    .project-tile .info{padding:0; max-width:none;}
+    .hero, .section-head, .cat-nav, .about, .contact, .fine{padding-left:22px; padding-right:22px;}
+  }
+
+  @media (max-width:430px){
+    .hero{padding-top:70px;}
+    .hero h1{font-size:46px;}
+    .status-pill{font-size:11px; padding:5px 12px 5px 10px;}
+    .hero-sub p{font-size:14.5px;}
+    nav.top .links{gap:9px; font-size:11px;}
+    .lang-switch{padding-left:8px; gap:4px;}
+    .cat-nav{font-size:12.5px; gap:8px;}
+    .project-tile h3{font-size:26px;}
+    .contact h2{font-size:30px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="links">
+    <a href="#top" class="active" data-i18n="nav-home">Home</a>
+    <a href="#about" data-i18n="nav-about">About</a>
+    <a href="#work" data-i18n="nav-work">Work</a>
+    <a href="#contact" data-i18n="nav-contact">Contact</a>
+    <div class="lang-switch">
+      <button type="button" class="lang-btn active" data-lang="nl">NL</button>
+      <span class="sep">/</span>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <button type="button" class="theme-toggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="status-pill"><span class="dot"></span><span data-i18n="status-badge">Open for new projects</span></div>
+  <h1><span class="name-line">Fleur</span><br><span class="name-line">Sterel</span><br><span class="thin">UX-UI<br>Design</span></h1>
+  <div class="hero-sub">
+    <p data-i18n="hero-desc"><b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs.</p>
+    <a href="#work" class="cta" data-i18n="cta-work">View my work <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<div class="work-section">
+<div class="section-head" id="work"><h2 data-i18n="work-title">Work</h2><div class="rule"></div></div>
+<div class="cat-nav">
+  <a href="#uiux" data-i18n="cat-uiux">UI/UX Design</a><span class="sep">/</span>
+  <a href="#visual" data-i18n="cat-visual">Visual Design</a><span class="sep">/</span>
+  <a href="#photography" data-i18n="cat-photo">Photography</a>
+</div>
+
+<div class="cat-group" id="uiux">
+  <div class="project-tiles">
+
+    <div class="project-row">
+      <div class="project-tile">
+        <a class="thumb thumb-split" href="ns-ov-fiets.html" aria-label="Bekijk OV-Fiets case study">
+          <div class="thumb-half">
+            <video class="autoplay-video" muted autoplay loop playsinline webkit-playsinline preload="auto" x-webkit-airplay="allow">
+              <source src="images/ns-ov-fiets.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="thumb-half">
+            <video class="autoplay-video" muted autoplay loop playsinline webkit-playsinline preload="auto" x-webkit-airplay="allow">
+              <source src="images/ns-ov-fiets-2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </a>
+        <div class="info">
+          <div class="eyebrow" data-i18n="cat-uiux">UI/UX Design</div>
+          <h3 data-i18n="proj1-title">OV-Fiets</h3>
+          <p class="desc" data-i18n="proj1-desc">Fictieve case study, gericht op het vinden van een intuïtieve manier om een OV-fiets te reserveren in de NS-app.</p>
+          <div class="tags">
+          <span data-i18n="proj1-tag2">Research</span>
+          <span data-i18n="proj1-tag3">Prototyping</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <a class="project-tile" href="colour-change-picnic-app.html">
+        <div class="thumb">
+          <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
+          <img src="images/colour-change-picnic-app.png" alt="Colour Change Picnic App project screenshot" onerror="this.remove()">
+        </div>
+        <div class="info">
+          <div class="eyebrow" data-i18n="cat-uiux">UI/UX Design</div>
+          <h3 data-i18n="proj2-title">Productpresentatie</h3>
+          <p class="desc" data-i18n="proj2-desc">Productachtergronden herontworpen en de nieuwe look getest met users.</p>
+          <div class="tags">
+          <span data-i18n="proj2-tag2">Visual Design</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<div class="cat-group" id="visual">
+  <div class="project-tiles">
+
+    <div class="project-row">
+      <a class="project-tile" href="homogeneous-bundle-project.html">
+        <div class="thumb">
+          <span class="thumb-placeholder" data-i18n="ph-workflow">Add workflow diagram / before-after</span>
+          <img src="images/homogeneous-bundle-project.png" alt="Homogeneous Bundle Project screenshot" onerror="this.remove()">
+        </div>
+        <div class="info">
+          <div class="eyebrow" data-i18n="cat-visual">Visual Design</div>
+          <h3 data-i18n="proj3-title">Visuele Bundels</h3>
+          <p class="desc" data-i18n="proj3-desc">Coordinating a visual rollout at scale for Picnic's product bundles.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="project-row">
+      <a class="project-tile" href="we-fashion-editing-process.html">
+        <div class="thumb">
+          <span class="thumb-placeholder" data-i18n="ph-before-after">Add before / after product photos</span>
+          <img src="images/we-fashion-editing-process.png" alt="WE Fashion editing process screenshot" onerror="this.remove()">
+        </div>
+        <div class="info">
+          <div class="eyebrow" data-i18n="cat-visual">Visual Design</div>
+          <h3 data-i18n="proj4-title">Editing</h3>
+          <p class="desc" data-i18n="proj4-desc">Jarenlange ervaring met postproductie, beeldbewerking en het coördineren en opzetten van beeldbewerkingsprocessen.</p>
+          <div class="tags">
+          <span data-i18n="proj4-tag1">Process Design</span>
+          <span data-i18n="proj4-tag2">Photography</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<div class="cat-group" id="photography">
+  <div class="project-tiles">
+
+    <div class="project-row">
+      <a class="project-tile" href="photography-assistant.html">
+        <div class="thumb photo-slideshow">
+          <img src="images/photo-1.jpg" alt="Photography 1" style="animation-delay:0s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-2.jpg" alt="Photography 2" style="animation-delay:1s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-3.jpg" alt="Photography 3" style="animation-delay:2s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-4.jpg" alt="Photography 4" style="animation-delay:3s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-5.jpg" alt="Photography 5" style="animation-delay:4s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-6.jpg" alt="Photography 6" style="animation-delay:5s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-7.jpg" alt="Photography 7" style="animation-delay:6s" onerror="this.style.visibility='hidden'">
+          <img src="images/photo-8.jpg" alt="Photography 8" style="animation-delay:7s" onerror="this.style.visibility='hidden'">
+        </div>
+        <div class="info">
+          <h3 data-i18n="proj5-title">Fotografie</h3>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<div class="about-section">
+<div class="section-head" id="about-head"><h2 data-i18n="about-title">About</h2><div class="rule"></div></div>
+<div class="about" id="about">
+  <div class="about-photo">
+    <div class="photo-circle">
+      <img src="images/profile.png" alt="Fleur Sterel" onerror="this.remove()">
+    </div>
+  </div>
+  <div class="about-intro">
+    <p data-i18n="about-bio"><b>Hi, I'm Fleur</b>, a creative and detail-oriented designer with a background in Visual Design within tech and retail. I'm a strong problem solver, always open to new challenges, and value self-development — which is why I recently specialized in UX/UI. I now design intuitive, user-focused digital products.</p>
+  </div>
+</div>
+</div>
+
+<div class="contact-section">
+<div class="section-head" id="contact-head"><h2 data-i18n="contact-title">Contact</h2><div class="rule"></div></div>
+<div class="contact" id="contact">
+  <h2 data-i18n="contact-heading">Let's work<br>together.</h2>
+  <div class="row">
+    <a href="mailto:sterelfleur@gmail.com" class="btn-pill btn-solid">sterelfleur@gmail.com</a>
+    <a href="https://www.linkedin.com/in/fleur-sterel-ba20a5181/" target="_blank" rel="noopener" class="btn-pill btn-outline" data-i18n="linkedin-label">LinkedIn</a>
+  </div>
+</div>
+<div class="fine">© 2026 Fleur Sterel — Amsterdam, NL</div>
+</div>
+
+<script>
+  var translations = {
+    'nav-home':      { en: 'Home', nl: 'Home' },
+    'nav-about':     { en: 'About', nl: 'Over mij' },
+    'nav-work':      { en: 'Work', nl: 'Werk' },
+    'nav-contact':   { en: 'Contact', nl: 'Contact' },
+    'hero-desc':     {
+      en: '<b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs.',
+      nl: '<b>Creatief en detailgericht.</b> Een sterke probleemoplosser met een positieve instelling die ideeën graag omzet in heldere, effectieve designs.'
+    },
+    'cta-work':      { en: 'View my work →', nl: 'Bekijk mijn werk →' },
+    'work-title':    { en: 'Work', nl: 'Werk' },
+    'cat-uiux':      { en: 'UI/UX Design', nl: 'UI/UX Design' },
+    'cat-visual':    { en: 'Visual Design', nl: 'Visueel Ontwerp' },
+    'cat-photo':     { en: 'Photography', nl: 'Fotografie' },
+    'ph-screenshot': { en: 'Add project screenshot', nl: 'Voeg projectscreenshot toe' },
+    'ph-workflow':   { en: 'Add workflow diagram / before-after', nl: 'Voeg workflow-diagram / voor-na toe' },
+    'ph-before-after': { en: 'Add before / after product photos', nl: 'Voeg voor-/na-productfoto\'s toe' },
+    'ph-photo-samples': { en: 'Add photography samples', nl: 'Voeg fotografievoorbeelden toe' },
+    'status-badge': { en: 'Open for new projects', nl: 'Beschikbaar voor nieuwe projecten' },
+    'proj1-title': { en: 'OV-Bike', nl: 'OV-Fiets' },
+    'proj1-desc':  { en: 'Hypothetical case study, focused on finding an intuitive way to reserve an OV-bike in the NS app.', nl: 'Fictieve case study, gericht op het vinden van een intuïtieve manier om een OV-fiets te reserveren in de NS-app.' },
+    'proj2-title': { en: 'Product Presentation', nl: 'Productpresentatie' },
+    'proj2-desc':  { en: 'Redesigning product backgrounds and testing the new look with users.', nl: 'Productachtergronden herontworpen en de nieuwe look getest met users.' },
+    'proj3-title': { en: 'Visual Bundles', nl: 'Visuele Bundels' },
+    'proj3-desc':  { en: "Coordinating a visual rollout at scale for Picnic's product bundles.", nl: "Grootschalige visuele uitrol gecoördineerd voor Picnic's productbundels." },
+    'proj4-title': { en: 'Editing', nl: 'Editing' },
+    'proj4-desc':  { en: 'Years of experience with post-production, image editing and coordinating and setting up image editing processes.', nl: 'Jarenlange ervaring met postproductie, beeldbewerking en het coördineren en opzetten van beeldbewerkingsprocessen.' },
+    'proj5-title': { en: 'Photography', nl: 'Fotografie' },
+    'proj5-desc':  { en: 'Editorial and contemporary photography.', nl: 'Editorial en eigentijdse fotografie.' },
+    'proj1-tag1': { en: 'Mobile', nl: 'Mobile' },
+    'proj1-tag2': { en: 'Research', nl: 'Onderzoek' },
+    'proj1-tag3': { en: 'Prototyping', nl: 'Prototyping' },
+    'proj2-tag1': { en: 'User Testing', nl: 'User Testing' },
+    'proj2-tag2': { en: 'Visual Design', nl: 'Visueel Ontwerp' },
+    'proj3-tag1': { en: 'Design Ops', nl: 'Design Ops' },
+    'proj3-tag2': { en: 'Visual Design', nl: 'Visueel Ontwerp' },
+    'proj4-tag1': { en: 'Editing', nl: 'Editing' },
+    'proj4-tag2': { en: 'Post-production', nl: 'Postproductie' },
+    'proj5-tag1': { en: 'Photography', nl: 'Fotografie' },
+    'proj5-tag2': { en: 'Post-production', nl: 'Postproductie' },
+    'about-title':   { en: 'About', nl: 'Over mij' },
+    'about-bio':     {
+      en: '<b>Hi, I\'m Fleur</b>, a creative and detail-oriented designer with a background in Visual Design within tech and retail. I\'m a strong problem solver, always open to new challenges, and value self-development — which is why I recently specialized in UX/UI. I now design intuitive, user-focused digital products.',
+      nl: '<b>Hoi, ik ben Fleur</b>, een creatieve en detailgerichte designer met een achtergrond in Visual Design binnen tech en retail. Ik ben een sterke probleemoplosser, sta open voor nieuwe uitdagingen en vind zelfontwikkeling belangrijk — vandaar dat ik me recent heb gespecialiseerd in UX/UI. Inmiddels ontwerp ik intuïtieve, gebruiksgerichte digitale producten.'
+    },
+    'contact-title':   { en: 'Contact', nl: 'Contact' },
+    'contact-heading': { en: 'Let\'s work<br>together.', nl: 'Laten we samenwerken.' },
+    'linkedin-label':  { en: 'LinkedIn', nl: 'LinkedIn' }
+  };
+
+  function setLang(lang){
+    document.documentElement.setAttribute('lang', lang);
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      var entry = translations[key];
+      if (entry && entry[lang] !== undefined) el.innerHTML = entry[lang];
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem('site-lang', lang); } catch (e) {}
+  }
+
+  function setTheme(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    var m = document.getElementById('theme-color-meta');
+    if (m) m.setAttribute('content', theme === 'dark' ? '#141414' : '#F1F1EF');
+    try { localStorage.setItem('site-theme', theme); } catch (e) {}
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-lang')); });
+  });
+
+  var themeToggleBtn = document.querySelector('.theme-toggle');
+  if (themeToggleBtn){
+    themeToggleBtn.addEventListener('click', function(){
+      var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  var navEl = document.querySelector('nav.top');
+  if (navEl){
+    var lastScrollY = window.scrollY;
+    var onScroll = function(){
+      var y = window.scrollY;
+      navEl.classList.toggle('scrolled', y > 8);
+      if (y > lastScrollY && y > 80){
+        navEl.classList.add('nav-hidden');
+      } else if (y < lastScrollY){
+        navEl.classList.remove('nav-hidden');
+      }
+      lastScrollY = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  var savedLang = 'nl';
+  try { savedLang = localStorage.getItem('site-lang') || 'nl'; } catch (e) {}
+  setLang(savedLang);
+
+  (function(){
+    var vids = Array.prototype.slice.call(document.querySelectorAll('video.autoplay-video'));
+    if (!vids.length) return;
+
+    function primeVideo(v){
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+      v.autoplay = true;
+      v.loop = true;
+      v.setAttribute('muted', '');
+      v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
+    }
+
+    function tryPlay(v){
+      primeVideo(v);
+      var p = v.play();
+      if (p && typeof p.catch === 'function') p.catch(function(){ /* will retry */ });
+    }
+
+    function tryPlayAll(){
+      vids.forEach(tryPlay);
+    }
+
+    vids.forEach(function(v){
+      primeVideo(v);
+      v.load();
+      ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough', 'playing'].forEach(function(evt){
+        v.addEventListener(evt, function(){ tryPlay(v); });
+      });
+    });
+
+    tryPlayAll();
+    document.addEventListener('DOMContentLoaded', tryPlayAll);
+    window.addEventListener('load', tryPlayAll);
+
+    [150, 400, 800, 1500, 2500, 4000, 6000].forEach(function(ms){
+      setTimeout(tryPlayAll, ms);
+    });
+
+    document.addEventListener('visibilitychange', function(){
+      if (!document.hidden) tryPlayAll();
+    });
+    window.addEventListener('pageshow', tryPlayAll);
+
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) tryPlay(entry.target);
+        });
+      }, { threshold: 0.15 });
+      vids.forEach(function(v){ io.observe(v); });
+    }
+
+    var kick = function(){
+      tryPlayAll();
+      window.removeEventListener('touchstart', kick);
+      window.removeEventListener('click', kick);
+      window.removeEventListener('scroll', kick);
+    };
+    window.addEventListener('touchstart', kick, { once:true, passive:true });
+    window.addEventListener('click', kick, { once:true });
+    window.addEventListener('scroll', kick, { once:true, passive:true });
+
+    vids.forEach(function(v){
+      v.addEventListener('click', function(){ tryPlay(v); });
+    });
+  })();
+</script>
+
+</body>
+</html>
