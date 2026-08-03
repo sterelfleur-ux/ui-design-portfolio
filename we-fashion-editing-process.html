@@ -69,24 +69,31 @@
 
   /* Text left, image right — wide, spacious layout. object-fit:contain keeps
      composite screenshots scaling down cleanly instead of being cropped/zoomed.
-     No card background or shadow behind the image — it sits directly on the page. */
+     No card background or shadow behind the image — it sits directly on the page.
+     Back-link + eyebrow sit in their own full-width row above the grid, so the
+     title (first thing in the text column) lines up exactly with the image
+     (first thing in the image column). */
+  .case-top{max-width:1320px; margin:0 auto; padding:110px 48px 0;}
+  .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
+  .back-link:hover{color:var(--ink);}
+  .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
+
   .case-hero{
     max-width:1320px; margin:0 auto;
-    padding:110px 48px 90px;
+    padding:0 48px 90px;
     display:grid;
     grid-template-columns: minmax(0,480px) minmax(0,680px);
     justify-content:space-between;
     gap:64px;
-    align-items:center;
+    align-items:start;
   }
   .case-hero-text{min-width:0;}
-  .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
-  .back-link:hover{color:var(--ink);}
-  .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
   .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:52px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:22px;}
-  .case-hero-text p{font-size:18px; line-height:1.7; color:var(--ink); max-width:480px;}
+  .case-hero-text p{font-size:18px; line-height:1.7; color:var(--ink); max-width:480px; margin-bottom:16px;}
+  .case-hero-text p:last-of-type{margin-bottom:0;}
+  .case-hero-text p b{font-weight:700;}
 
-  .case-hero-image{width:100%; display:flex; justify-content:center; background:none;}
+  .case-hero-image{width:100%; max-width:680px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:24px; background:none;}
   .case-image{
     width:100%; max-width:680px; display:block; border-radius:24px;
     object-fit:contain; background:none;
@@ -103,7 +110,8 @@
     nav.top .links{gap:14px; font-size:12px; flex-wrap:wrap; justify-content:flex-end; row-gap:8px;}
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
-    .case-hero{grid-template-columns:1fr; padding:80px 22px 50px; gap:32px;}
+    .case-top{padding:80px 22px 0;}
+    .case-hero{grid-template-columns:1fr; padding:24px 22px 50px; gap:32px;}
     .case-title{font-size:34px;}
     .case-image{max-width:100%;}
   }
@@ -129,15 +137,21 @@
   </div>
 </nav>
 
+<div class="case-top">
+  <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
+  <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — WE Fashion & Picnic Technologies</div>
+</div>
+
 <div class="case-hero">
   <div class="case-hero-text">
-    <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
-    <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — WE Fashion & Picnic Technologies</div>
     <h1 class="case-title" data-i18n="case-title">Editing</h1>
-    <p data-i18n="case-body">Jarenlange ervaring met het opzetten en coördineren van editingprocessen — van het bouwen van WE Fashion's volledige inhouse retoucheerproces tot het bewaken van beeldkwaliteit voor duizenden productfoto's bij Picnic in NL, DE en FR. Leidde editingteams, documenteerde werkwijzen en richtlijnen, en optimaliseerde workflows tussen Assets, Salesforce en Figma — met oog voor deadlines op meerdere projecten tegelijk.</p>
+    <p data-i18n="case-body-1">Als eerste inhouse retoucher bouwde ik bij <b>WE Fashion</b> het volledige <b>editingproces</b> op en coördineerde dit. Ik bewaakte de <b>beeldkwaliteit en consistentie</b> van alle productfoto's, volgens huisstijl en trends, en leidde het editingteam in nauwe samenwerking met fotografen, creatieve teams en externe partners om deadlines en werkprocessen op elkaar af te stemmen.</p>
+    <p data-i18n="case-body-2">Bij <b>Picnic Technologies</b> bewaakte ik de beeldkwaliteit van het volledige productassortiment in <b>NL, DE en FR</b> — van fotografie tot live in de app. Als <b>Product Owner Assets (DAM)</b> coördineerde ik duizenden afbeeldingen en optimaliseerde ik de workflows tussen Assets, Salesforce en Figma.</p>
+    <p data-i18n="case-body-3">Ik leidde <b>editingteams</b> met internationale collega's en externe partners, documenteerde werkwijzen en richtlijnen, en bewaakte de <b>deadlines</b> op meerdere projecten tegelijk.</p>
   </div>
   <div class="case-hero-image">
     <img class="case-image" src="images/we-fashion-editing-process-case.png" alt="WE Fashion Editing Process" onerror="this.style.display='none'">
+    <img class="case-image" src="images/we-fashion-editing-process-case-2.png" alt="WE Fashion Editing Process 2" onerror="this.style.display='none'">
   </div>
 </div>
 
@@ -150,7 +164,18 @@
     'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
     'case-eyebrow':{ en: 'Visual Design — WE Fashion & Picnic Technologies', nl: 'Visueel Ontwerp — WE Fashion & Picnic Technologies' },
     'case-title':  { en: 'Editing', nl: 'Editing' },
-    'case-body':   { en: "Years of experience setting up and coordinating editing processes — from building WE Fashion's entire in-house retouching process to safeguarding image quality for thousands of product photos at Picnic across NL, DE and FR. Led editing teams, documented workflows and guidelines, and optimized workflows between Assets, Salesforce and Figma — managing deadlines across multiple projects at once.", nl: "Jarenlange ervaring met het opzetten en coördineren van editingprocessen — van het bouwen van WE Fashion's volledige inhouse retoucheerproces tot het bewaken van beeldkwaliteit voor duizenden productfoto's bij Picnic in NL, DE en FR. Leidde editingteams, documenteerde werkwijzen en richtlijnen, en optimaliseerde workflows tussen Assets, Salesforce en Figma — met oog voor deadlines op meerdere projecten tegelijk." }
+    'case-body-1': {
+      en: "As the first in-house retoucher, I built and coordinated <b>WE Fashion's</b> entire <b>editing process</b>. I safeguarded the <b>image quality and consistency</b> of all product photos, in line with brand guidelines and trends, and led the editing team in close collaboration with photographers, creative teams and external partners to align deadlines and workflows.",
+      nl: "Als eerste inhouse retoucher bouwde ik bij <b>WE Fashion</b> het volledige <b>editingproces</b> op en coördineerde dit. Ik bewaakte de <b>beeldkwaliteit en consistentie</b> van alle productfoto's, volgens huisstijl en trends, en leidde het editingteam in nauwe samenwerking met fotografen, creatieve teams en externe partners om deadlines en werkprocessen op elkaar af te stemmen."
+    },
+    'case-body-2': {
+      en: "At <b>Picnic Technologies</b>, I safeguarded image quality across the full product assortment in <b>NL, DE and FR</b> — from photography to live in the app. As <b>Product Owner of Assets (DAM)</b>, I coordinated thousands of images and optimized workflows between Assets, Salesforce and Figma.",
+      nl: "Bij <b>Picnic Technologies</b> bewaakte ik de beeldkwaliteit van het volledige productassortiment in <b>NL, DE en FR</b> — van fotografie tot live in de app. Als <b>Product Owner Assets (DAM)</b> coördineerde ik duizenden afbeeldingen en optimaliseerde ik de workflows tussen Assets, Salesforce en Figma."
+    },
+    'case-body-3': {
+      en: "I led <b>editing teams</b> with international colleagues and external partners, documented workflows and guidelines, and managed <b>deadlines</b> across multiple projects at once.",
+      nl: "Ik leidde <b>editingteams</b> met internationale collega's en externe partners, documenteerde werkwijzen en richtlijnen, en bewaakte de <b>deadlines</b> op meerdere projecten tegelijk."
+    }
   };
 
   function setLang(lang){
