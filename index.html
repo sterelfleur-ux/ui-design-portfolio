@@ -153,6 +153,7 @@
     text-decoration:none; color:inherit;
   }
   .project-tile .thumb{
+    display:block;
     position:relative; width:100%; min-width:0; aspect-ratio:16/10;
     border-radius:22px; overflow:hidden;
     background:var(--work-bg); border:none;
@@ -177,10 +178,15 @@
     font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
     color:var(--gray); margin-bottom:14px;
   }
-  .project-tile .tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;}
+  .project-tile .tags{display:flex; gap:18px; flex-wrap:wrap; margin-bottom:16px;}
   .project-tile .tags span{
-    font-size:11px; font-weight:600; letter-spacing:0.3px;
-    padding:5px 12px; border:1px solid var(--ink); border-radius:20px; color:var(--ink);
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:13px; font-weight:500; letter-spacing:0.2px; color:var(--ink);
+  }
+  .project-tile .tags span::before{
+    content:''; flex-shrink:0; width:14px; height:10px;
+    border-left:2px solid var(--ink); border-bottom:2px solid var(--ink);
+    transform:rotate(-45deg) translateY(-1px);
   }
   .project-tile h3{
     font-family:'Inter', sans-serif; font-weight:600; font-size:34px; text-transform:none;
@@ -191,24 +197,6 @@
     font-size:17px; color:var(--ink); line-height:1.6; max-width:400px; margin-bottom:16px;
   }
   .project-tile .info .cta{margin-top:4px;}
-
-  .project-tile .thumb.photo-slideshow{
-    border-radius:22px;
-  }
-  .project-tile .thumb.photo-slideshow img{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    opacity:0; animation:photoFade 8s steps(1,end) infinite;
-  }
-  @keyframes photoFade{
-    0%{opacity:1;}
-    12.49%{opacity:1;}
-    12.5%{opacity:0;}
-    100%{opacity:0;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .thumb.photo-slideshow img{animation:none; opacity:0;}
-    .thumb.photo-slideshow img:first-child{opacity:1;}
-  }
 
   /* ABOUT */
   .about-section{background:var(--about-bg); transition:background-color .25s ease;}
@@ -222,6 +210,7 @@
   }
   .about-intro p{font-size:19px; max-width:620px; margin-bottom:0;}
   .about-intro p b{font-weight:700;}
+  .about-intro .about-linkedin{display:inline-flex; margin-top:26px;}
 
   /* CONTACT */
   .contact-section{background:var(--contact-bg); transition:background-color .25s ease;}
@@ -276,7 +265,7 @@
   <div class="links">
     <a href="#top" class="active" data-i18n="nav-home">Home</a>
     <a href="#about" data-i18n="nav-about">About</a>
-    <a href="#work" data-i18n="nav-work">Work</a>
+    <a href="#work" data-i18n="nav-work">Portfolio</a>
     <a href="#contact" data-i18n="nav-contact">Contact</a>
     <div class="lang-switch">
       <button type="button" class="lang-btn active" data-lang="nl">NL</button>
@@ -295,16 +284,14 @@
   <h1><span class="name-line">Fleur</span><br><span class="name-line">Sterel</span><br><span class="thin">UX-UI<br>Design</span></h1>
   <div class="hero-sub">
     <p data-i18n="hero-desc"><b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs.</p>
-    <a href="#work" class="cta" data-i18n="cta-work">View my work <span class="arrow">→</span></a>
   </div>
 </section>
 
 <div class="work-section">
-<div class="section-head" id="work"><h2 data-i18n="work-title">Work</h2><div class="rule"></div></div>
+<div class="section-head" id="work"><h2 data-i18n="work-title">Portfolio</h2><div class="rule"></div></div>
 <div class="cat-nav">
   <a href="#uiux" data-i18n="cat-uiux">UI/UX Design</a><span class="sep">/</span>
-  <a href="#visual" data-i18n="cat-visual">Visual Design</a><span class="sep">/</span>
-  <a href="#photography" data-i18n="cat-photo">Photography</a>
+  <a href="#visual" data-i18n="cat-visual">UI Design</a>
 </div>
 
 <div class="cat-group" id="uiux">
@@ -332,25 +319,27 @@
           <span data-i18n="proj1-tag2">Research</span>
           <span data-i18n="proj1-tag3">Prototyping</span>
           </div>
+          <a href="ns-ov-fiets.html" class="cta" data-i18n="cta-case-study">Bekijk case study <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
 
     <div class="project-row">
-      <a class="project-tile" href="colour-change-picnic-app.html">
-        <div class="thumb">
+      <div class="project-tile">
+        <a class="thumb" href="colour-change-picnic-app.html" aria-label="Bekijk Productpresentatie case study">
           <span class="thumb-placeholder" data-i18n="ph-screenshot">Add project screenshot</span>
           <img src="images/colour-change-picnic-app.png" alt="Colour Change Picnic App project screenshot" onerror="this.remove()">
-        </div>
+        </a>
         <div class="info">
           <div class="eyebrow" data-i18n="cat-uiux">UI/UX Design</div>
           <h3 data-i18n="proj2-title">Productpresentatie</h3>
           <p class="desc" data-i18n="proj2-desc">Productachtergronden herontworpen en de nieuwe look getest met users.</p>
           <div class="tags">
-          <span data-i18n="proj2-tag2">Visual Design</span>
+          <span data-i18n="proj2-tag2">UI Design</span>
           </div>
+          <a href="colour-change-picnic-app.html" class="cta" data-i18n="cta-case-study">Bekijk case study <span class="arrow">→</span></a>
         </div>
-      </a>
+      </div>
     </div>
 
   </div>
@@ -360,59 +349,37 @@
   <div class="project-tiles">
 
     <div class="project-row">
-      <a class="project-tile" href="homogeneous-bundle-project.html">
-        <div class="thumb">
+      <div class="project-tile">
+        <a class="thumb" href="homogeneous-bundle-project.html" aria-label="Bekijk Visuele Bundels case study">
           <span class="thumb-placeholder" data-i18n="ph-workflow">Add workflow diagram / before-after</span>
           <img src="images/homogeneous-bundle-project.png" alt="Homogeneous Bundle Project screenshot" onerror="this.remove()">
-        </div>
+        </a>
         <div class="info">
-          <div class="eyebrow" data-i18n="cat-visual">Visual Design</div>
+          <div class="eyebrow" data-i18n="cat-visual">UI Design</div>
           <h3 data-i18n="proj3-title">Visuele Bundels</h3>
           <p class="desc" data-i18n="proj3-desc">Coordinating a visual rollout at scale for Picnic's product bundles.</p>
+          <a href="homogeneous-bundle-project.html" class="cta" data-i18n="cta-case-study">Bekijk case study <span class="arrow">→</span></a>
         </div>
-      </a>
+      </div>
     </div>
 
     <div class="project-row">
-      <a class="project-tile" href="we-fashion-editing-process.html">
-        <div class="thumb">
+      <div class="project-tile">
+        <a class="thumb" href="we-fashion-editing-process.html" aria-label="Bekijk Editing case study">
           <span class="thumb-placeholder" data-i18n="ph-before-after">Add before / after product photos</span>
           <img src="images/we-fashion-editing-process.png" alt="WE Fashion editing process screenshot" onerror="this.remove()">
-        </div>
+        </a>
         <div class="info">
-          <div class="eyebrow" data-i18n="cat-visual">Visual Design</div>
+          <div class="eyebrow" data-i18n="cat-visual">UI Design</div>
           <h3 data-i18n="proj4-title">Editing</h3>
           <p class="desc" data-i18n="proj4-desc">Jarenlange ervaring met postproductie, beeldbewerking en het coördineren en opzetten van beeldbewerkingsprocessen.</p>
           <div class="tags">
           <span data-i18n="proj4-tag1">Process Design</span>
           <span data-i18n="proj4-tag2">Photography</span>
           </div>
+          <a href="we-fashion-editing-process.html" class="cta" data-i18n="cta-case-study">Bekijk case study <span class="arrow">→</span></a>
         </div>
-      </a>
-    </div>
-
-  </div>
-</div>
-
-<div class="cat-group" id="photography">
-  <div class="project-tiles">
-
-    <div class="project-row">
-      <a class="project-tile" href="photography-assistant.html">
-        <div class="thumb photo-slideshow">
-          <img src="images/photo-1.jpg" alt="Photography 1" style="animation-delay:0s" onerror="this.style.visibility='hidden'">
-          <img src="images/photo-2.jpg" alt="Photography 2" style="animation-delay:1s" onerror="this.style.visibility='hidden'">
-          <img src="images/photo-3.jpg" alt="Photography 3" style="animation-delay:2s" onerror="this.style.visibility='hidden'">
-          <img src="images/photo-4.jpg" alt="Photography 4" style="animation-delay:3s" onerror="this.style.visibility='hidden'">
-          <img src="images/photo-5.jpg" alt="Photography 5" style="animation-delay:4s" onerror="this.style.visibility='hidden'">
-          <img src="images/photo-6.jpg" alt="Photography 6" style="animation-delay:5s" onerror="this.style.visibility='hidden'">
-          <img src="images/photo-7.jpg" alt="Photography 7" style="animation-delay:6s" onerror="this.style.visibility='hidden'">
-          <img src="images/photo-8.jpg" alt="Photography 8" style="animation-delay:7s" onerror="this.style.visibility='hidden'">
-        </div>
-        <div class="info">
-          <h3 data-i18n="proj5-title">Fotografie</h3>
-        </div>
-      </a>
+      </div>
     </div>
 
   </div>
@@ -429,7 +396,8 @@
     </div>
   </div>
   <div class="about-intro">
-    <p data-i18n="about-bio"><b>Hi, I'm Fleur</b>, a creative and detail-oriented designer with a background in Visual Design within tech and retail. I'm a strong problem solver, always open to new challenges, and value self-development — which is why I recently specialized in UX/UI. I now design intuitive, user-focused digital products.</p>
+    <p data-i18n="about-bio"><b>Hi, I'm Fleur</b>, a creative and detail-oriented designer with a background in UI Design within tech and retail. I'm a strong problem solver, always open to new challenges, and value self-development, which is why I recently specialized in UX/UI. I now design intuitive, user-focused digital products.</p>
+    <a href="https://www.linkedin.com/in/fleur-sterel-ba20a5181/" target="_blank" rel="noopener" class="btn-pill btn-outline about-linkedin" data-i18n="linkedin-label">LinkedIn</a>
   </div>
 </div>
 </div>
@@ -450,22 +418,20 @@
   var translations = {
     'nav-home':      { en: 'Home', nl: 'Home' },
     'nav-about':     { en: 'About', nl: 'Over mij' },
-    'nav-work':      { en: 'Work', nl: 'Werk' },
+    'nav-work':      { en: 'Portfolio', nl: 'Portfolio' },
     'nav-contact':   { en: 'Contact', nl: 'Contact' },
     'hero-desc':     {
       en: '<b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs.',
       nl: '<b>Creatief en detailgericht.</b> Een sterke probleemoplosser met een positieve instelling die ideeën graag omzet in heldere, effectieve designs.'
     },
-    'cta-work':      { en: 'View my work →', nl: 'Bekijk mijn werk →' },
-    'work-title':    { en: 'Work', nl: 'Werk' },
+    'work-title':    { en: 'Portfolio', nl: 'Portfolio' },
     'cat-uiux':      { en: 'UI/UX Design', nl: 'UI/UX Design' },
-    'cat-visual':    { en: 'Visual Design', nl: 'Visueel Ontwerp' },
-    'cat-photo':     { en: 'Photography', nl: 'Fotografie' },
+    'cat-visual':    { en: 'UI Design', nl: 'UI Design' },
     'ph-screenshot': { en: 'Add project screenshot', nl: 'Voeg projectscreenshot toe' },
     'ph-workflow':   { en: 'Add workflow diagram / before-after', nl: 'Voeg workflow-diagram / voor-na toe' },
     'ph-before-after': { en: 'Add before / after product photos', nl: 'Voeg voor-/na-productfoto\'s toe' },
-    'ph-photo-samples': { en: 'Add photography samples', nl: 'Voeg fotografievoorbeelden toe' },
     'status-badge': { en: 'Open for new projects', nl: 'Beschikbaar voor nieuwe projecten' },
+    'cta-case-study': { en: 'View case study →', nl: 'Bekijk case study →' },
     'proj1-title': { en: 'OV-Bike', nl: 'OV-Fiets' },
     'proj1-desc':  { en: 'Hypothetical case study, focused on finding an intuitive way to reserve an OV-bike in the NS app.', nl: 'Fictieve case study, gericht op het vinden van een intuïtieve manier om een OV-fiets te reserveren in de NS-app.' },
     'proj2-title': { en: 'Product Presentation', nl: 'Productpresentatie' },
@@ -474,23 +440,19 @@
     'proj3-desc':  { en: "Coordinating a visual rollout at scale for Picnic's product bundles.", nl: "Grootschalige visuele uitrol gecoördineerd voor Picnic's productbundels." },
     'proj4-title': { en: 'Editing', nl: 'Editing' },
     'proj4-desc':  { en: 'Years of experience with post-production, image editing and coordinating and setting up image editing processes.', nl: 'Jarenlange ervaring met postproductie, beeldbewerking en het coördineren en opzetten van beeldbewerkingsprocessen.' },
-    'proj5-title': { en: 'Photography', nl: 'Fotografie' },
-    'proj5-desc':  { en: 'Editorial and contemporary photography.', nl: 'Editorial en eigentijdse fotografie.' },
     'proj1-tag1': { en: 'Mobile', nl: 'Mobile' },
     'proj1-tag2': { en: 'Research', nl: 'Onderzoek' },
     'proj1-tag3': { en: 'Prototyping', nl: 'Prototyping' },
     'proj2-tag1': { en: 'User Testing', nl: 'User Testing' },
-    'proj2-tag2': { en: 'Visual Design', nl: 'Visueel Ontwerp' },
+    'proj2-tag2': { en: 'UI Design', nl: 'UI Design' },
     'proj3-tag1': { en: 'Design Ops', nl: 'Design Ops' },
-    'proj3-tag2': { en: 'Visual Design', nl: 'Visueel Ontwerp' },
+    'proj3-tag2': { en: 'UI Design', nl: 'UI Design' },
     'proj4-tag1': { en: 'Editing', nl: 'Editing' },
     'proj4-tag2': { en: 'Post-production', nl: 'Postproductie' },
-    'proj5-tag1': { en: 'Photography', nl: 'Fotografie' },
-    'proj5-tag2': { en: 'Post-production', nl: 'Postproductie' },
     'about-title':   { en: 'About', nl: 'Over mij' },
     'about-bio':     {
-      en: '<b>Hi, I\'m Fleur</b>, a creative and detail-oriented designer with a background in Visual Design within tech and retail. I\'m a strong problem solver, always open to new challenges, and value self-development — which is why I recently specialized in UX/UI. I now design intuitive, user-focused digital products.',
-      nl: '<b>Hoi, ik ben Fleur</b>, een creatieve en detailgerichte designer met een achtergrond in Visual Design binnen tech en retail. Ik ben een sterke probleemoplosser, sta open voor nieuwe uitdagingen en vind zelfontwikkeling belangrijk — vandaar dat ik me recent heb gespecialiseerd in UX/UI. Inmiddels ontwerp ik intuïtieve, gebruiksgerichte digitale producten.'
+      en: '<b>Hi, I\'m Fleur</b>, a creative and detail-oriented designer with a background in UI Design within tech and retail. I\'m a strong problem solver, always open to new challenges, and value self-development, which is why I recently specialized in UX/UI. I now design intuitive, user-focused digital products.',
+      nl: '<b>Hoi, ik ben Fleur</b>, een creatieve en detailgerichte designer met een achtergrond in UI Design binnen tech en retail. Ik ben een sterke probleemoplosser, sta open voor nieuwe uitdagingen en vind zelfontwikkeling belangrijk, vandaar dat ik me recent heb gespecialiseerd in UX/UI. Inmiddels ontwerp ik intuïtieve, gebruiksgerichte digitale producten.'
     },
     'contact-title':   { en: 'Contact', nl: 'Contact' },
     'contact-heading': { en: 'Let\'s work<br>together.', nl: 'Laten we samenwerken.' },
