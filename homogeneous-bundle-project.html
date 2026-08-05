@@ -67,39 +67,36 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  /* Back-link + eyebrow sit in their own full-width row above the grid,
-     so the title (first thing in the text column) lines up exactly with
-     the top image (first thing in the image column) — align-items:start
-     on .case-hero aligns those two directly. */
-  .case-top{max-width:1320px; margin:0 auto; padding:110px 48px 0;}
+  /* Everything below the nav is centered in a single column: back-link,
+     eyebrow, title, text, photo, text, photo. */
+  .case-top{max-width:760px; margin:0 auto; padding:110px 48px 0; text-align:center;}
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
   .back-link:hover{color:var(--ink);}
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
 
   .case-hero{
-    max-width:1320px; margin:0 auto;
+    max-width:760px; margin:0 auto;
     padding:0 48px 90px;
-    display:grid;
-    grid-template-columns: minmax(0,480px) minmax(0,680px);
-    justify-content:space-between;
-    gap:64px;
-    align-items:start;
+    display:flex; flex-direction:column; align-items:center;
+    text-align:center;
+    gap:36px;
   }
-  .case-hero-text{min-width:0;}
-  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:52px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:22px;}
-  .case-hero-text p{font-size:17px; line-height:1.7; color:var(--ink); max-width:480px; margin-bottom:16px;}
-  .case-hero-text p:last-of-type{margin-bottom:0;}
-  .case-hero-text p b{font-weight:700;}
+  .case-title{font-family:'Inter', sans-serif; font-weight:500; font-size:48px; letter-spacing:-0.5px; line-height:1.1;}
+  .case-tags{display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-top:-16px;}
+  .case-tags span{
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:13px; font-weight:500; letter-spacing:0.2px; color:var(--ink);
+  }
+  .case-tags span::before{
+    content:''; flex-shrink:0; width:14px; height:10px;
+    border-left:2px solid var(--ink); border-bottom:2px solid var(--ink);
+    transform:rotate(-45deg) translateY(-1px);
+  }
+  .case-text{font-size:17px; line-height:1.7; color:var(--ink); max-width:620px;}
 
-  .case-hero-image{width:100%; max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:24px; background:none;}
   .case-image{
-    width:100%; display:block; border-radius:24px;
+    width:100%; max-width:680px; display:block; border-radius:24px; margin:0 auto;
     object-fit:contain; background:none;
-  }
-
-  @media (max-width:1100px){
-    .case-hero{grid-template-columns: minmax(0,420px) minmax(0,420px); gap:40px;}
-    .case-hero-image{max-width:420px;}
   }
 
   @media (max-width:860px){
@@ -109,9 +106,8 @@
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .case-top{padding:80px 22px 0;}
-    .case-hero{grid-template-columns:1fr; padding:24px 22px 50px; gap:32px;}
+    .case-hero{padding:24px 22px 50px; gap:28px;}
     .case-title{font-size:34px;}
-    .case-hero-image{max-width:100%; gap:14px;}
   }
 </style>
 </head>
@@ -136,20 +132,25 @@
 </nav>
 
 <div class="case-top">
-  <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
-  <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — Picnic Technologies</div>
+  <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar portfolio</a>
+  <div class="case-eyebrow" data-i18n="case-eyebrow">UI Design — Picnic Technologies</div>
 </div>
 
 <div class="case-hero">
-  <div class="case-hero-text">
-    <h1 class="case-title" data-i18n="case-title">Homogeneous<br>Bundle Project</h1>
-    <p data-i18n="case-body-1">Realiseerde bij Picnic de visuele uitrol van het <b>Homogene Bundel project</b>, waarmee klanten voortaan losse producten als <b>samengestelde bundels</b> konden kopen.</p>
-    <p data-i18n="case-body-2">Ik coördineerde het proces met <b>meerdere stakeholders</b>, documenteerde de <b>ontwerprichtlijnen</b> en bewaakte <b>deadlines</b> over een groot aantal producten tegelijk — binnen één maand na lancering stonden er meer dan <b>7.500 bundel beelden</b> live.</p>
+  <h1 class="case-title" data-i18n="case-title">Homogeneous<br>Bundle Project</h1>
+
+  <div class="case-tags">
+    <span data-i18n="case-tag1">Design Ops</span>
+    <span data-i18n="case-tag2">UI Design</span>
   </div>
-  <div class="case-hero-image">
-    <img class="case-image" src="images/homogeneous-bundle-project-case.png" alt="Homogeneous Bundle Project case study 1" onerror="this.style.display='none'">
-    <img class="case-image" src="images/homogeneous-bundle-project-case-2.png" alt="Homogeneous Bundle Project case study 2" onerror="this.style.display='none'">
-  </div>
+
+  <p class="case-text" data-i18n="case-body-1">Realiseerde bij Picnic de visuele uitrol van het Homogene Bundel project, waarmee klanten voortaan losse producten als samengestelde bundels konden kopen.</p>
+
+  <img class="case-image" src="images/homogeneous-bundle-project-case.png" alt="Homogeneous Bundle Project case study 1" onerror="this.style.display='none'">
+
+  <p class="case-text" data-i18n="case-body-2">Ik coördineerde het proces met meerdere stakeholders, documenteerde de ontwerprichtlijnen en bewaakte deadlines over een groot aantal producten tegelijk — binnen één maand na lancering stonden er meer dan 7.500 bundel beelden live.</p>
+
+  <img class="case-image" src="images/homogeneous-bundle-project-case-2.png" alt="Homogeneous Bundle Project case study 2" onerror="this.style.display='none'">
 </div>
 
 <script>
@@ -158,16 +159,18 @@
     'nav-about':   { en: 'About', nl: 'Over mij' },
     'nav-work':    { en: 'Work', nl: 'Werk' },
     'nav-contact': { en: 'Contact', nl: 'Contact' },
-    'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
-    'case-eyebrow':{ en: 'Visual Design — Picnic Technologies', nl: 'Visueel Ontwerp — Picnic Technologies' },
+    'back-link':   { en: '← Back to Portfolio', nl: '← Terug naar portfolio' },
+    'case-eyebrow':{ en: 'UI Design — Picnic Technologies', nl: 'UI Design — Picnic Technologies' },
+    'case-tag1':   { en: 'Design Ops', nl: 'Design Ops' },
+    'case-tag2':   { en: 'UI Design', nl: 'UI Design' },
     'case-title':  { en: 'Homogeneous<br>Bundle Project', nl: 'Homogeneous<br>Bundle Project' },
     'case-body-1': {
-      en: 'Delivered the visual rollout of Picnic’s <b>Homogeneous Bundle project</b>, which allowed customers to buy loose products as <b>composed bundles</b>.',
-      nl: 'Realiseerde bij Picnic de visuele uitrol van het <b>Homogene Bundel project</b>, waarmee klanten voortaan losse producten als <b>samengestelde bundels</b> konden kopen.'
+      en: 'Delivered the visual rollout of Picnic’s Homogeneous Bundle project, which allowed customers to buy loose products as composed bundles.',
+      nl: 'Realiseerde bij Picnic de visuele uitrol van het Homogene Bundel project, waarmee klanten voortaan losse producten als samengestelde bundels konden kopen.'
     },
     'case-body-2': {
-      en: 'I coordinated the process with <b>multiple stakeholders</b>, documented the <b>design guidelines</b> and safeguarded <b>deadlines</b> across a large number of products at once — within one month of launch, more than <b>7,500 bundle images</b> were live.',
-      nl: 'Ik coördineerde het proces met <b>meerdere stakeholders</b>, documenteerde de <b>ontwerprichtlijnen</b> en bewaakte <b>deadlines</b> over een groot aantal producten tegelijk — binnen één maand na lancering stonden er meer dan <b>7.500 bundel beelden</b> live.'
+      en: 'I coordinated the process with multiple stakeholders, documented the design guidelines and safeguarded deadlines across a large number of products at once — within one month of launch, more than 7,500 bundle images were live.',
+      nl: 'Ik coördineerde het proces met meerdere stakeholders, documenteerde de ontwerprichtlijnen en bewaakte deadlines over een groot aantal producten tegelijk — binnen één maand na lancering stonden er meer dan 7.500 bundel beelden live.'
     }
   };
 

@@ -82,6 +82,16 @@
     gap:36px;
   }
   .case-title{font-family:'Inter', sans-serif; font-weight:500; font-size:48px; letter-spacing:-0.5px; line-height:1.1;}
+  .case-tags{display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-top:-16px;}
+  .case-tags span{
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:13px; font-weight:500; letter-spacing:0.2px; color:var(--ink);
+  }
+  .case-tags span::before{
+    content:''; flex-shrink:0; width:14px; height:10px;
+    border-left:2px solid var(--ink); border-bottom:2px solid var(--ink);
+    transform:rotate(-45deg) translateY(-1px);
+  }
   .case-text{font-size:17px; line-height:1.7; color:var(--ink); max-width:620px;}
   .cta{
     display:inline-flex; align-items:center; gap:8px;
@@ -129,12 +139,17 @@
 </nav>
 
 <div class="case-top">
-  <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
+  <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar portfolio</a>
   <div class="case-eyebrow" data-i18n="case-eyebrow">UI/UX Design — NS</div>
 </div>
 
 <div class="case-hero">
   <h1 class="case-title" data-i18n="case-title">OV-Fiets</h1>
+
+  <div class="case-tags">
+    <span data-i18n="case-tag1">Research</span>
+    <span data-i18n="case-tag2">Prototyping</span>
+  </div>
 
   <p class="case-text" data-i18n="case-body-1">Voor deze fictieve case study heb ik onderzocht hoe het reserveren van een OV-fiets toegevoegd kan worden aan de NS-app. Het doel was om een gebruiksvriendelijke oplossing te ontwerpen die aansluit bij de behoeften van reizigers.</p>
 
@@ -155,8 +170,10 @@
     'nav-about':   { en: 'About', nl: 'Over mij' },
     'nav-work':    { en: 'Work', nl: 'Werk' },
     'nav-contact': { en: 'Contact', nl: 'Contact' },
-    'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
+    'back-link':   { en: '← Back to Portfolio', nl: '← Terug naar portfolio' },
     'case-eyebrow':{ en: 'UI/UX Design — NS', nl: 'UI/UX Design — NS' },
+    'case-tag1':   { en: 'Research', nl: 'Onderzoek' },
+    'case-tag2':   { en: 'Prototyping', nl: 'Prototyping' },
     'case-title':  { en: 'OV-Bike', nl: 'OV-Fiets' },
     'case-body-1': {
       en: 'For this hypothetical case study, I explored how reserving an OV-bike could be added to the NS app. The goal was to design a user-friendly solution that matches the needs of travelers.',

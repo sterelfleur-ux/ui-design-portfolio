@@ -67,41 +67,36 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  /* Text left, image right — wide, spacious layout. object-fit:contain keeps
-     composite screenshots scaling down cleanly instead of being cropped/zoomed.
-     No card background or shadow behind the image — it sits directly on the page.
-     Back-link + eyebrow sit in their own full-width row above the grid, so the
-     title (first thing in the text column) lines up exactly with the image
-     (first thing in the image column). */
-  .case-top{max-width:1320px; margin:0 auto; padding:110px 48px 0;}
+  /* Everything below the nav is centered in a single column: back-link,
+     eyebrow, title, text, photo, text, photo, text. */
+  .case-top{max-width:760px; margin:0 auto; padding:110px 48px 0; text-align:center;}
   .back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; font-size:13px; font-weight:600; color:var(--gray); transition:color .2s ease;}
   .back-link:hover{color:var(--ink);}
   .case-eyebrow{font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
 
   .case-hero{
-    max-width:1320px; margin:0 auto;
+    max-width:760px; margin:0 auto;
     padding:0 48px 90px;
-    display:grid;
-    grid-template-columns: minmax(0,480px) minmax(0,680px);
-    justify-content:space-between;
-    gap:64px;
-    align-items:start;
+    display:flex; flex-direction:column; align-items:center;
+    text-align:center;
+    gap:36px;
   }
-  .case-hero-text{min-width:0;}
-  .case-title{font-family:'Inter', sans-serif; font-weight:700; font-size:52px; letter-spacing:-0.5px; line-height:1.1; margin-bottom:22px;}
-  .case-hero-text p{font-size:18px; line-height:1.7; color:var(--ink); max-width:480px; margin-bottom:16px;}
-  .case-hero-text p:last-of-type{margin-bottom:0;}
-  .case-hero-text p b{font-weight:700;}
+  .case-title{font-family:'Inter', sans-serif; font-weight:500; font-size:48px; letter-spacing:-0.5px; line-height:1.1;}
+  .case-tags{display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-top:-16px;}
+  .case-tags span{
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:13px; font-weight:500; letter-spacing:0.2px; color:var(--ink);
+  }
+  .case-tags span::before{
+    content:''; flex-shrink:0; width:14px; height:10px;
+    border-left:2px solid var(--ink); border-bottom:2px solid var(--ink);
+    transform:rotate(-45deg) translateY(-1px);
+  }
+  .case-text{font-size:17px; line-height:1.7; color:var(--ink); max-width:620px;}
 
-  .case-hero-image{width:100%; max-width:680px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:24px; background:none;}
   .case-image{
-    width:100%; max-width:680px; display:block; border-radius:24px;
+    width:100%; max-width:680px; display:block; border-radius:24px; margin:0 auto;
     object-fit:contain; background:none;
-  }
-
-  @media (max-width:1100px){
-    .case-hero{grid-template-columns: minmax(0,420px) minmax(0,420px); gap:40px;}
-    .case-image{max-width:420px;}
   }
 
   @media (max-width:860px){
@@ -111,9 +106,8 @@
     .lang-switch{padding-left:10px; margin-left:0;}
     .theme-toggle{margin-left:6px; width:20px; height:20px;}
     .case-top{padding:80px 22px 0;}
-    .case-hero{grid-template-columns:1fr; padding:24px 22px 50px; gap:32px;}
+    .case-hero{padding:24px 22px 50px; gap:28px;}
     .case-title{font-size:34px;}
-    .case-image{max-width:100%;}
   }
 </style>
 </head>
@@ -138,21 +132,27 @@
 </nav>
 
 <div class="case-top">
-  <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar werk</a>
-  <div class="case-eyebrow" data-i18n="case-eyebrow">Visueel Ontwerp — WE Fashion & Picnic Technologies</div>
+  <a class="back-link" href="index.html#work" data-i18n="back-link">← Terug naar portfolio</a>
+  <div class="case-eyebrow" data-i18n="case-eyebrow">UI Design — WE Fashion & Picnic Technologies</div>
 </div>
 
 <div class="case-hero">
-  <div class="case-hero-text">
-    <h1 class="case-title" data-i18n="case-title">Editing</h1>
-    <p data-i18n="case-body-1">Als eerste inhouse retoucher bouwde ik bij <b>WE Fashion</b> het volledige <b>editingproces</b> op en coördineerde dit. Ik bewaakte de <b>beeldkwaliteit en consistentie</b> van alle productfoto's, volgens huisstijl en trends, en leidde het editingteam in nauwe samenwerking met fotografen, creatieve teams en externe partners om deadlines en werkprocessen op elkaar af te stemmen.</p>
-    <p data-i18n="case-body-2">Bij <b>Picnic Technologies</b> bewaakte ik de beeldkwaliteit van het volledige productassortiment in <b>NL, DE en FR</b> — van fotografie tot live in de app. Als <b>Product Owner Assets (DAM)</b> coördineerde ik duizenden afbeeldingen en optimaliseerde ik de workflows tussen Assets, Salesforce en Figma.</p>
-    <p data-i18n="case-body-3">Ik leidde <b>editingteams</b> met internationale collega's en externe partners, documenteerde werkwijzen en richtlijnen, en bewaakte de <b>deadlines</b> op meerdere projecten tegelijk.</p>
+  <h1 class="case-title" data-i18n="case-title">Editing</h1>
+
+  <div class="case-tags">
+    <span data-i18n="case-tag1">Process Design</span>
+    <span data-i18n="case-tag2">Photography</span>
   </div>
-  <div class="case-hero-image">
-    <img class="case-image" src="images/we-fashion-editing-process-case.png" alt="WE Fashion Editing Process" onerror="this.style.display='none'">
-    <img class="case-image" src="images/we-fashion-editing-process-case-2.png" alt="WE Fashion Editing Process 2" onerror="this.style.display='none'">
-  </div>
+
+  <p class="case-text" data-i18n="case-body-1">Als eerste inhouse retoucher bouwde ik bij WE Fashion het volledige editingproces op en coördineerde dit. Ik bewaakte de beeldkwaliteit en consistentie van alle productfoto's, volgens huisstijl en trends, en leidde het editingteam in nauwe samenwerking met fotografen, creatieve teams en externe partners om deadlines en werkprocessen op elkaar af te stemmen.</p>
+
+  <img class="case-image" src="images/we-fashion-editing-process-case.png" alt="WE Fashion Editing Process" onerror="this.style.display='none'">
+
+  <p class="case-text" data-i18n="case-body-2">Bij Picnic Technologies bewaakte ik de beeldkwaliteit van het volledige productassortiment in NL, DE en FR — van fotografie tot live in de app. Als Product Owner Assets (DAM) coördineerde ik duizenden afbeeldingen en optimaliseerde ik de workflows tussen Assets, Salesforce en Figma.</p>
+
+  <img class="case-image" src="images/we-fashion-editing-process-case-2.png" alt="WE Fashion Editing Process 2" onerror="this.style.display='none'">
+
+  <p class="case-text" data-i18n="case-body-3">Ik leidde editingteams met internationale collega's en externe partners, documenteerde werkwijzen en richtlijnen, en bewaakte de deadlines op meerdere projecten tegelijk.</p>
 </div>
 
 <script>
@@ -161,20 +161,22 @@
     'nav-about':   { en: 'About', nl: 'Over mij' },
     'nav-work':    { en: 'Work', nl: 'Werk' },
     'nav-contact': { en: 'Contact', nl: 'Contact' },
-    'back-link':   { en: '← Back to Work', nl: '← Terug naar werk' },
-    'case-eyebrow':{ en: 'Visual Design — WE Fashion & Picnic Technologies', nl: 'Visueel Ontwerp — WE Fashion & Picnic Technologies' },
+    'back-link':   { en: '← Back to Portfolio', nl: '← Terug naar portfolio' },
+    'case-eyebrow':{ en: 'UI Design — WE Fashion & Picnic Technologies', nl: 'UI Design — WE Fashion & Picnic Technologies' },
+    'case-tag1':   { en: 'Process Design', nl: 'Process Design' },
+    'case-tag2':   { en: 'Photography', nl: 'Fotografie' },
     'case-title':  { en: 'Editing', nl: 'Editing' },
     'case-body-1': {
-      en: "As the first in-house retoucher, I built and coordinated <b>WE Fashion's</b> entire <b>editing process</b>. I safeguarded the <b>image quality and consistency</b> of all product photos, in line with brand guidelines and trends, and led the editing team in close collaboration with photographers, creative teams and external partners to align deadlines and workflows.",
-      nl: "Als eerste inhouse retoucher bouwde ik bij <b>WE Fashion</b> het volledige <b>editingproces</b> op en coördineerde dit. Ik bewaakte de <b>beeldkwaliteit en consistentie</b> van alle productfoto's, volgens huisstijl en trends, en leidde het editingteam in nauwe samenwerking met fotografen, creatieve teams en externe partners om deadlines en werkprocessen op elkaar af te stemmen."
+      en: "As the first in-house retoucher, I built and coordinated WE Fashion's entire editing process. I safeguarded the image quality and consistency of all product photos, in line with brand guidelines and trends, and led the editing team in close collaboration with photographers, creative teams and external partners to align deadlines and workflows.",
+      nl: "Als eerste inhouse retoucher bouwde ik bij WE Fashion het volledige editingproces op en coördineerde dit. Ik bewaakte de beeldkwaliteit en consistentie van alle productfoto's, volgens huisstijl en trends, en leidde het editingteam in nauwe samenwerking met fotografen, creatieve teams en externe partners om deadlines en werkprocessen op elkaar af te stemmen."
     },
     'case-body-2': {
-      en: "At <b>Picnic Technologies</b>, I safeguarded image quality across the full product assortment in <b>NL, DE and FR</b> — from photography to live in the app. As <b>Product Owner of Assets (DAM)</b>, I coordinated thousands of images and optimized workflows between Assets, Salesforce and Figma.",
-      nl: "Bij <b>Picnic Technologies</b> bewaakte ik de beeldkwaliteit van het volledige productassortiment in <b>NL, DE en FR</b> — van fotografie tot live in de app. Als <b>Product Owner Assets (DAM)</b> coördineerde ik duizenden afbeeldingen en optimaliseerde ik de workflows tussen Assets, Salesforce en Figma."
+      en: "At Picnic Technologies, I safeguarded image quality across the full product assortment in NL, DE and FR — from photography to live in the app. As Product Owner of Assets (DAM), I coordinated thousands of images and optimized workflows between Assets, Salesforce and Figma.",
+      nl: "Bij Picnic Technologies bewaakte ik de beeldkwaliteit van het volledige productassortiment in NL, DE en FR — van fotografie tot live in de app. Als Product Owner Assets (DAM) coördineerde ik duizenden afbeeldingen en optimaliseerde ik de workflows tussen Assets, Salesforce en Figma."
     },
     'case-body-3': {
-      en: "I led <b>editing teams</b> with international colleagues and external partners, documented workflows and guidelines, and managed <b>deadlines</b> across multiple projects at once.",
-      nl: "Ik leidde <b>editingteams</b> met internationale collega's en externe partners, documenteerde werkwijzen en richtlijnen, en bewaakte de <b>deadlines</b> op meerdere projecten tegelijk."
+      en: "I led editing teams with international colleagues and external partners, documented workflows and guidelines, and managed deadlines across multiple projects at once.",
+      nl: "Ik leidde editingteams met internationale collega's en externe partners, documenteerde werkwijzen en richtlijnen, en bewaakte de deadlines op meerdere projecten tegelijk."
     }
   };
 
