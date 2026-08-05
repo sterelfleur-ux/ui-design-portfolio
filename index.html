@@ -89,8 +89,8 @@
   html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
   html:not([data-theme="dark"]) .theme-toggle .icon-moon{display:block;}
 
-  /* HERO */
-  .hero{padding:90px 48px 96px; position:relative; overflow:hidden;}
+  /* HERO — everything centered horizontally */
+  .hero{padding:90px 48px 96px; position:relative; overflow:hidden; text-align:center;}
   .status-pill{
     display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600;
     padding:6px 14px 6px 12px; border:1px solid var(--ink); border-radius:20px; margin-bottom:20px;
@@ -103,9 +103,9 @@
     animation:fadeUp .7s ease .1s both;
   }
   .hero h1 .thin{-webkit-text-stroke:1px var(--ink); color:transparent;}
-  .hero h1 .name-line{display:inline-block; transform:scaleY(1.18); transform-origin:left top;}
-  .hero-sub{display:flex; justify-content:space-between; align-items:flex-end; margin-top:30px; gap:30px; flex-wrap:wrap; animation:fadeUp .7s ease .18s both;}
-  .hero-sub p{max-width:520px; font-size:16px; color:var(--ink);}
+  .hero h1 .name-line{display:inline-block; transform:scaleY(1.18); transform-origin:top center;}
+  .hero-sub{display:flex; justify-content:center; align-items:center; margin-top:30px; gap:30px; flex-wrap:wrap; animation:fadeUp .7s ease .18s both;}
+  .hero-sub p{max-width:520px; font-size:16px; color:var(--ink); margin:0 auto;}
   .hero-sub p b{font-weight:700;}
   .cta{
     display:inline-flex; align-items:center; gap:8px;
