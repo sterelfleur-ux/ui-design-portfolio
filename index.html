@@ -99,11 +99,12 @@
   .status-pill .dot{width:7px; height:7px; border-radius:50%; background:var(--ink); flex-shrink:0; animation:pulseDot 2s ease-in-out infinite;}
   .hero h1{
     font-family:'Archivo Black', sans-serif; font-weight:400;
-    font-size:92px; line-height:0.92; letter-spacing:1px; text-transform:uppercase;
+    font-size:92px; letter-spacing:1px; text-transform:uppercase;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
     animation:fadeUp .7s ease .1s both;
   }
+  .hero h1 .line{display:block; line-height:0.92;}
   .hero h1 .thin{-webkit-text-stroke:1px var(--ink); color:transparent;}
-  .hero h1 .name-line{display:inline-block; transform:scaleY(1.18); transform-origin:top center;}
   .hero-sub{display:flex; justify-content:center; align-items:center; margin-top:30px; gap:30px; flex-wrap:wrap; animation:fadeUp .7s ease .18s both;}
   .hero-sub p{max-width:520px; font-size:16px; color:var(--ink); margin:0 auto;}
   .hero-sub p b{font-weight:700;}
@@ -281,7 +282,12 @@
 
 <section class="hero" id="top">
   <div class="status-pill"><span class="dot"></span><span data-i18n="status-badge">Open for new projects</span></div>
-  <h1><span class="name-line">Fleur</span><br><span class="name-line">Sterel</span><br><span class="thin">UX-UI<br>Design</span></h1>
+  <h1>
+    <span class="line">Fleur</span>
+    <span class="line">Sterel</span>
+    <span class="line thin">UX-UI</span>
+    <span class="line thin">Design</span>
+  </h1>
   <div class="hero-sub">
     <p data-i18n="hero-desc"><b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs.</p>
   </div>
