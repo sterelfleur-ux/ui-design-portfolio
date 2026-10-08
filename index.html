@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Fleur Sterel — UX/UI Designer</title>
+<title>Fleur Sterel — Creative Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <meta name="theme-color" id="theme-color-meta" content="#F1F1EF">
@@ -91,6 +91,9 @@
 
   /* HERO */
   .hero{padding:90px 48px 96px; position:relative; overflow:hidden;}
+  .hero-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; pointer-events:none;}
+  .hero::after{content:''; position:absolute; inset:0; background:var(--bg); opacity:0.55; z-index:1; pointer-events:none; transition:background-color .25s ease;}
+  .hero > *:not(.hero-video){position:relative; z-index:2;}
   .status-pill{
     display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600;
     padding:6px 14px 6px 12px; border:1px solid var(--ink); border-radius:20px; margin-bottom:20px;
@@ -100,11 +103,13 @@
   .hero h1{
     font-family:'Archivo Black', sans-serif; font-weight:400;
     font-size:92px; line-height:0.92; letter-spacing:1px; text-transform:uppercase;
-    animation:fadeUp .7s ease .1s both;
   }
-  .hero h1 .thin{-webkit-text-stroke:1px var(--ink); color:transparent;}
-  .hero h1 .name-line{display:inline-block; transform:scaleY(1.18); transform-origin:left top;}
-  .hero-sub{display:flex; justify-content:space-between; align-items:flex-end; margin-top:30px; gap:30px; flex-wrap:wrap; animation:fadeUp .7s ease .18s both;}
+  .hero h1 span{display:block; animation:dropIn .75s cubic-bezier(.3,.7,.4,1) both;}
+  .hero h1 .thin{-webkit-text-stroke:1px var(--ink); color:transparent; margin-left:-0.07em; animation-delay:.38s;}
+  .hero h1 .name-line{margin-left:-0.045em; animation-delay:.1s;}
+  .hero h1 .name-line + .name-line{animation-delay:.24s;}
+  @keyframes dropIn{0%{opacity:0; transform:translateY(-160px);} 60%{opacity:1; transform:translateY(8px);} 80%{transform:translateY(-3px);} 100%{opacity:1; transform:translateY(0);}}
+  .hero-sub{display:flex; justify-content:space-between; align-items:flex-end; margin-top:12px; gap:30px; flex-wrap:wrap; animation:fadeUp .7s ease .18s both;}
   .hero-sub p{max-width:520px; font-size:16px; color:var(--ink);}
   .hero-sub p b{font-weight:700;}
   .cta{
@@ -119,7 +124,7 @@
   @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
   @keyframes pulseDot{0%,100%{opacity:1;} 50%{opacity:0.35;}}
   @media (prefers-reduced-motion: reduce){
-    .status-pill, .hero h1, .hero-sub, .status-pill .dot{animation:none !important;}
+    .status-pill, .hero h1, .hero h1 .thin, .hero h1 .name-line, .hero-sub, .status-pill .dot{animation:none !important;}
   }
 
   /* SECTION LABEL */
@@ -280,8 +285,11 @@
 </nav>
 
 <section class="hero" id="top">
+  <video class="hero-video autoplay-video" muted autoplay loop playsinline webkit-playsinline preload="auto" aria-hidden="true">
+    <source src="images/hero.mp4" type="video/mp4">
+  </video>
   <div class="status-pill"><span class="dot"></span><span data-i18n="status-badge">Open for new projects</span></div>
-  <h1><span class="name-line">Fleur</span><br><span class="name-line">Sterel</span><br><span class="thin">UX-UI<br>Design</span></h1>
+  <h1><span class="name-line">Fleur</span><span class="name-line">Sterel</span><span class="thin">Design</span></h1>
   <div class="hero-sub">
     <p data-i18n="hero-desc"><b>Creative and detail-oriented.</b> A strong problem solver with a positive mindset who loves turning ideas into clear, effective designs.</p>
   </div>
@@ -296,6 +304,22 @@
 
 <div class="cat-group" id="uiux">
   <div class="project-tiles">
+
+    <div class="project-row">
+      <div class="project-tile">
+        <div class="thumb">
+          <img src="images/my-spice-guide.png" alt="My Spice Guide app" onerror="this.remove()">
+        </div>
+        <div class="info">
+          <div class="eyebrow" data-i18n="cat-visual">UI Design</div>
+          <h3 data-i18n="proj0-title">My Spice Guide</h3>
+          <p class="desc" data-i18n="proj0-desc">Een lopend UI-project: een app om kruiden te mixen. Ontwerp je eigen kruidenmix, voeg hem toe aan je voorraadkast in de app en maak en match recepten.</p>
+          <div class="tags">
+          <span data-i18n="proj0-tag1">Lopend project</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="project-row">
       <div class="project-tile">
@@ -432,6 +456,9 @@
     'ph-before-after': { en: 'Add before / after product photos', nl: 'Voeg voor-/na-productfoto\'s toe' },
     'status-badge': { en: 'Open for new projects', nl: 'Beschikbaar voor nieuwe projecten' },
     'cta-case-study': { en: 'View case study →', nl: 'Bekijk case study →' },
+    'proj0-title': { en: 'My Spice Guide', nl: 'My Spice Guide' },
+    'proj0-desc':  { en: 'An ongoing UI project: an app for mixing spices. Design your own spice mix, add it to your pantry in the app, and create and match recipes.', nl: 'Een lopend UI-project: een app om kruiden te mixen. Ontwerp je eigen kruidenmix, voeg hem toe aan je voorraadkast in de app en maak en match recepten.' },
+    'proj0-tag1':  { en: 'Ongoing project', nl: 'Lopend project' },
     'proj1-title': { en: 'OV-Bike', nl: 'OV-Fiets' },
     'proj1-desc':  { en: 'Hypothetical case study, focused on finding an intuitive way to reserve an OV-bike in the NS app.', nl: 'Fictieve case study, gericht op het vinden van een intuïtieve manier om een OV-fiets te reserveren in de NS-app.' },
     'proj2-title': { en: 'Product Presentation', nl: 'Productpresentatie' },
